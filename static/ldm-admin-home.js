@@ -23,8 +23,8 @@
    document.querySelectorAll('#v3AdvancedTabs [data-advtab]').forEach(b=>b.classList.toggle('active',b.dataset.advtab==='administrator'));
    document.body.classList.add('v3-advanced');
    if(!loading)loading=(async()=>{try{
-     const response=await fetch('/ldm/static/ldm-admin-panel.html?v7gui144',{cache:'no-store'});if(!response.ok)throw new Error('Administrator panel unavailable');pane.innerHTML=await response.text();window.ldmMountSharedRecovery?.();const machineSettings=document.getElementById('machineSizeSection'),machineDock=pane.querySelector('#ldmAdminMachineSettingsDock');if(machineSettings&&machineDock){machineDock.appendChild(machineSettings);machineSettings.open=false;}const remote= document.querySelector('#v3RemoteModal .v3RemoteCard, #v3AdvancedRemotePane .v3RemoteCard');const remoteHost=pane.querySelector('#ldmAdminRemoteViewTools');if(remote&&remoteHost){remoteHost.appendChild(remote);remote.querySelector('.v3RemoteHead h2').textContent='iPAD / REMOTE VIEW';window.v3LoadRemoteUrls?.();}
-     const script=document.createElement('script');script.src='/ldm/static/ldm-admin.js?v7gui144';pane.appendChild(script);
+     const response=await fetch('static/ldm-admin-panel.html?v7gui144',{cache:'no-store'});if(!response.ok)throw new Error('Administrator panel unavailable');pane.innerHTML=await response.text();window.ldmMountSharedRecovery?.();const machineSettings=document.getElementById('machineSizeSection'),machineDock=pane.querySelector('#ldmAdminMachineSettingsDock');if(machineSettings&&machineDock){machineDock.appendChild(machineSettings);machineSettings.open=false;}const remote= document.querySelector('#v3RemoteModal .v3RemoteCard, #v3AdvancedRemotePane .v3RemoteCard');const remoteHost=pane.querySelector('#ldmAdminRemoteViewTools');if(remote&&remoteHost){remoteHost.appendChild(remote);remote.querySelector('.v3RemoteHead h2').textContent='iPAD / REMOTE VIEW';window.v3LoadRemoteUrls?.();}
+     const script=document.createElement('script');script.src='static/ldm-admin.js?v7gui144';pane.appendChild(script);
    }catch(err){pane.textContent=err.message;loading=null}})();
  }
  function start(){

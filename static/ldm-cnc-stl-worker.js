@@ -1,5 +1,5 @@
 /* Bounded, conservative top-down height-field planning for a flat end mill. */
-importScripts('/ldm/static/ldm-stl-worker.js');
+importScripts('./ldm-stl-worker.js');
 function clip(poly,axis,value,positive){const out=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],ia=positive?a[axis]>=value:a[axis]<=value,ib=positive?b[axis]>=value:b[axis]<=value;if(ia)out.push(a);if(ia!==ib){const t=(value-a[axis])/(b[axis]-a[axis]);out.push(a.map((v,k)=>v+(b[k]-v)*t));}}return out;}
 function plan(data){
  const {buffer,v,width,height,scale,resolution,stepover}=data,flat=parseSTLFlat(buffer);if(data.orientation==='front'||data.orientation==='right')for(let i=0;i<flat.length;i+=3){const [x,y,z]=[flat[i],flat[i+1],flat[i+2]],q=data.orientation==='front'?[x,z,-y]:[y,z,x];flat[i]=q[0];flat[i+1]=q[1];flat[i+2]=q[2];}let lo=[Infinity,Infinity,Infinity],hi=[-Infinity,-Infinity,-Infinity];for(let i=0;i<flat.length;i++){const a=i%3;lo[a]=Math.min(lo[a],flat[i]);hi[a]=Math.max(hi[a],flat[i]);}

@@ -9,7 +9,7 @@
   if(file.size>64*1024*1024){status('NGC import failed: maximum file size is 64 MB.');return;}
   status('READING NGC — '+file.name);
   try{const text=await file.text();if(version!==generation)return;
-   worker=new Worker('/ldm/static/ldm-ngc-worker.js?v=73');status('PARSING NGC — '+file.name);
+   worker=new Worker('static/ldm-ngc-worker.js?v=73');status('PARSING NGC — '+file.name);
    worker.onmessage=event=>{if(version!==generation)return;worker.terminate();worker=null;
     if(!event.data.ok){status('NGC import failed: '+event.data.error);return;}
     pending={name:file.name,raw:event.data.paths,text:event.data.svg,segments:event.data.segments};status(file.name+' ready — '+pending.raw.length+' strokes — PLACE INTO PREVIEW');
