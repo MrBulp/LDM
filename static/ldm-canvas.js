@@ -42,7 +42,7 @@
      const snapshot=capture();
      const d=await call('/api/canvas',{title:el('ldmCanvasTitle').value.trim(),canvas:snapshot});
      message(`${d.duplicate?'Already submitted':'Snapshot submitted'} — ${d.item.status}. LDM Admin controls machine sending.`);await refresh();
-   }catch(e){message(e.message)}finally{submitting=false;if(el('ldmCanvasSubmit'))el('ldmCanvasSubmit').disabled=state.mode==='off'||state.inbox_enabled===false}
+   }catch(e){message(e.message)}finally{submitting=false;if(el('ldmCanvasSubmit'))el('ldmCanvasSubmit').disabled=state.mode==='off'||state.inbox_enabled===false||state.submissions_remaining===0}
  }
  let selectedSubmission='',previewRequest=0;
  function usernameTitle(){const input=el('ldmCanvasTitle');if(!input)return;let prefix=el('ldmCanvasUsername');if(!prefix){prefix=document.createElement('span');prefix.id='ldmCanvasUsername';prefix.className='ldmCanvasUsername';prefix.setAttribute('data-ldm-no-translate','');const field=document.createElement('div');field.className='ldmCanvasTitleField';input.before(field);field.append(prefix,input);}const text=state.username?state.username+' · ':'';if(prefix.textContent!==text)prefix.textContent=text;if(prefix.hidden!==!text)prefix.hidden=!text;const limit=120-text.length;if(input.maxLength!==limit)input.maxLength=limit;}
@@ -85,7 +85,7 @@
    document.querySelectorAll('button[onclick]').forEach(b=>{
      if(/\b(startJob|v3SvgSaveStartJob|startSelectedProject|traceBridgeSD|downloadA1PlotPackage|v3OpenRepeatSdJobs|penUp|penDown|moveZAbs|homeXYZ|raw)\s*\(/.test(b.getAttribute('onclick')))b.setAttribute('data-ldm-admin-only','');
    });
-   const button=el('ldmCanvasSubmit');if(button){button.disabled=state.mode==='off'||state.inbox_enabled===false||submitting;const label=state.mode==='off'?'SUBMISSIONS DISABLED':'SUBMIT';if(button.textContent!==label)button.textContent=label;}
+   const button=el('ldmCanvasSubmit');if(button){button.disabled=state.mode==='off'||state.inbox_enabled===false||state.submissions_remaining===0||submitting;const label=state.mode==='off'?'SUBMISSIONS DISABLED':state.submissions_remaining===0?'LIMIT REACHED':'SUBMIT';if(button.textContent!==label)button.textContent=label;}
    const remoteTab=el('ldmArtworkFilesTab');if(remoteTab?.dataset.ldmRemoteInbox)remoteTab.toggleAttribute('data-ldm-section-disabled',state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('inbox'));
    const current=mode();if((current==='inbox'&&(state.inbox_enabled===false||state.online_inbox_visible===false))||!state.sections.includes(current))document.querySelector(`.v3ArtworkModeTabs [data-artmode="${state.sections[0]||'none'}"]`)?.click();
  }
@@ -144,6 +144,7 @@
  }
  document.addEventListener('ldm-administrator-unlocked',start);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+ document.addEventListener('ldm-online-allowance',updatePermissions);
  document.addEventListener('ldm-online-view',()=>{updatePermissions();mount();});
  document.addEventListener('click',e=>{if(e.target.closest?.('[data-artmode]'))setTimeout(mount,0);});
  window.ldmMountRemoteCanvasInbox=mount;

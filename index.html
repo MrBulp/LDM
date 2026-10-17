@@ -3,7 +3,7 @@
 --><!-- LDM V4.GUI.4DD — REPEAT PROJECT READY BYPASSES SURFACE-Z-CHANGED NEW-JOB WARNING -->
 <!doctype html>
 <html>
-<head><script>document.write('<base href="'+location.pathname.replace(/[^/]*$/,'')+'">');</script><style>@layer ldmOnlineWorkspace; @layer ldmOnlineWorkspace {html:not(.ldm-online-view-ready) .v3ArtworkModeTabs,html:not(.ldm-online-view-ready) [id^="v3Artwork"][id$="Host"],html:not(.ldm-online-view-ready) .previewWrap{display:none!important}}</style><link rel="stylesheet" href="static/ldm-online-workspace.css?v157"><script src="static/ldm-online-workspace.js"></script><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": [], "online_view_ready": false};</script><script src="static/ldm-online-editor.js?v154"></script><link rel="stylesheet" href="static/ldm-workspace.css?v155"><link rel="stylesheet" href="static/ldm-online-editor.css"><script src="static/ldm-access.js?v154"></script>
+<head><script src="static/ldm-draw-double-undo.js?v160"></script><script>document.write('<base href="'+location.pathname.replace(/[^/]*$/,'')+'">');</script><style>@layer ldmOnlineWorkspace; @layer ldmOnlineWorkspace {html:not(.ldm-online-view-ready) .v3ArtworkModeTabs,html:not(.ldm-online-view-ready) [id^="v3Artwork"][id$="Host"],html:not(.ldm-online-view-ready) .previewWrap{display:none!important}}</style><link rel="stylesheet" href="static/ldm-online-workspace.css?v157"><script src="static/ldm-online-workspace.js"></script><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": [], "online_view_ready": false};</script><script src="static/ldm-online-editor.js?v159"></script><link rel="stylesheet" href="static/ldm-workspace.css?v155"><link rel="stylesheet" href="static/ldm-online-editor.css"><script src="static/ldm-access.js?v154"></script>
 <script>
 (()=>{const root=document.documentElement;root.classList.add('ldm-boot-cover');try{root.dataset.ldmBootDark=localStorage.getItem('ldmDarkModeTheme')==='1'?'1':'0';if((localStorage.getItem('ldmVisualThemeV6')||'v6')==='v6')root.classList.add('ldm-v6');}catch(_){}window.ldmDismissBootCover=()=>{root.classList.remove('ldm-boot-cover');delete root.dataset.ldmBootDark;};window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.ldmDismissBootCover())),{once:true});})();
 </script>
@@ -2685,7 +2685,7 @@ body:not(:has(.v3ArtworkModeTabs [data-artmode="draw"].active)) #ldmDrawPalmGuar
 #ldmDrawFullscreenPortal #bed.ldmDrawFocus,#bed.ldmDrawFocus:fullscreen{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-sizing:border-box!important;aspect-ratio:auto!important;transform:none!important;overflow:hidden!important}
 #ldmDrawFullscreenPortal #art,#bed.ldmDrawFocus:fullscreen #art{display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;transform:none!important}
 #bed.ldmDrawFocus #ldmDrawFocusButton{display:block!important;right:max(8px,env(safe-area-inset-right))!important;top:max(8px,env(safe-area-inset-top))!important}
-}</style></head>
+}</style><style>@layer ldmOnlineWorkspace {#ldmOnlineConnection [data-composition-tools],#ldmOnlineConnection [data-save],#ldmOnlineConnection [data-load]{display:none!important}#ldmOnlineAllowance{font:inherit!important;font-weight:700!important;color:var(--bp-text,inherit)!important;overflow-wrap:anywhere}#ldmOnlineAllowance[hidden],#ldmOnlineDrawAllowance[hidden]{display:none!important}#ldmOnlineDrawAllowance{position:absolute!important;left:8px!important;bottom:12px!important;z-index:35!important;padding:3px 5px!important;font:600 10px/1.2 Arial,sans-serif!important;color:var(--bp-text,#222)!important;background:color-mix(in srgb,var(--bp-panel,#fff) 80%,transparent)!important;max-width:48%!important;pointer-events:none!important}}</style></head>
 <body class="v3-workflow">
 
 <div id="workflowGuide" class="guide-overlay" style="display:none">
@@ -15365,7 +15365,7 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 
 <link rel="stylesheet" href="static/ldm-foam-cut.css?v7gui7"><script src="static/ldm-foam-diagram.js?v=128"></script><script src="static/ldm-foam-expert.js?v7gui127"></script><script src="static/ldm-foam-cut.js?v7gui127"></script>
 <link rel="stylesheet" href="static/ldm-writing-guides.css?v7gui128"><script src="static/ldm-writing-guide-layer.js?v7gui80"></script><script src="static/ldm-writing-guides.js?v153"></script>
-<link rel="stylesheet" href="static/ldm-draw-layers.css?v151"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v157"></script>
+<link rel="stylesheet" href="static/ldm-draw-layers.css?v151"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v160"></script>
 <link rel="stylesheet" href="static/ldm-vector-selection.css?v7gui130"><script src="static/ldm-vector-selection.js?v7gui130"></script>
 </body></html>
 <style>
@@ -18760,7 +18760,7 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 </script>
 
 <!-- V6.GUI.6 — Desktop administrator / remote canvas buffer -->
-<script src="static/ldm-canvas.js?v155"></script>
+<script src="static/ldm-canvas.js?v159"></script>
 
 <!-- V6.GUI.7 — HOME mini canvas inbox -->
 <link rel="stylesheet" href="static/ldm-home-inbox.css">
