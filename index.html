@@ -2673,7 +2673,14 @@ body:has(#v3QuickActiveJobStatus.v3QuickPreparing:not([hidden]))
 body.ldm-dark #ldmSparsePreviewControl{color:rgba(255,255,255,.65);background:rgba(23,27,30,.20)}
 #ldmSparsePreviewControl input{appearance:auto!important;position:static!important;width:11px!important;height:11px!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;accent-color:currentColor}
 </style>
-<link rel="stylesheet" href="static/ldm-online-drawer.css?v=146-drawer-1"><script src="static/ldm-online-drawer.js?v=152-qr-login"></script></head>
+<link rel="stylesheet" href="static/ldm-online-drawer.css?v=146-drawer-1"><script src="static/ldm-online-drawer.js?v=152-qr-login"></script><style>@layer ldmOnlineWorkspace {
+#ldmDrawPalmGuard{position:absolute;right:10px;bottom:12px;z-index:36;display:flex!important;align-items:center;gap:4px;padding:3px 5px;margin:0!important;font:600 10px/1 Arial,sans-serif!important;letter-spacing:.25px;color:rgba(20,24,27,.65);background:rgba(255,255,255,.20);cursor:pointer;white-space:nowrap}
+body.ldm-dark #ldmDrawPalmGuard{color:rgba(255,255,255,.65);background:rgba(23,27,30,.20)}
+#ldmDrawPalmGuard input{appearance:auto!important;position:static!important;width:11px!important;height:11px!important;min-width:0!important;min-height:0!important;margin:0!important;padding:0!important;accent-color:currentColor}
+#ldmDrawPalmGuard[hidden]{display:none!important}
+body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #ldmSparsePreviewControl{display:none!important}
+body:not(:has(.v3ArtworkModeTabs [data-artmode="draw"].active)) #ldmDrawPalmGuard{display:none!important}
+}</style></head>
 <body class="v3-workflow">
 
 <div id="workflowGuide" class="guide-overlay" style="display:none">
@@ -19085,7 +19092,7 @@ html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDr
 
 <script src="static/ldm-perspective-guides.js?v153"></script>
 
-<script src="static/ldm-draw-focus.js?v7gui146"></script>
+<script src="static/ldm-draw-focus.js?v156"></script>
 
 <script src="static/ldm-expert-outside.js?v7gui102"></script>
 <style id="ldmGui102ExpertOutside">
