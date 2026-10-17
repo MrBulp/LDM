@@ -58,6 +58,20 @@
  window.addEventListener('pointerup',finish,true);window.addEventListener('pointercancel',finish,true);window.addEventListener('lostpointercapture',finish,true);
  window.addEventListener('click',e=>{if(drawing()&&e.target.closest?.('#ldmDrawClearBtn')){e.preventDefault();e.stopImmediatePropagation();const l=current(),old=copy(l.strokes);l.strokes=[];l.resetStrokes=null;render();l.undo.push(old);l.redo=[];refreshList();}},true);
  document.addEventListener('keydown',e=>{if(!drawing()||!e.ctrlKey&&!e.metaKey||e.target.closest?.('input,textarea,[contenteditable=true]'))return;if(e.key.toLowerCase()==='z'){e.preventDefault();history(e.shiftKey)}else if(e.key.toLowerCase()==='y'){e.preventDefault();history(true)}});
+ // Numeric DRAW snapshot only: no production import, clearing, or tab switch.
+ window.ldmCaptureDrawSubmissionCanvas=()=>{
+  if(before||layerDrag||window.ldmCanvasImportBusy)throw Error('Finish the current drawing or move before submitting.');
+  const art=id('art'),v=art?.viewBox?.baseVal,r=root();if(!v||!r)throw Error('DRAW preview unavailable.');
+  function matrix(node){let out=art.createSVGMatrix();const chain=[];for(let n=node;n&&n!==draftSvg;n=n.parentElement)chain.unshift(n);for(const n of chain){const t=n.getAttribute('transform');if(!t)continue;const temp=document.createElementNS(NS,'g');temp.setAttribute('transform',t);const m=temp.transform.baseVal.consolidate()?.matrix;if(m)out=out.multiply(m);}return out;}
+  const output=[];let count=0,pathCount=0;
+  function validate(paths){return paths.filter(p=>p.length>1).map(p=>{pathCount++;return p.map(pair=>{count++;const x=Number(pair[0])-v.x,y=Number(pair[1])-v.y;if(!Number.isFinite(x)||!Number.isFinite(y)||x<-.001||y<-.001||x>v.width+.001||y>v.height+.001)throw Error('A drawing or included guide extends outside the preview. Move it inside before submitting.');return [Math.max(0,Math.min(v.width,x)),Math.max(0,Math.min(v.height,y))];});});}
+  for(const l of layers){const paths=[];for(const node of group(l)?.querySelectorAll('.livePreviewDraw')||[]){const nums=(node.getAttribute('points')||'').match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/gi)?.map(Number)||[];const m=matrix(node),path=[];for(let i=0;i+1<nums.length;i+=2){const p=art.createSVGPoint();p.x=nums[i];p.y=nums[i+1];const q=p.matrixTransform(m);path.push([q.x,q.y]);}if(path.length>1)paths.push(path);}const normalized=validate(paths);if(normalized.length)output.push({name:l.name,colour:l.colour,visible:l.visible,paths:normalized});}
+  if(!output.some(l=>l.visible))throw Error('Draw on a visible layer before submitting.');
+  for(const [get,name,colour]of [[window.ldmWritingGuidesForCanvas,'WRITING GUIDES','#2471a3'],[window.ldmPerspectiveGuidesForCanvas,'PERSPECTIVE GUIDES','#148f77']]){const helper=get?.();if(helper?.paths?.length)output.push({name,colour,visible:true,paths:validate(helper.paths)});}
+  if(count>100000||pathCount>20000||output.length>200)throw Error('Drawing exceeds submission limits. Reduce points or layers before submitting.');
+  return {width:v.width,height:v.height,layers:output,paths:output.filter(l=>l.visible).flatMap(l=>l.paths),vector_options:{multicolour:!!window.ldmVectorColourEnabled,hold_seconds:Number(id('ldmVectorHoldSeconds')?.value||60)}};
+ };
+
  const oldSend=window.ldmLabApplyAndSendToCanvas;
  window.ldmLabApplyAndSendToCanvas=async function(){if(!drawing())return oldSend?.apply(this,arguments);if(window.ldmCanvasImportBusy)return;try{
   for(const l of layers)l.strokes=strokes(l);const nonempty=layers.filter(l=>l.strokes.length);if(!nonempty.some(l=>l.visible))throw Error('Draw on a visible layer before sending.');const v=id('art').viewBox.baseVal,tx=root()?.getAttribute('transform')||'',canvas={width:v.width,height:v.height},guides=window.ldmWritingGuidesForCanvas?.();const input=nonempty.map(l=>{const g=group(l).cloneNode(true);g.removeAttribute('style');g.querySelectorAll('*').forEach(p=>{p.removeAttribute('class');p.removeAttribute('style')});return {name:l.name,colour:l.colour,visible:l.visible,svg:'<svg xmlns="'+NS+'" viewBox="0 0 '+v.width+' '+v.height+'"><g transform="'+tx.replace(/"/g,'&quot;')+'">'+g.outerHTML+'</g></svg>'}});

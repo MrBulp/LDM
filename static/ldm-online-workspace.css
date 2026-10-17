@@ -9,3 +9,9 @@
  html.ldm-online-workspace #ldmOnlineAppearance{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important;margin-top:8px!important}
  html.ldm-online-workspace #ldmOnlineAppearance :is(select,button){height:36px!important;min-height:36px!important;font:inherit!important;color:var(--bp-text,#222)!important;background:var(--bp-panel,#fff)!important;border:1px solid var(--bp-line,#777)!important;border-radius:var(--bp-radius,8px)!important;box-sizing:border-box!important;padding:6px 10px!important;width:auto!important;margin:0!important}
 }
+
+/* GitHub only: DRAW submits directly; other staging tabs retain their actions. */
+@layer ldmOnlineWorkspace {
+body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #ldmLabSendCanvasBtn{display:none!important}
+#v3ArtworkDrawHost #ldmRemoteCanvasPanel{margin-bottom:12px!important}
+}

@@ -23,6 +23,6 @@
    const kind=handler.match(/v3PresentationOpenTab\(['"]([^'"]+)/)?.[1];
    const tab=b.dataset.artmode;
    if(b.closest('#v3ArtworkFoamHost')&&(b.matches('[data-foam-jog],[data-foam-save]')||/^ldmFoam_(heat|off|upload|open|confirm|canvas|teachHome)$/.test(b.id))){e.preventDefault();e.stopImmediatePropagation();return;}
-   if(machine.test(handler)||(!state.local&&kind&&kind!=='artwork')||(tab==='inbox'&&window.LDM_ACCESS.inbox_enabled===false)||(tab&&!window.LDM_ACCESS.sections?.includes(tab==='inbox'?'vector':tab))){e.preventDefault();e.stopImmediatePropagation();}
+   if(machine.test(handler)||(!state.local&&kind&&kind!=='artwork')||(tab==='inbox'&&(window.LDM_ACCESS.inbox_enabled===false||window.LDM_ACCESS.online_inbox_visible===false))||(tab&&!window.LDM_ACCESS.sections?.includes(tab==='inbox'?'vector':tab))){e.preventDefault();e.stopImmediatePropagation();}
  },true);
 })();
