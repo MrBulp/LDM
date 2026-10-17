@@ -15,3 +15,7 @@
 body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #ldmLabSendCanvasBtn{display:none!important}
 #v3ArtworkDrawHost #ldmRemoteCanvasPanel{margin-bottom:12px!important}
 }
+
+@layer ldmOnlineWorkspace {
+html.ldm-online-no-tabs .previewWrap,html.ldm-online-no-tabs .v3ArtworkModeTabs{display:none!important}
+}

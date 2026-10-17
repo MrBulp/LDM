@@ -70,22 +70,24 @@
    const host=drawLayers?.parentElement||el('v3ArtworkInboxHost');if(!host)return;
    const existing=el('ldmRemoteCanvasPanel');if(existing){if(drawLayers){if(existing.parentNode!==host||existing.nextElementSibling!==drawLayers)host.insertBefore(existing,drawLayers);}else if(existing.parentNode!==host)host.appendChild(existing);usernameTitle();return;}
    const panel=document.createElement('section');panel.id='ldmRemoteCanvasPanel';
-   panel.innerHTML='<b>REMOTE ARTWORK — SUBMIT TO LDM ADMIN</b><div class="ldmCanvasFields"><label>Canvas title<input id="ldmCanvasTitle" maxlength="120" value="Remote canvas"></label><button type="button" id="ldmCanvasSubmit">SUBMIT</button></div><p id="ldmCanvasMessage" role="status"></p><section class="ldmMySubmissions"><b>MY SUBMISSIONS</b><section id="ldmMySubmissionPreview" hidden aria-live="polite"></section><div id="ldmCanvasMine"></div></section>';
+   panel.innerHTML='<b>REMOTE ARTWORK — SUBMIT TO LDM ADMIN</b><div class="ldmCanvasFields"><label>Canvas title<input id="ldmCanvasTitle" maxlength="120" value="Remote canvas"></label><button type="button" id="ldmCanvasSubmit">SUBMIT</button></div><p id="ldmCanvasMessage" role="status"></p><details class="ldmMySubmissions"><summary>MY SUBMISSIONS</summary><section id="ldmMySubmissionPreview" hidden aria-live="polite"></section><div id="ldmCanvasMine"></div></details>';
    panel.setAttribute('aria-label','Remote artwork submissions');
    if(drawLayers)host.insertBefore(panel,drawLayers);else host.appendChild(panel);
    usernameTitle();el('ldmCanvasSubmit').onclick=submit;
    updatePermissions();refresh();
  }
  function updatePermissions(){
-   document.querySelectorAll('[data-artmode]').forEach(b=>b.toggleAttribute('data-ldm-section-disabled',(b.dataset.artmode==='inbox'?(state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('vector')):!state.sections.includes(b.dataset.artmode))));
-   for(const [section,id] of [['inbox','v3ArtworkInboxHost'],['vector','v3ArtworkVectorHost'],['text','v3ArtworkTextHost'],['draw','v3ArtworkDrawHost'],['algorithm','v3ArtworkAlgorithmHost'],['stl','v3ArtworkStlHost'],['foam','v3ArtworkFoamHost']])el(id)?.toggleAttribute('data-ldm-section-disabled',(section==='inbox'?(state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('vector')):!state.sections.includes(section)));
+   const allowed=state.online_view_ready===true?state.sections:[];document.documentElement.classList.toggle('ldm-online-no-tabs',!allowed.length);
+
+   document.querySelectorAll('[data-artmode]').forEach(b=>b.toggleAttribute('data-ldm-section-disabled',(b.dataset.artmode==='inbox'?(state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('inbox')):!state.sections.includes(b.dataset.artmode))));
+   for(const [section,id] of [['inbox','v3ArtworkInboxHost'],['vector','v3ArtworkVectorHost'],['text','v3ArtworkTextHost'],['draw','v3ArtworkDrawHost'],['algorithm','v3ArtworkAlgorithmHost'],['stl','v3ArtworkStlHost'],['foam','v3ArtworkFoamHost']])el(id)?.toggleAttribute('data-ldm-section-disabled',(section==='inbox'?(state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('inbox')):!state.sections.includes(section)));
    // Legacy functions can repaint button labels; hide every machine action independently.
    document.querySelectorAll('button[onclick]').forEach(b=>{
      if(/\b(startJob|v3SvgSaveStartJob|startSelectedProject|traceBridgeSD|downloadA1PlotPackage|v3OpenRepeatSdJobs|penUp|penDown|moveZAbs|homeXYZ|raw)\s*\(/.test(b.getAttribute('onclick')))b.setAttribute('data-ldm-admin-only','');
    });
    const button=el('ldmCanvasSubmit');if(button){button.disabled=state.mode==='off'||state.inbox_enabled===false||submitting;const label=state.mode==='off'?'SUBMISSIONS DISABLED':'SUBMIT';if(button.textContent!==label)button.textContent=label;}
-   const remoteTab=el('ldmArtworkFilesTab');if(remoteTab?.dataset.ldmRemoteInbox)remoteTab.toggleAttribute('data-ldm-section-disabled',state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('vector'));
-   const current=mode();if((current==='inbox'&&(state.inbox_enabled===false||state.online_inbox_visible===false))||!state.sections.includes(current==='inbox'?'vector':current))document.querySelector(`.v3ArtworkModeTabs [data-artmode="${state.sections[0]||'none'}"]`)?.click();
+   const remoteTab=el('ldmArtworkFilesTab');if(remoteTab?.dataset.ldmRemoteInbox)remoteTab.toggleAttribute('data-ldm-section-disabled',state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('inbox'));
+   const current=mode();if((current==='inbox'&&(state.inbox_enabled===false||state.online_inbox_visible===false))||!state.sections.includes(current))document.querySelector(`.v3ArtworkModeTabs [data-artmode="${state.sections[0]||'none'}"]`)?.click();
  }
  function svgString(canvas){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${canvas.width} ${canvas.height}">${canvas.paths.map(st=>`<polyline fill="none" stroke="black" points="${st.map(p=>p.join(',')).join(' ')}"/>`).join('')}</svg>`}
  async function importApproved(id){
@@ -142,6 +144,7 @@
  }
  document.addEventListener('ldm-administrator-unlocked',start);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
+ document.addEventListener('ldm-online-view',()=>{updatePermissions();mount();});
  document.addEventListener('click',e=>{if(e.target.closest?.('[data-artmode]'))setTimeout(mount,0);});
  window.ldmMountRemoteCanvasInbox=mount;
  window.ldmRefreshOwnCanvasSubmissions=refresh;
