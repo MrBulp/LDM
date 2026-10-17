@@ -72,3 +72,9 @@ html body .v3Direct-artwork #ldmDrawLayers #ldmDrawLayerList#ldmDrawLayerList .t
 }
 html body .v3Direct-artwork #ldmDrawLayers #ldmDrawLayerList#ldmDrawLayerList .textObjectRow.selected{border-color:var(--bp-accent,var(--ldm-primary))!important;outline:0!important;box-shadow:none!important}
 html body .v3Direct-artwork #ldmDrawLayers #ldmDrawActiveLayer{margin:8px 0!important;text-align:left!important;font:inherit!important;font-size:12px!important;color:var(--bp-muted)!important;overflow-wrap:anywhere}
+
+/* GUI151: Safari decides touch gestures at contact start, before JS moves. */
+@layer ldmWorkspacePermissions {
+#art.ldmWorkspaceDraw{touch-action:none!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+#ldmDrawDraftSurface,#ldmDrawDraftSurface *{pointer-events:none!important}
+}
