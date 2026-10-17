@@ -3,7 +3,7 @@
 --><!-- LDM V4.GUI.4DD — REPEAT PROJECT READY BYPASSES SURFACE-Z-CHANGED NEW-JOB WARNING -->
 <!doctype html>
 <html>
-<head><script>document.write('<base href="'+location.pathname.replace(/[^/]*$/,'')+'">');</script><style>@layer ldmOnlineWorkspace; @layer ldmOnlineWorkspace {html:not(.ldm-online-view-ready) .v3ArtworkModeTabs,html:not(.ldm-online-view-ready) [id^="v3Artwork"][id$="Host"],html:not(.ldm-online-view-ready) .previewWrap{display:none!important}}</style><link rel="stylesheet" href="static/ldm-online-workspace.css?v153"><script src="static/ldm-online-workspace.js"></script><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": [], "online_view_ready": false};</script><script src="static/ldm-online-editor.js?v154"></script><link rel="stylesheet" href="static/ldm-workspace.css?v155"><link rel="stylesheet" href="static/ldm-online-editor.css"><script src="static/ldm-access.js?v154"></script>
+<head><script>document.write('<base href="'+location.pathname.replace(/[^/]*$/,'')+'">');</script><style>@layer ldmOnlineWorkspace; @layer ldmOnlineWorkspace {html:not(.ldm-online-view-ready) .v3ArtworkModeTabs,html:not(.ldm-online-view-ready) [id^="v3Artwork"][id$="Host"],html:not(.ldm-online-view-ready) .previewWrap{display:none!important}}</style><link rel="stylesheet" href="static/ldm-online-workspace.css?v157"><script src="static/ldm-online-workspace.js"></script><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": [], "online_view_ready": false};</script><script src="static/ldm-online-editor.js?v154"></script><link rel="stylesheet" href="static/ldm-workspace.css?v155"><link rel="stylesheet" href="static/ldm-online-editor.css"><script src="static/ldm-access.js?v154"></script>
 <script>
 (()=>{const root=document.documentElement;root.classList.add('ldm-boot-cover');try{root.dataset.ldmBootDark=localStorage.getItem('ldmDarkModeTheme')==='1'?'1':'0';if((localStorage.getItem('ldmVisualThemeV6')||'v6')==='v6')root.classList.add('ldm-v6');}catch(_){}window.ldmDismissBootCover=()=>{root.classList.remove('ldm-boot-cover');delete root.dataset.ldmBootDark;};window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.ldmDismissBootCover())),{once:true});})();
 </script>
@@ -15360,7 +15360,7 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 
 <link rel="stylesheet" href="static/ldm-foam-cut.css?v7gui7"><script src="static/ldm-foam-diagram.js?v=128"></script><script src="static/ldm-foam-expert.js?v7gui127"></script><script src="static/ldm-foam-cut.js?v7gui127"></script>
 <link rel="stylesheet" href="static/ldm-writing-guides.css?v7gui128"><script src="static/ldm-writing-guide-layer.js?v7gui80"></script><script src="static/ldm-writing-guides.js?v153"></script>
-<link rel="stylesheet" href="static/ldm-draw-layers.css?v151"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v153"></script>
+<link rel="stylesheet" href="static/ldm-draw-layers.css?v151"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v157"></script>
 <link rel="stylesheet" href="static/ldm-vector-selection.css?v7gui130"><script src="static/ldm-vector-selection.js?v7gui130"></script>
 </body></html>
 <style>
@@ -16223,17 +16223,22 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
  function inDraw(){return !['move','layerMove','erase'].includes(window.ldmDrawInteractionMode)&&mode()==='draw'&&id('art')?.classList.contains('ldmWorkspaceDraw')}
  function locked(){return window.ldmCanvasImportBusy||document.body.classList.contains('v3PreviewEditLocked')||(typeof V3_PREVIEW_EDIT_LOCK!=='undefined'&&V3_PREVIEW_EDIT_LOCK)}
  function inside(t){const a=id('art');return a&&(a===t||a.contains(t))}
- function point(e){const a=id('art');try{const p=a.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(a.getScreenCTM().inverse())}catch(_){return null}}
+ function point(e){const a=id('art');try{const p=a.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(active?.inverse||a.getScreenCTM().inverse())}catch(_){return null}}
  function within(p){const v=id('art')?.viewBox?.baseVal;return p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&(!v||p.x>=v.x&&p.y>=v.y&&p.x<=v.x+v.width&&p.y<=v.y+v.height)}
  function layer(){const r=window.ldmGetDrawDraftRoot?.();return r&&(window.ldmDrawLayerTarget?window.ldmDrawLayerTarget(r):r)}
  function consume(e){if(e.cancelable)e.preventDefault();e.stopImmediatePropagation()}
  function flush(){if(frame){cancelAnimationFrame(frame);frame=0;}if(active?.dirty){active.line.setAttribute('points',active.points.join(' '));active.dirty=false;}}
- function append(e,force=false){const p=point(e);if(!within(p))return;const last=active.last;if(last&&Math.hypot(p.x-last.x,p.y-last.y)<(force?.001:.06))return;active.last=p;active.points.push(p.x.toFixed(3)+','+p.y.toFixed(3));active.dirty=true;}
- function down(e){if(!inDraw()||!inside(e.target)||e.target.closest?.('.ldmImgEditorHandle,.ldmImgRotateHandle,.ldmImgEditorRect')||e.button>0)return;if(active){consume(e);return;}if(locked()||window.ldmDrawTouchGuardBlocks?.(e))return;const p=point(e),target=layer();if(!within(p)||!target)return;
-  const line=document.createElementNS(NS,'polyline');line.classList.add('livePreviewDraw','teachPath');for(const [k,v]of Object.entries({fill:'none',stroke:target.style.getPropertyValue('--ldm-draw-colour')||'#176b45','stroke-width':'1.15','stroke-linecap':'round','stroke-linejoin':'round','vector-effect':'non-scaling-stroke'}))line.setAttribute(k,v);line.style.pointerEvents='none';target.append(line);active={pid:e.pointerId,art:id('art'),line,points:[],last:null,dirty:false};append(e);flush();try{active.art.setPointerCapture(e.pointerId)}catch(_){}consume(e);
+ function append(e,force=false){const p=point(e);if(!within(p))return;const last=active.last;if(last&&Math.hypot(p.x-last.x,p.y-last.y)<(force?.001:.06))return;if(active.points.length>=512){flush();const next=active.line.cloneNode(false);next.removeAttribute('points');active.line.after(next);active.line=next;active.points=[active.points.at(-1)];}active.last=p;active.total++;active.points.push(p.x.toFixed(3)+','+p.y.toFixed(3));active.dirty=true;}
+ function cancelStroke(){if(!active)return;const ev=new Event('pointercancel',{bubbles:true,cancelable:true});Object.defineProperty(ev,'pointerId',{value:active.pid});active.art.dispatchEvent(ev);}
+ window.ldmDrawCancelPointerSession=cancelStroke;
+ window.ldmDrawPreparePointer=e=>{if(active&&active.pid===e.pointerId)cancelStroke()};
+ window.ldmDrawPointerIsOwner=e=>!active||active.pid===e.pointerId;
+ function down(e){if(!inDraw()||!inside(e.target)||e.target.closest?.('.ldmImgEditorHandle,.ldmImgRotateHandle,.ldmImgEditorRect')||e.button>0)return;if(active){if(active.pid===e.pointerId)cancelStroke();else{consume(e);return;}}if(locked()||window.ldmDrawTouchGuardBlocks?.(e))return;if(document.activeElement?.matches?.('input,textarea,[contenteditable=true]'))document.activeElement.blur();const p=point(e),target=layer();if(!within(p)||!target)return;
+  const line=document.createElementNS(NS,'polyline');line.classList.add('livePreviewDraw','teachPath');for(const [k,v]of Object.entries({fill:'none',stroke:target.style.getPropertyValue('--ldm-draw-colour')||'#176b45','stroke-width':'1.15','stroke-linecap':'round','stroke-linejoin':'round','vector-effect':'non-scaling-stroke'}))line.setAttribute(k,v);line.style.pointerEvents='none';target.append(line);active={pid:e.pointerId,art:id('art'),line,points:[],last:null,dirty:false,total:0,inverse:id('art').getScreenCTM().inverse()};append(e);flush();try{active.art.setPointerCapture(e.pointerId)}catch(_){}consume(e);
  }
  function move(e){if(!active||active.pid!==e.pointerId)return;consume(e);let samples=[];try{samples=e.getCoalescedEvents?.()||[]}catch(_){}for(const sample of samples)append(sample);append(e);if(!frame)frame=requestAnimationFrame(()=>{frame=0;flush()});}
- function finish(e){if(!active||active.pid!==e.pointerId)return;if(e.type==='pointerup')append(e,true);flush();const stroke=active;active=null;if(stroke.points.length<2)stroke.line.remove();try{if(stroke.art.hasPointerCapture?.(e.pointerId))stroke.art.releasePointerCapture(e.pointerId)}catch(_){}window.ldmRememberDrawStrokes?.();consume(e);}
+ function finish(e){if(!active||active.pid!==e.pointerId)return;if(e.type==='pointerup'){append(e,true);if(active.total===1){active.points.push(active.points[0]);active.total++;active.dirty=true;}}flush();const stroke=active;active=null;if(stroke.total<2)stroke.line.remove();try{if(stroke.art.hasPointerCapture?.(e.pointerId))stroke.art.releasePointerCapture(e.pointerId)}catch(_){}window.ldmRememberDrawStrokes?.();consume(e);}
+ window.addEventListener('blur',cancelStroke);window.addEventListener('pagehide',cancelStroke);window.addEventListener('resize',cancelStroke);document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelStroke()});
  document.addEventListener('pointerdown',down,{capture:true,passive:false});document.addEventListener('pointermove',move,{capture:true,passive:false});for(const event of ['pointerup','pointercancel','lostpointercapture'])document.addEventListener(event,finish,{capture:true,passive:false});
  function prepare(){window.ldmApplyWorkspaceIsolation?.('draw');const a=id('art');if(a){a.classList.add('ldmWorkspaceDraw');if(a.style.touchAction!=='none')a.style.touchAction='none';}layer();}
  document.addEventListener('click',e=>{const b=e.target.closest?.('.v3ArtworkModeTabs [data-artmode]');if(b?.dataset.artmode==='draw')setTimeout(prepare,0);else if(b&&active)finish({pointerId:active.pid,type:'pointercancel',cancelable:false,stopImmediatePropagation(){}});},true);
@@ -19092,7 +19097,7 @@ html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDr
 
 <script src="static/ldm-perspective-guides.js?v153"></script>
 
-<script src="static/ldm-draw-focus.js?v156"></script>
+<script src="static/ldm-draw-focus.js?v157"></script>
 
 <script src="static/ldm-expert-outside.js?v7gui102"></script>
 <style id="ldmGui102ExpertOutside">

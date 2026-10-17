@@ -19,3 +19,7 @@ body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #ldmLabSendCanvasBtn{d
 @layer ldmOnlineWorkspace {
 html.ldm-online-no-tabs .previewWrap,html.ldm-online-no-tabs .v3ArtworkModeTabs{display:none!important}
 }
+
+@layer ldmOnlineWorkspace {
+body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #bed{touch-action:none!important;overscroll-behavior:contain!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+}
