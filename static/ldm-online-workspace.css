@@ -1,0 +1,11 @@
+/* First declared important layer: online shell only; selected theme remains authoritative. */
+@layer ldmOnlineWorkspace {
+ html.ldm-online-workspace body>.layout,html.ldm-online-workspace :is(#v3Nav,#v3QuickBar,#v3QuickStepsDrawer,#v3QuickStepsHandle,#v4SdQueueHandle,#v3QuickActiveJobStatus,#v4SdQueueDrawer,#sdMainSection,#v3GoldenConnectModal,#ldmAdminLoginPopup,#ldmV7StepRail,.v3ShowExit,.v3ShowBottom,.v3ShowProgress,.v3TopMachineActions,.ldmTopRight,#v3ShowStepNote,#v3ShowKicker){display:none!important}
+ html.ldm-online-workspace :is([data-ldm-admin-only],[data-ldm-section-disabled]){display:none!important}
+ html.ldm-online-workspace body{margin:0!important;min-height:100vh!important}
+ html.ldm-online-workspace #v3StepShow{position:fixed!important;inset:0!important;width:100%!important;max-width:none!important;height:100%!important;margin:0!important;border:0!important}
+ html.ldm-online-workspace #v3StepShow>.v3ShowViewport{margin:0!important;padding:8px!important;width:100%!important;box-sizing:border-box!important}
+ html.ldm-online-workspace #v3ShowSlide{width:100%!important;max-width:none!important;margin:0!important}
+ html.ldm-online-workspace #ldmOnlineAppearance{display:flex!important;gap:8px!important;align-items:center!important;flex-wrap:wrap!important;margin-top:8px!important}
+ html.ldm-online-workspace #ldmOnlineAppearance :is(select,button){height:36px!important;min-height:36px!important;font:inherit!important;color:var(--bp-text,#222)!important;background:var(--bp-panel,#fff)!important;border:1px solid var(--bp-line,#777)!important;border-radius:var(--bp-radius,8px)!important;box-sizing:border-box!important;padding:6px 10px!important;width:auto!important;margin:0!important}
+}

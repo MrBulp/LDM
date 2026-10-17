@@ -49,7 +49,7 @@
   if(!Number.isFinite(gap)||gap<.01||gap>100)throw Error('GAP must be 0.01–100 mm.');
   if(paths.length>500||paths.reduce((n,p)=>n+p.length,0)>MAX)throw Error('Offset limit: 500 paths / 20,000 points.');
   if(paths.some(p=>p.some(q=>!q.every(Number.isFinite)||q.some(v=>Math.abs(v)>100000))))throw Error('Invalid or excessive vector coordinates.');
-  const C=typeof module!=='undefined'?require('./ldm-clipper.js'):(root.ClipperLib||(importScripts('/ldm/static/ldm-clipper.js?gui231'),root.ClipperLib)),scale=100000;
+  const C=typeof module!=='undefined'?require('./ldm-clipper.js'):(root.ClipperLib||(importScripts('./ldm-clipper.js?gui231'),root.ClipperLib)),scale=100000;
   const input=paths.map(p=>p.slice(0,-1).map(q=>({X:Math.round(q[0]*scale),Y:Math.round(q[1]*scale)}))),union=new C.Clipper(),normalized=[];
   union.AddPaths(input,C.PolyType.ptSubject,true);union.Execute(C.ClipType.ctUnion,normalized,C.PolyFillType.pftEvenOdd,C.PolyFillType.pftEvenOdd);
   if(!normalized.length)throw Error('Closed outline has no usable area.');
@@ -58,6 +58,6 @@
   if(out.reduce((n,p)=>n+p.length,0)>40000)throw Error('Offset result is too large. Simplify the layer.');
   return {paths:out.map(p=>{const q=p.map(v=>[v.X/scale,v.Y/scale]);q.push(q[0].slice());return q;}),direction,gap,warnings:['Polygon offset resolves overlapping corners; narrow details may merge, split or disappear. Review the preview.']};
  }
- function prepare(data){if(!data.closeDraw&&data.direction!=='clean')return data;if(!Array.isArray(data.paths)||data.paths.reduce((n,p)=>n+p.length,0)>20000)throw Error('Close-path limit: 20,000 source points. Simplify first.');if(typeof root.ldmCloseDrawPaths!=='function')importScripts('/ldm/static/ldm-vector-close-path.js?gui231');const cleaned=root.ldmCloseDrawPaths(data.paths);const paths=cleaned.paths.filter(p=>p.length>3&&Math.hypot(p[0][0]-p.at(-1)[0],p[0][1]-p.at(-1)[1])<1e-6);if(!paths.length)throw Error('No enclosed DRAW outline found. Cross back over the starting stroke to close the shape, then regenerate.');return {...data,paths};}
+ function prepare(data){if(!data.closeDraw&&data.direction!=='clean')return data;if(!Array.isArray(data.paths)||data.paths.reduce((n,p)=>n+p.length,0)>20000)throw Error('Close-path limit: 20,000 source points. Simplify first.');if(typeof root.ldmCloseDrawPaths!=='function')importScripts('./ldm-vector-close-path.js?gui231');const cleaned=root.ldmCloseDrawPaths(data.paths);const paths=cleaned.paths.filter(p=>p.length>3&&Math.hypot(p[0][0]-p.at(-1)[0],p[0][1]-p.at(-1)[1])<1e-6);if(!paths.length)throw Error('No enclosed DRAW outline found. Cross back over the starting stroke to close the shape, then regenerate.');return {...data,paths};}
  if(typeof module!=='undefined')module.exports={offsetGeometry,closedOffset};else root.onmessage=e=>{try{const prepared=prepare(e.data),result=e.data.direction==='clean'?{paths:prepared.paths,warnings:[],direction:'clean',gap:0}:closedOffset(prepared);if(e.data.closeDraw||e.data.direction==='clean')result.warnings.push('Closed DRAW outlines only; extra tails/open strokes excluded. Original preserved.');root.postMessage({ok:true,...result});}catch(error){root.postMessage({ok:false,error:error.message});}};
 })(typeof self==='undefined'?globalThis:self);

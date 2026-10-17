@@ -3,7 +3,7 @@
 --><!-- LDM V4.GUI.4DD — REPEAT PROJECT READY BYPASSES SURFACE-Z-CHANGED NEW-JOB WARNING -->
 <!doctype html>
 <html>
-<head><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": ["vector", "text", "draw", "algorithm", "stl", "foam"]};</script><script src="/ldm/static/ldm-online-editor.js"></script><link rel="stylesheet" href="/ldm/static/ldm-workspace.css"><link rel="stylesheet" href="/ldm/static/ldm-online-editor.css"><script src="/ldm/static/ldm-access.js"></script>
+<head><script>document.write('<base href="'+location.pathname.replace(/[^/]*$/,'')+'">');</script><style>@layer ldmOnlineWorkspace;</style><link rel="stylesheet" href="static/ldm-online-workspace.css"><script src="static/ldm-online-workspace.js"></script><script>window.LDM_ACCESS={"admin": false, "local": false, "setup_required": false, "csrf": "", "mode": "manual", "inbox_enabled": true, "remote_enabled": true, "sections": ["vector", "text", "draw", "algorithm", "stl"]};</script><script src="static/ldm-online-editor.js?v=146-password-only-1"></script><link rel="stylesheet" href="static/ldm-workspace.css"><link rel="stylesheet" href="static/ldm-online-editor.css"><script src="static/ldm-access.js"></script>
 <script>
 (()=>{const root=document.documentElement;root.classList.add('ldm-boot-cover');try{root.dataset.ldmBootDark=localStorage.getItem('ldmDarkModeTheme')==='1'?'1':'0';if((localStorage.getItem('ldmVisualThemeV6')||'v6')==='v6')root.classList.add('ldm-v6');}catch(_){}window.ldmDismissBootCover=()=>{root.classList.remove('ldm-boot-cover');delete root.dataset.ldmBootDark;};window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(()=>window.ldmDismissBootCover())),{once:true});})();
 </script>
@@ -16,7 +16,7 @@ html.ldm-boot-cover::after{content:'';position:fixed;top:0;left:0;width:100%;hei
 </style>
 
 <script>window.ldmUiSourceText=node=>node?.textContent||'';</script>
-<script src="/ldm/static/ldm-performance-profile.js?v=79"></script>
+<script src="static/ldm-performance-profile.js?v=79"></script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>LAN-DEV-MODE (LDM)</title>
 <style>
@@ -7173,7 +7173,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   </div>
   <iframe id="traceToolFrame" title="Trace tool" allow="camera; microphone; clipboard-read; clipboard-write; fullscreen"></iframe>
 </div><input id="traceBridgeFile" type="file" accept=".svg,image/svg+xml" hidden>
-<div id="buildBadgeV1839">V7.GUI.145</div><input id="traceBridgeFileV1842" type="file" accept=".svg,image/svg+xml" hidden><div id="buildBadgeV1842">V18.42</div><script>
+<div id="buildBadgeV1839">V7.GUI.146</div><input id="traceBridgeFileV1842" type="file" accept=".svg,image/svg+xml" hidden><div id="buildBadgeV1842">V18.42</div><script>
 let glyphFsHome=null,glyphFsNext=null;
 function openGlyphFullscreen(){
  const creator=document.getElementById('strokeFontCreator'),body=document.getElementById('glyphFullscreenBody'),ov=document.getElementById('glyphFullscreen');
@@ -10839,8 +10839,8 @@ function boot(){init('linedraw');init('mosaic')}document.readyState==='loading'?
  function green(id){return !!el(id)?.classList.contains('is-success')}
  function setLocked(node,locked){
    if(!node)return;
-   node.classList.toggle('v3-qs-locked',!!locked);
-   node.classList.toggle('v3-qs-ready',!locked);
+   if(node.classList.contains('v3-qs-locked')!==!!locked)node.classList.toggle('v3-qs-locked',!!locked);
+   if(node.classList.contains('v3-qs-ready')!==!locked)node.classList.toggle('v3-qs-ready',!locked);
    if('disabled' in node && node.disabled!==!!locked)node.disabled=!!locked;
    const aria=locked?'true':'false';
    if(node.getAttribute('aria-disabled')!==aria)node.setAttribute('aria-disabled',aria);
@@ -10880,7 +10880,7 @@ function boot(){init('linedraw');init('mosaic')}document.readyState==='loading'?
 
    if(homeOK){
      const qhb=el('v3QuickHomeBtn'),qht=el('v3QuickHomeText'),qhcd=el('v3QuickHomeCountdown');
-     qhb?.classList.add('is-success');
+     if(qhb&&!qhb.classList.contains('is-success'))qhb.classList.add('is-success');
      const homeLabel=jobLocked?'HOME XYZ · LOCKED':'HOMING SUCCESS';
      if(qht && qht.textContent!==homeLabel)qht.textContent=homeLabel;
      if(qhcd && qhcd.textContent!=='')qhcd.textContent='';
@@ -12011,7 +12011,7 @@ window.ldmSTLPanelHTML=()=>`<div class="ldmSTLPanel">
  <button id="ldmSTLApply" style="display:none" class="ldmSTLApply" disabled onclick="ldmSTLApplyVector()">APPLY CURRENT LAYER AS VECTOR</button>
  </div>`;
 async function parseAsync(buf,ticket){
- const worker=new Worker('/ldm/static/ldm-stl-worker.js?v=85');S.parseCancel?.();S.parseWorker?.terminate();S.parseWorker=worker;
+ const worker=new Worker('static/ldm-stl-worker.js?v=85');S.parseCancel?.();S.parseWorker?.terminate();S.parseWorker=worker;
  try{const flat=await new Promise((resolve,reject)=>{S.parseCancel=()=>reject(Object.assign(Error('STL import cancelled'),{cancelled:true}));worker.onmessage=e=>e.data.error?reject(Error(e.data.error)):resolve(e.data.flat);worker.onerror=()=>reject(Error('STL parser worker failed'));worker.postMessage(buf,[buf]);});
  const tris=[];for(let i=0;i<flat.length;i+=9){if(ticket!==S.sourceTicket)return null;tris.push([[flat[i],flat[i+1],flat[i+2]],[flat[i+3],flat[i+4],flat[i+5]],[flat[i+6],flat[i+7],flat[i+8]]]);if(i%45000===0)await new Promise(r=>setTimeout(r,0));}return tris;
  }finally{worker.terminate();if(S.parseWorker===worker){S.parseWorker=null;S.parseCancel=null;}}
@@ -13479,7 +13479,7 @@ body.ldm-dark #v3QuickStepsDrawer .v4LiveInfo b{color:#71d49d!important}
 @media(max-width:1200px){#v3QuickStepsDrawer .v4MenuCard strong{font-size:14px!important}#v3QuickStepsDrawer .v4MenuCard small{font-size:11px!important}}
 @media(max-width:980px){#v3QuickStepsDrawer .v3QuickStepsPanel{width:96vw!important;max-width:96vw!important}#v3QuickStepsDrawer .v3QuickStepsRow.v4MachineMenu{grid-template-columns:repeat(2,minmax(190px,1fr))!important}}
 </style>
-<script src="/ldm/static/ldm-step-sd-status.js?v7gui141"></script>
+<script src="static/ldm-step-sd-status.js?v7gui141"></script>
 <script id="ldmV4Gui4WFullWidthMachineInfoJS">
 (function(){'use strict';
  const $=id=>document.getElementById(id);
@@ -15010,7 +15010,7 @@ body.ldm-dark #v3QuickStepsDrawer.v4cpExpertCompact #v3QuickSurfaceTile>.v4Exper
 
 
 <!-- LDM V4.GUI.4FL — AUTHORITATIVE EXPERT SETUP INVALIDATION -->
-<script id="ldmV4Gui4FLExpertSetupInvalidationJS" src="/ldm/static/ldm-expert-mode.js"></script>
+<script id="ldmV4Gui4FLExpertSetupInvalidationJS" src="static/ldm-expert-mode.js"></script>
 
 
 
@@ -15334,7 +15334,7 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 #art.ldmWorkspaceDraw.ldmMoveImageMode #ldmPreviewReferenceImage{pointer-events:all!important;cursor:move!important}
 #art.ldmWorkspaceDraw.ldmMoveImageMode{cursor:move!important}
 </style>
-<style>.ldmVectorPenColour{grid-column:1/-1;justify-self:start;width:48px;height:32px;padding:2px;box-sizing:border-box;cursor:pointer}.ldmVectorColourOption,.ldmVectorColourHint{display:block;text-align:left;font:inherit;margin:6px 0}.ldmVectorColourHint{opacity:.75}</style><script src="/ldm/static/ldm-vector-colour.js?v7gui86"></script><script id="ldmGUI103ControlTrace">
+<style>.ldmVectorPenColour{grid-column:1/-1;justify-self:start;width:48px;height:32px;padding:2px;box-sizing:border-box;cursor:pointer}.ldmVectorColourOption,.ldmVectorColourHint{display:block;text-align:left;font:inherit;margin:6px 0}.ldmVectorColourHint{opacity:.75}</style><script src="static/ldm-vector-colour.js?v7gui86"></script><script id="ldmGUI103ControlTrace">
 (()=>{
  const wrapped=new WeakMap();
  // Wrap only the control receiving a click/change; no document-wide scans or value logging.
@@ -15351,10 +15351,10 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 })();
 </script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-foam-cut.css?v7gui7"><script src="/ldm/static/ldm-foam-diagram.js?v=128"></script><script src="/ldm/static/ldm-foam-expert.js?v7gui127"></script><script src="/ldm/static/ldm-foam-cut.js?v7gui127"></script>
-<link rel="stylesheet" href="/ldm/static/ldm-writing-guides.css?v7gui128"><script src="/ldm/static/ldm-writing-guide-layer.js?v7gui80"></script><script src="/ldm/static/ldm-writing-guides.js?v7gui142"></script>
-<link rel="stylesheet" href="/ldm/static/ldm-draw-layers.css?v7gui129"><script src="/ldm/static/ldm-draw-layer-import.js?v7gui84"></script><script src="/ldm/static/ldm-draw-layers.js?v7gui129"></script>
-<link rel="stylesheet" href="/ldm/static/ldm-vector-selection.css?v7gui130"><script src="/ldm/static/ldm-vector-selection.js?v7gui130"></script>
+<link rel="stylesheet" href="static/ldm-foam-cut.css?v7gui7"><script src="static/ldm-foam-diagram.js?v=128"></script><script src="static/ldm-foam-expert.js?v7gui127"></script><script src="static/ldm-foam-cut.js?v7gui127"></script>
+<link rel="stylesheet" href="static/ldm-writing-guides.css?v7gui128"><script src="static/ldm-writing-guide-layer.js?v7gui80"></script><script src="static/ldm-writing-guides.js?v7gui146"></script>
+<link rel="stylesheet" href="static/ldm-draw-layers.css?v7gui129"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v7gui146"></script>
+<link rel="stylesheet" href="static/ldm-vector-selection.css?v7gui130"><script src="static/ldm-vector-selection.js?v7gui130"></script>
 </body></html>
 <style>
 /* V18.85AM: preview is fixed; editing is object-click only. */
@@ -16246,8 +16246,8 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
  function syncQuick(connected){
    window.__ldmQuickA1Connected=!!connected;
    const b=$('v3QuickConnectBtn'),t=$('v3QuickConnectText');
-   if(t)t.textContent=connected?'CONNECTED':'CONNECT MACHINE';
-   if(b){b.classList.toggle('is-connected',!!connected);b.disabled=false;delete b.dataset.connecting;}
+   const label=connected?'CONNECTED':'CONNECT MACHINE';if(t&&t.textContent!==label)t.textContent=label;
+   if(b){if(b.classList.contains('is-connected')!==!!connected)b.classList.toggle('is-connected',!!connected);if(b.disabled)b.disabled=false;if('connecting' in b.dataset)delete b.dataset.connecting;}
    try{window.v3QuickSequentialSync?.();}catch(_){}
  }
  async function refreshQuickFromBackend(){
@@ -16259,8 +16259,8 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
  }
  function patchPopup(){
    const cb=$('v3GoldenExperiencedCheck'),ok=$('v3GoldenOkBtn'),foot=$('v3GoldenConnectFoot');
-   if(cb){cb.checked=true;cb.disabled=true;}
-   if(ok){ok.disabled=!isConnected();}
+   if(cb){if(!cb.checked)cb.checked=true;if(!cb.disabled)cb.disabled=true;}
+   if(ok&&ok.disabled!==!isConnected())ok.disabled=!isConnected();
    if(foot&&isConnected()&&/Experienced User/i.test(foot.textContent||''))foot.textContent='CONNECTED + SD / FTPS PASS — press OK to continue.';
  }
  /* The older popup code runs a 200 ms syncOk interval. Keep its hidden checkbox
@@ -18697,8 +18697,8 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 </script>
 
 <!-- V6.GUI.1 — isolated selectable visual theme -->
-<link rel="stylesheet" href="/ldm/static/ldm-v6-theme.css">
-<script src="/ldm/static/ldm-v6-theme.js"></script>
+<link rel="stylesheet" href="static/ldm-v6-theme.css">
+<script src="static/ldm-v6-theme.js"></script>
 
 <!-- V6.GUI.4 — reserve Repeat/start preparation before its existing motion sequence -->
 <script id="ldmV6JobPreparationJS">
@@ -18742,70 +18742,70 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 </script>
 
 <!-- V6.GUI.6 — Desktop administrator / remote canvas buffer -->
-<script src="/ldm/static/ldm-canvas.js"></script>
+<script src="static/ldm-canvas.js"></script>
 
 <!-- V6.GUI.7 — HOME mini canvas inbox -->
-<link rel="stylesheet" href="/ldm/static/ldm-home-inbox.css">
-<script src="/ldm/static/ldm-home-inbox.js"></script>
+<link rel="stylesheet" href="static/ldm-home-inbox.css">
+<script src="static/ldm-home-inbox.js"></script>
 
 <!-- V6.GUI.13 — official Canvas Inbox tab / HOME slide footer scope -->
-<link rel="stylesheet" href="/ldm/static/ldm-canvas-inbox-tab.css">
-<script src="/ldm/static/ldm-canvas-inbox-tab.js"></script>
+<link rel="stylesheet" href="static/ldm-canvas-inbox-tab.css">
+<script src="static/ldm-canvas-inbox-tab.js"></script>
 
 <!-- V6.GUI.16 — HOME login popup and embedded ADVANCED administrator -->
-<link rel="stylesheet" href="/ldm/static/ldm-admin-home.css">
-<script src="/ldm/static/ldm-admin-home.js?v7gui75"></script>
+<link rel="stylesheet" href="static/ldm-admin-home.css">
+<script src="static/ldm-admin-home.js?v7gui75"></script>
 <!-- V6.GUI.22 — existing selected-theme CONNECT popup over HOME -->
-<script src="/ldm/static/ldm-connect-home.js"></script>
+<script src="static/ldm-connect-home.js"></script>
 <!-- V6.GUI.29 — discover independently installed ART LAB algorithms -->
-<script src="/ldm/static/ldm-art-lab-packs.js?v7gui57"></script>
+<script src="static/ldm-art-lab-packs.js?v7gui57"></script>
 
 <!-- V6.GUI.30 — save the composed canvas into the persistent Inbox -->
-<link rel="stylesheet" href="/ldm/static/ldm-canvas-save.css">
-<script src="/ldm/static/ldm-canvas-save.js"></script>
+<link rel="stylesheet" href="static/ldm-canvas-save.css">
+<script src="static/ldm-canvas-save.js"></script>
 
 <!-- V6.GUI.31 — administrator INBOX pending remote artwork count -->
-<link rel="stylesheet" href="/ldm/static/ldm-inbox-count.css">
-<script src="/ldm/static/ldm-inbox-count.js?v7gui58"></script>
+<link rel="stylesheet" href="static/ldm-inbox-count.css">
+<script src="static/ldm-inbox-count.js?v7gui58"></script>
 
 <!-- V6.GUI.33 — reported workspace buttons use selected-theme colours -->
-<link rel="stylesheet" href="/ldm/static/ldm-workspace-button-theme.css">
+<link rel="stylesheet" href="static/ldm-workspace-button-theme.css">
 
 <!-- V6.GUI.40 — explicit presentation-only drawer state -->
-<link rel="stylesheet" href="/ldm/static/ldm-sd-queue-drawer.css?v=40">
-<script src="/ldm/static/ldm-sd-queue-drawer.js?v=40"></script>
+<link rel="stylesheet" href="static/ldm-sd-queue-drawer.css?v=40">
+<script src="static/ldm-sd-queue-drawer.js?v=40"></script>
 
 <!-- V6.GUI.41 — per-file ON/OFF eye toggle -->
-<link rel="stylesheet" href="/ldm/static/ldm-file-visibility.css?v=41">
-<script src="/ldm/static/ldm-file-visibility.js?v=41"></script>
+<link rel="stylesheet" href="static/ldm-file-visibility.css?v=41">
+<script src="static/ldm-file-visibility.js?v=41"></script>
 
 <!-- V6.GUI.42 — optional selected-slice X/Y measurement guides -->
-<link rel="stylesheet" href="/ldm/static/ldm-slice-dimensions.css?v=42">
-<script src="/ldm/static/ldm-slice-dimensions.js?v=48"></script>
+<link rel="stylesheet" href="static/ldm-slice-dimensions.css?v=42">
+<script src="static/ldm-slice-dimensions.js?v=48"></script>
 
 <!-- V6.GUI.43 — true-size single 3D preview, scale and dimensions -->
-<link rel="stylesheet" href="/ldm/static/ldm-3d-preview-size.css?v=43">
-<script src="/ldm/static/ldm-3d-preview-size.js?v=43"></script>
+<link rel="stylesheet" href="static/ldm-3d-preview-size.css?v=43">
+<script src="static/ldm-3d-preview-size.js?v=43"></script>
 
 <!-- V6.GUI.44 — unified 3D files, physical overlay layout and plottable dimensions -->
-<link rel="stylesheet" href="/ldm/static/ldm-3d-files.css?v=44">
-<script src="/ldm/static/ldm-3d-files.js?v=95"></script>
+<link rel="stylesheet" href="static/ldm-3d-files.css?v=44">
+<script src="static/ldm-3d-files.js?v=95"></script>
 
 <!-- V6.GUI.45 — move-only 3D layer drag and scale info below border -->
-<link rel="stylesheet" href="/ldm/static/ldm-3d-drag.css?v=45">
-<script src="/ldm/static/ldm-3d-drag.js?v=112"></script>
+<link rel="stylesheet" href="static/ldm-3d-drag.css?v=45">
+<script src="static/ldm-3d-drag.js?v=112"></script>
 
-<!-- V7.GUI.145 — layer metadata and cardinal slice directions -->
-<link rel="stylesheet" href="/ldm/static/ldm-slice-sides.css?v=46">
-<script src="/ldm/static/ldm-slice-sides.js?v=112"></script>
+<!-- V7.GUI.146 — layer metadata and cardinal slice directions -->
+<link rel="stylesheet" href="static/ldm-slice-sides.css?v=46">
+<script src="static/ldm-slice-sides.js?v=112"></script>
 
-<script src="/ldm/static/ldm-ngc-import.js?v=74"></script>
+<script src="static/ldm-ngc-import.js?v=74"></script>
 
-<script src="/ldm/static/ldm-preparing-time.js?v7gui7"></script>
+<script src="static/ldm-preparing-time.js?v7gui7"></script>
 
-<script src="/ldm/static/ldm-download-job.js?v=79"></script>
+<script src="static/ldm-download-job.js?v=79"></script>
 
-<script src="/ldm/static/ldm-foam-material.js?v7gui64"></script>
+<script src="static/ldm-foam-material.js?v7gui64"></script>
 
 <style id="ldmFoamFocusedSteps">
 #ldmFoamSurfaceNote{display:none}
@@ -18823,7 +18823,7 @@ body.ldm-foam-material #v4FinalSetupInfo>span:nth-child(3){display:none!importan
 body.ldm-foam-material #v3QuickSurfaceValue{cursor:default!important;pointer-events:none!important}
 </style>
 
-<script src="/ldm/static/ldm-foam-step4.js?v7gui54"></script><link rel="stylesheet" href="/ldm/static/ldm-foam-step4.css?v7gui7"><script src="/ldm/static/ldm-foam-canvas.js?v7gui71"></script>
+<script src="static/ldm-foam-step4.js?v7gui54"></script><link rel="stylesheet" href="static/ldm-foam-step4.css?v7gui7"><script src="static/ldm-foam-canvas.js?v7gui71"></script>
 
 <style>body.ldm-dark{--ldm-colour-menu-bg:#272d32;--ldm-colour-menu-fg:#eef2ef}</style>
 
@@ -18838,9 +18838,9 @@ body.ldm-foam-material #v3QuickSurfaceValue{cursor:default!important;pointer-eve
 #v3StepShow .v3Direct-artwork.ldmArtworkWide .v3DirectTabHost.v3ArtworkTwoColHost{max-width:none!important;width:100%!important}
 @media(max-width:760px){.ldmGuideTopActions{gap:4px}#ldmArtworkBrowserWidth{font-size:11px;white-space:normal;max-width:135px}}
 </style>
-<script src="/ldm/static/ldm-artwork-width.js?v7gui7"></script>
+<script src="static/ldm-artwork-width.js?v7gui7"></script>
 
-<script src="/ldm/static/ldm-typewriter.js?v7gui7"></script><script>
+<script src="static/ldm-typewriter.js?v7gui7"></script><script>
 for(const id of ['align','fontSource'])document.getElementById(id)?.addEventListener('change',function(){if(selectedText<0||!textObjects[selectedText])return;textObjects[selectedText][id==='align'?'align':'fontSource']=this.value;textCommitUi()});
 </script>
 
@@ -18864,7 +18864,7 @@ for(const id of ['align','fontSource'])document.getElementById(id)?.addEventList
 })();
 </script>
 
-<script src="/ldm/static/ldm-foam-queue.js?v7gui7"></script>
+<script src="static/ldm-foam-queue.js?v7gui7"></script>
 
 <style id="ldmFoamCompactCutSpeed182">
 /* Keep the internal SZ gate; hide only the irrelevant FOAM Step5 readout. */
@@ -18889,7 +18889,7 @@ body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v4Step5CompactMach
 #v3StepShow #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) .v3QuickStepsPanel::after{border-left-width:0!important;border-right-width:0!important;border-radius:0!important}
 </style>
 
-<script src="/ldm/static/ldm-confirm-send.js?v7gui44"></script>
+<script src="static/ldm-confirm-send.js?v7gui44"></script>
 
 <style id="ldmCompactFoamCutSpeedOnly191">
 /* The compact layout's display:grid rule must not reveal a FOAM-only field
@@ -18898,8 +18898,8 @@ body:not(.ldm-foam-material) #v3StepShow #v3QuickStepsDrawer.v4cpExpertCompact #
 #v3StepShow #v3QuickStepsDrawer.v4cpExpertCompact #v4Step5CompactMachineSpeed label[hidden]:has(#v4duCompactMachineSpeedFoamCutSpeed){display:none!important}
 </style>
 
-<script src="/ldm/static/ldm-sliced-sd.js?v7gui7"></script>
-<script src="/ldm/static/ldm-sliced-print.js?v7gui62"></script>
+<script src="static/ldm-sliced-sd.js?v7gui7"></script>
+<script src="static/ldm-sliced-print.js?v7gui62"></script>
 
 <script>
 /* GUI.193: HOME OPEN FILES belongs to sliced-file storage. Legacy Repeat
@@ -18912,8 +18912,8 @@ body:not(.ldm-foam-material) #v3StepShow #v3QuickStepsDrawer.v4cpExpertCompact #
 #ldmSlicedFiles{width:100%;min-height:220px;font:inherit;color:inherit;background:var(--bp-card,transparent);border:1px solid var(--bp-line);border-radius:var(--bp-radius);box-sizing:border-box}
 </style>
 
-<script src="/ldm/static/ldm-sd-download.js?v7gui7"></script>
-<script src="/ldm/static/ldm-foam-repeat.js?v7gui65"></script>
+<script src="static/ldm-sd-download.js?v7gui7"></script>
+<script src="static/ldm-foam-repeat.js?v7gui65"></script>
 
 <style>
 .ldmFilesModeAliases[hidden],#ldmArtworkFilesHub[hidden]{display:none!important}
@@ -18922,11 +18922,11 @@ body:not(.ldm-foam-material) #v3StepShow #v3QuickStepsDrawer.v4cpExpertCompact #
 .ldmFilesSection>.v3ArtworkModeBody{margin-top:8px}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-sliced-layout.css?v7gui7">
+<link rel="stylesheet" href="static/ldm-sliced-layout.css?v7gui7">
 
-<link rel="stylesheet" href="/ldm/static/ldm-foam-simulation.css?v7gui7">
-<script src="/ldm/static/ldm-foam-saved-simulation.js?v7gui65"></script>
-<script src="/ldm/static/ldm-foam-access-slit.js?v7gui72"></script><script src="/ldm/static/ldm-foam-simulation.js?v7gui72"></script>
+<link rel="stylesheet" href="static/ldm-foam-simulation.css?v7gui7">
+<script src="static/ldm-foam-saved-simulation.js?v7gui65"></script>
+<script src="static/ldm-foam-access-slit.js?v7gui72"></script><script src="static/ldm-foam-simulation.js?v7gui72"></script>
 
 <style id="ldmGui219ActiveJobRedBorder">
 /* Colour only: preserve the selected theme's existing thin border and layout. */
@@ -18934,10 +18934,10 @@ body #v3SdActiveJobViewOnly#v3SdActiveJobViewOnly#v3SdActiveJobViewOnly#v3SdActi
 body #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus:not(.v3QuickPreparing):not(.v3QueueIdleNull) .v3QuickActiveJobWarning{border-color:#e53935!important}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-vector-offset.css?v7gui7">
-<script src="/ldm/static/ldm-vector-offset.js?v7gui143"></script>
+<link rel="stylesheet" href="static/ldm-vector-offset.css?v7gui7">
+<script src="static/ldm-vector-offset.js?v7gui143"></script>
 
-<script src="/ldm/static/ldm-print-connection.js?v7gui52"></script>
+<script src="static/ldm-print-connection.js?v7gui52"></script>
 
 <style>
 #ldmPrintConnectionModel{border:1px solid var(--bp-line,currentColor);padding:10px;margin:10px 0;color:inherit;background:var(--bp-panel,transparent);font:inherit}
@@ -18955,23 +18955,23 @@ body #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3Qui
 #ldmAdminRemoteViewTools button[onclick="v3CloseRemoteView()"]{display:none!important}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-v7-left-setup.css?v7gui76">
-<script src="/ldm/static/ldm-v7-left-setup.js?v7gui61"></script>
+<link rel="stylesheet" href="static/ldm-v7-left-setup.css?v7gui76">
+<script src="static/ldm-v7-left-setup.js?v7gui61"></script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-cnc-foam.css?v7gui14">
-<script src="/ldm/static/ldm-cnc-foam.js?v7gui14"></script>
+<link rel="stylesheet" href="static/ldm-cnc-foam.css?v7gui14">
+<script src="static/ldm-cnc-foam.js?v7gui14"></script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-cnc-simulation.css?v7gui15">
-<script src="/ldm/static/ldm-cnc-simulation.js?v7gui43"></script>
+<link rel="stylesheet" href="static/ldm-cnc-simulation.css?v7gui15">
+<script src="static/ldm-cnc-simulation.js?v7gui43"></script>
 
-<script src="/ldm/static/ldm-cnc-stl.js?v7gui16"></script>
+<script src="static/ldm-cnc-stl.js?v7gui16"></script>
 
 <style>
 
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-fresh-entry.css?v7gui30">
-<script src="/ldm/static/ldm-fresh-entry.js?v7gui52"></script>
+<link rel="stylesheet" href="static/ldm-fresh-entry.css?v7gui30">
+<script src="static/ldm-fresh-entry.js?v7gui52"></script>
 
 <style>
 html body #v3StepShow.open:has(.v3Direct-advanced) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer{display:none!important}
@@ -18986,7 +18986,7 @@ html body #v3StepShow#v3StepShow#v3StepShow#v3StepShow#v3StepShow.open:has(.v3Di
 
 
 
-<script src="/ldm/static/ldm-v7-workflow-navigation.js?v7gui38"></script>
+<script src="static/ldm-v7-workflow-navigation.js?v7gui38"></script>
 
 <style id="ldmGui38SharedExit">
 html body #v3StepShow.open > #ldmV7Exit.ldmStandaloneExit{position:fixed!important;left:6px!important;bottom:6px!important;top:auto!important;right:auto!important;width:60px!important;min-width:0!important;height:66px!important;min-height:66px!important;margin:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;padding:5px!important;font:inherit!important;color:var(--bp-text,var(--ldm-text))!important;background:var(--bp-panel,var(--ldm-panel))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;z-index:2147000001!important}
@@ -19000,7 +19000,7 @@ html body #v3StepShow.open > #ldmV7Exit.ldmStandaloneExit small{font-size:9px!im
 html.ldm-language-ar :is(label,p,h1,h2,h3,summary,.gc-title){direction:rtl}
 html.ldm-language-ar :is(input,textarea,pre,code,svg,canvas){direction:ltr}
 </style>
-<script src="/ldm/static/ldm-language.js?v7gui145"></script>
+<script src="static/ldm-language.js?v7gui145"></script>
 
 <style>
 #ldmLanguageControls{display:flex!important;flex-wrap:wrap!important;gap:6px!important;align-items:center!important;max-width:100%!important}
@@ -19018,8 +19018,8 @@ html.ldm-language-ar :is(input,textarea,pre,code,svg,canvas){direction:ltr}
 @media(max-width:480px){#v3GoldenConnectModal #ldmLanguageControls .ldmLanguageRow{grid-template-columns:minmax(0,1fr)!important}}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-v7-language-rail.css?v7gui46">
-<script src="/ldm/static/ldm-v7-language-rail.js?v7gui46"></script>
+<link rel="stylesheet" href="static/ldm-v7-language-rail.css?v7gui46">
+<script src="static/ldm-v7-language-rail.js?v7gui46"></script>
 
 <style id="ldmGui47AdvancedTabs">
 html body #v3AdvancedTabs [data-advtab="machinesetup"],html body #v3AdvancedMachineSetupPane{display:none!important}
@@ -19027,7 +19027,7 @@ html body #v3AdvancedTabs [data-advtab="machinesetup"],html body #v3AdvancedMach
 
 <style>#v3GoldenConnectModal #ldmLanguageSavePack{margin-top:8px!important;width:100%!important;height:auto!important;min-height:36px!important;white-space:normal!important}</style>
 
-<script src="/ldm/static/ldm-vinyl-material-depth.js?v7gui51"></script>
+<script src="static/ldm-vinyl-material-depth.js?v7gui51"></script>
 
 <style>html body #v3QuickStepsDrawer #v7MaterialCutDepthField[hidden]{display:none!important}</style>
 
@@ -19045,8 +19045,8 @@ html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard > #v4ExpertModeZone{
 }
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-v7-appearance-rail.css?v7gui56">
-<script src="/ldm/static/ldm-v7-appearance-rail.js?v7gui58"></script>
+<link rel="stylesheet" href="static/ldm-v7-appearance-rail.css?v7gui56">
+<script src="static/ldm-v7-appearance-rail.js?v7gui58"></script>
 
 <style id="ldmGui59RailConsistency">
 html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,
@@ -19076,17 +19076,17 @@ html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDr
 html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files="files"] #ldmFilesSdSection{display:block!important;visibility:visible!important}
 </style>
 
-<script src="/ldm/static/ldm-repeat-new-job-gate.js?v7gui64"></script>
+<script src="static/ldm-repeat-new-job-gate.js?v7gui64"></script>
 
 <style id="ldmGui66SettingDirect">html body #v3StepShow .v3Direct-advanced #v3AdvancedTabs{display:none!important}html body #v3StepShow .v3Direct-advanced #v3AdvancedToolPane{display:none!important}</style>
 
 <style id="ldmGui67HideSettingMotion">html body #v3StepShow.open .v3Direct-advanced #rightPanel #motionMainSection{display:none!important}html body #v3StepShow.open .v3Direct-advanced [data-target="motionMainSection"]{display:none!important}</style>
 
-<script src="/ldm/static/ldm-perspective-guides.js?v7gui145"></script>
+<script src="static/ldm-perspective-guides.js?v7gui145"></script>
 
-<script src="/ldm/static/ldm-draw-focus.js?v7gui100"></script>
+<script src="static/ldm-draw-focus.js?v7gui146"></script>
 
-<script src="/ldm/static/ldm-expert-outside.js?v7gui102"></script>
+<script src="static/ldm-expert-outside.js?v7gui102"></script>
 <style id="ldmGui102ExpertOutside">
 html body #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone{box-sizing:border-box!important;width:calc(100% - 20px)!important;max-width:none!important;margin:6px 10px 10px!important;border:3px solid #d93636!important;border-radius:0!important;background:var(--bp-panel,transparent)!important;color:var(--bp-text,inherit)!important;padding:8px!important;order:99!important;grid-column:1 / -1!important;align-self:stretch!important}
 html body #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone .v4ExpertModeCheck{display:flex!important;width:100%!important;box-sizing:border-box!important;background:transparent!important;color:inherit!important;margin:0!important}
@@ -19094,13 +19094,13 @@ html body #v3StepShow #v3QuickStepsDrawer:not([data-v7-step="4"]) #v4ExpertModeZ
 html body #v3StepShow #v3QuickStepsDrawer[data-v7-files] #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone{display:none!important}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-machine-profiles.css?v7gui109"><script src="/ldm/static/ldm-machine-profiles.js?v7gui138"></script>
+<link rel="stylesheet" href="static/ldm-machine-profiles.css?v7gui109"><script src="static/ldm-machine-profiles.js?v7gui138"></script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-offline-theme.css?v7gui111">
+<link rel="stylesheet" href="static/ldm-offline-theme.css?v7gui111">
 
-<link rel="stylesheet" href="/ldm/static/ldm-artwork-theme.css?v7gui112"><script src="/ldm/static/ldm-artwork-labels.js?v7gui112"></script>
+<link rel="stylesheet" href="static/ldm-artwork-theme.css?v7gui112"><script src="static/ldm-artwork-labels.js?v7gui112"></script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-setting-theme.css?v7gui113">
+<link rel="stylesheet" href="static/ldm-setting-theme.css?v7gui113">
 
 <style id="ldmGui117ConnectionLanguageCleanup">
 #v3GoldenConnectModal #ldmLanguageControls #ldmLanguageSavePack,
@@ -19112,7 +19112,7 @@ html body #v3GoldenConnectModal #ldmEntryAdmin > b{display:block!important;margi
 html body #v3GoldenConnectModal #ldmLanguageControls .ldmLanguageRow{grid-template-columns:minmax(0,1fr)!important;gap:10px!important}
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-v5-dark-theme.css?v7gui122">
+<link rel="stylesheet" href="static/ldm-v5-dark-theme.css?v7gui122">
 
 <style id="ldmGui120SoundAlignment">
 /* Match by persistent sound controls wherever MACHINE SETUP is mounted. */
@@ -19140,7 +19140,7 @@ html body #v3StepShow #v3QuickStepsDrawer#v3QuickStepsDrawer .v3QuickStepsRow{
 }
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-final-step-theme.css?v7gui138">
+<link rel="stylesheet" href="static/ldm-final-step-theme.css?v7gui138">
 
 <style id="ldmGui133V6ActiveLayer">
 /* V6 plain uses a high-contrast monochrome active indicator, independent of layer colour. */
@@ -19159,10 +19159,10 @@ html body .v3Direct-artwork :is(#svgObjectList#svgObjectList#svgObjectList,#ldmD
 }
 </style>
 
-<script src="/ldm/static/ldm-step-auto-progress.js?v7gui135"></script>
+<script src="static/ldm-step-auto-progress.js?v7gui135"></script>
 
-<link rel="stylesheet" href="/ldm/static/ldm-step-rail-status.css?v7gui136">
-<script src="/ldm/static/ldm-step-rail-status.js?v7gui136"></script>
+<link rel="stylesheet" href="static/ldm-step-rail-status.css?v7gui136">
+<script src="static/ldm-step-rail-status.js?v7gui136"></script>
 
 <style id="ldmGui137V5OrangeActions">
 html body:not(.ldm-v6) #v3SvgSaveStartJobBtn#v3SvgSaveStartJobBtn#v3SvgSaveStartJobBtn#v3SvgSaveStartJobBtn,
@@ -19184,4 +19184,4 @@ html body:not(.ldm-v6) #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickAct
 }
 </style>
 
-<link rel="stylesheet" href="/ldm/static/ldm-dark-icon-border.css?v7gui141">
+<link rel="stylesheet" href="static/ldm-dark-icon-border.css?v7gui141">
