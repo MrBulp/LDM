@@ -2680,6 +2680,11 @@ body.ldm-dark #ldmDrawPalmGuard{color:rgba(255,255,255,.65);background:rgba(23,2
 #ldmDrawPalmGuard[hidden]{display:none!important}
 body:has(.v3ArtworkModeTabs [data-artmode="draw"].active) #ldmSparsePreviewControl{display:none!important}
 body:not(:has(.v3ArtworkModeTabs [data-artmode="draw"].active)) #ldmDrawPalmGuard{display:none!important}
+}</style><style>@layer ldmOnlineWorkspace {
+#ldmDrawFullscreenPortal{position:fixed!important;inset:auto!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;z-index:2147483647!important;overflow:hidden!important;background:var(--bp-panel,#fff)!important;display:block!important;transform:none!important;contain:none!important}
+#ldmDrawFullscreenPortal #bed.ldmDrawFocus,#bed.ldmDrawFocus:fullscreen{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;box-sizing:border-box!important;aspect-ratio:auto!important;transform:none!important;overflow:hidden!important}
+#ldmDrawFullscreenPortal #art,#bed.ldmDrawFocus:fullscreen #art{display:block!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-width:none!important;max-height:none!important;margin:0!important;transform:none!important}
+#bed.ldmDrawFocus #ldmDrawFocusButton{display:block!important;right:max(8px,env(safe-area-inset-right))!important;top:max(8px,env(safe-area-inset-top))!important}
 }</style></head>
 <body class="v3-workflow">
 
@@ -19097,7 +19102,7 @@ html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDr
 
 <script src="static/ldm-perspective-guides.js?v153"></script>
 
-<script src="static/ldm-draw-focus.js?v157"></script>
+<script src="static/ldm-draw-focus.js?v158"></script>
 
 <script src="static/ldm-expert-outside.js?v7gui102"></script>
 <style id="ldmGui102ExpertOutside">
