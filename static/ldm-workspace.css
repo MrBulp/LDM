@@ -32,3 +32,16 @@
 /* Remote FOAM is artwork/planning only. Backend administrator gates remain authoritative. */
 html.ldm-artwork-guest #v3ArtworkFoamHost :is([data-foam-jog],[data-foam-save],#ldmFoam_heat,#ldmFoam_off,#ldmFoam_upload,#ldmFoam_open,#ldmFoam_file,#ldmFoam_confirm,#ldmFoam_canvas,#ldmFoamCanvasJob,#ldmFoam_home,#ldmFoam_calibration,#ldmFoam_cold){display:none!important}
 html.ldm-artwork-guest #v3ArtworkFoamHost details:has([data-foam-jog]),html.ldm-artwork-guest #v3ArtworkFoamHost details:has(#ldmFoam_upload){display:none!important}
+
+/* GUI.147: owned saved-snapshot preview; filename and original layer colours preserved. */
+#ldmMySubmissionPreview{border:1px solid var(--bp-line,#777);background:var(--bp-panel,#fff);color:var(--bp-text,#222);padding:10px;margin:10px 0;text-align:left}
+#ldmMySubmissionPreview[hidden]{display:none!important}
+#ldmMySubmissionPreview .ldmOwnCanvasPreview{display:block;width:100%;height:auto;max-height:380px;min-height:160px;background:#fff;border:1px solid var(--bp-line,#777);box-sizing:border-box}
+#ldmRemoteCanvasPanel .ldmCanvasUsername{font:inherit;font-weight:700;overflow-wrap:anywhere}
+#ldmRemoteCanvasPanel .ldmSubmissionRow>span{flex:1;min-width:0;overflow-wrap:anywhere;text-align:left}
+
+@layer ldmWorkspacePermissions {
+#ldmRemoteCanvasPanel#ldmRemoteCanvasPanel .ldmCanvasTitleField{display:flex!important;align-items:center!important;width:100%!important;min-width:0!important;height:40px!important;box-sizing:border-box!important;border:1px solid var(--bp-line,#777)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel,#fff)!important;overflow:hidden!important}
+#ldmRemoteCanvasPanel#ldmRemoteCanvasPanel .ldmCanvasTitleField .ldmCanvasUsername{padding-left:10px!important;white-space:nowrap!important;flex-shrink:0!important;max-width:50%!important;overflow:hidden!important;text-overflow:ellipsis!important}
+#ldmRemoteCanvasPanel#ldmRemoteCanvasPanel .ldmCanvasTitleField #ldmCanvasTitle{border:0!important;border-radius:0!important;box-shadow:none!important;height:38px!important;min-height:38px!important;flex:1!important;min-width:0!important;width:0!important}
+}

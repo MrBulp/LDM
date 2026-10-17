@@ -43,13 +43,19 @@
      message(`${d.duplicate?'Already submitted':'Snapshot submitted'} — ${d.item.status}. LDM Admin controls machine sending.`);await refresh();
    }catch(e){message(e.message)}finally{submitting=false;if(el('ldmCanvasSubmit'))el('ldmCanvasSubmit').disabled=state.mode==='off'||state.inbox_enabled===false}
  }
+ let selectedSubmission='',previewRequest=0;
+ function usernameTitle(){const input=el('ldmCanvasTitle');if(!input)return;let prefix=el('ldmCanvasUsername');if(!prefix){prefix=document.createElement('span');prefix.id='ldmCanvasUsername';prefix.className='ldmCanvasUsername';prefix.setAttribute('data-ldm-no-translate','');const field=document.createElement('div');field.className='ldmCanvasTitleField';input.before(field);field.append(prefix,input);}const text=state.username?state.username+' · ':'';if(prefix.textContent!==text)prefix.textContent=text;if(prefix.hidden!==!text)prefix.hidden=!text;const limit=120-text.length;if(input.maxLength!==limit)input.maxLength=limit;}
+ async function previewSubmission(item){const request=++previewRequest;selectedSubmission=item.id;const host=el('ldmMySubmissionPreview');if(!host)return;host.hidden=false;host.replaceChildren();const heading=document.createElement('b');heading.setAttribute('data-ldm-no-translate','');heading.textContent=item.title+' · '+item.status;const info=document.createElement('p');info.textContent='Loading submitted artwork…';host.append(heading,info);
+  try{const d=await call('/api/canvas/'+encodeURIComponent(item.id));if(request!==previewRequest)return;heading.textContent=d.item.title+' · '+d.item.status;const c=d.item.canvas,svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 '+c.width+' '+c.height);svg.setAttribute('role','img');svg.setAttribute('aria-label','Submitted canvas: '+item.title);svg.classList.add('ldmOwnCanvasPreview');const layers=c.layers?.length?c.layers:[{visible:true,colour:'#444444',paths:c.paths}];for(const layer of layers){if(layer.visible===false)continue;const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',layer.paths.map(p=>p.map((q,i)=>(i?'L':'M')+q[0]+' '+q[1]).join(' ')).join(' '));path.setAttribute('stroke',layer.colour||'#444444');path.setAttribute('fill','none');path.setAttribute('stroke-width','.65');path.setAttribute('vector-effect','non-scaling-stroke');svg.append(path);}info.textContent=c.width+' × '+c.height+' mm · Saved submission snapshot';host.append(svg);}catch(e){if(request===previewRequest)info.textContent=e.message;}
+ }
+ document.addEventListener('ldm-online-identity',()=>{usernameTitle();previewRequest++;selectedSubmission='';const preview=el('ldmMySubmissionPreview');if(preview){preview.replaceChildren();preview.hidden=true;}el('ldmCanvasMine')?.replaceChildren();});
  async function refresh(){
    if(refreshing||!el('ldmCanvasMine'))return;refreshing=true;
    try{
      const d=await call('/api/canvas');const host=el('ldmCanvasMine');host.replaceChildren();
      for(const item of d.items){
        const row=document.createElement('div');row.className='ldmSubmissionRow';
-       const text=document.createElement('span');text.textContent=`${item.title} · ${item.status} · ${new Date(item.created_at*1000).toLocaleString()}`;row.appendChild(text);
+       const text=document.createElement('span');text.setAttribute('data-ldm-no-translate','');text.textContent=`${item.title} · ${item.status} · ${new Date(item.created_at*1000).toLocaleString()}`;row.appendChild(text);const view=document.createElement('button');view.type='button';view.textContent='PREVIEW';view.title='Preview submitted canvas';view.setAttribute('aria-label','Preview '+item.title);view.setAttribute('aria-pressed',String(item.id===selectedSubmission));view.onclick=()=>previewSubmission(item);row.append(view);
        if(item.status==='PENDING'){
          const b=document.createElement('button');b.type='button';b.textContent='CANCEL SUBMISSION';
          b.onclick=async()=>{try{await call(`/api/canvas/${item.id}/cancel`,{});await refresh()}catch(e){message(e.message)}};row.appendChild(b);
@@ -60,12 +66,12 @@
  }
  function mount(){
    const host=el('v3ArtworkInboxHost');if(!host)return;
-   const existing=el('ldmRemoteCanvasPanel');if(existing){if(existing.parentNode!==host)host.appendChild(existing);return;}
+   const existing=el('ldmRemoteCanvasPanel');if(existing){if(existing.parentNode!==host)host.appendChild(existing);usernameTitle();return;}
    const panel=document.createElement('section');panel.id='ldmRemoteCanvasPanel';
-   panel.innerHTML='<b>REMOTE ARTWORK — SUBMIT TO LDM ADMIN</b><div class="ldmCanvasFields"><label>Canvas title<input id="ldmCanvasTitle" maxlength="120" value="Remote canvas"></label><button type="button" id="ldmCanvasSubmit">SUBMIT</button></div><p id="ldmCanvasMessage" role="status"></p><section class="ldmMySubmissions"><b>MY SUBMISSIONS</b><div id="ldmCanvasMine"></div></section>';
+   panel.innerHTML='<b>REMOTE ARTWORK — SUBMIT TO LDM ADMIN</b><div class="ldmCanvasFields"><label>Canvas title<input id="ldmCanvasTitle" maxlength="120" value="Remote canvas"></label><button type="button" id="ldmCanvasSubmit">SUBMIT</button></div><p id="ldmCanvasMessage" role="status"></p><section class="ldmMySubmissions"><b>MY SUBMISSIONS</b><section id="ldmMySubmissionPreview" hidden aria-live="polite"></section><div id="ldmCanvasMine"></div></section>';
    panel.setAttribute('aria-label','Remote artwork submissions');
    host.appendChild(panel);
-   el('ldmCanvasSubmit').onclick=submit;
+   usernameTitle();el('ldmCanvasSubmit').onclick=submit;
    updatePermissions();refresh();
  }
  function updatePermissions(){
