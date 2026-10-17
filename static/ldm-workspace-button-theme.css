@@ -1,0 +1,20 @@
+/* GUI.33: selected-theme colours for the four reported workspace controls. */
+@layer ldmWorkspacePermissions {
+ :is(#ldmSTLModeTech,#ldmSTLModeSlice,#ldmSTLModeActivity,#previewImageViewBtn,#ldmTextGlyphBtn,#ldmAlgorithmWorkspace button[onclick="ldmCPGenerate()"]) {
+   background:var(--ldm-panel)!important;
+   color:var(--ldm-text)!important;
+   border:1px solid var(--ldm-border)!important;
+   background-image:none!important;
+   text-shadow:none!important;
+ }
+ :is(#ldmSTLModeTech,#ldmSTLModeSlice,#ldmSTLModeActivity,#previewImageViewBtn).active {
+   background:var(--ldm-panel-soft)!important;
+   color:var(--ldm-text)!important;
+   box-shadow:inset 0 0 0 1px var(--ldm-border)!important;
+ }
+ :is(#ldmSTLModeTech,#ldmSTLModeSlice,#ldmSTLModeActivity,#previewImageViewBtn,#ldmTextGlyphBtn,#ldmAlgorithmWorkspace button[onclick="ldmCPGenerate()"]):hover {
+   background:var(--ldm-panel-soft)!important;
+   color:var(--ldm-text)!important;
+   border-color:var(--ldm-border)!important;
+ }
+}

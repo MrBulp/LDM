@@ -1,0 +1,60 @@
+.previewWrap.ldmSandboxDraw .previewDisplayControls{display:block!important}
+#ldmWritingGuideControls[hidden]{display:none!important}
+#ldmWritingGuideControls{box-sizing:border-box;min-width:0;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);padding:12px;margin:12px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;font:inherit;text-align:left}
+#ldmWritingGuideControls legend{padding:0 6px;font-size:13px;font-weight:700;text-align:left}
+#ldmWritingGuideControls label{margin:0;min-width:0;font-size:13px;line-height:1.4;text-align:left}
+#ldmWritingGuideControls .ldmWritingOption{grid-column:1 / -1;display:flex;align-items:center;justify-content:flex-start;gap:8px}
+#ldmWritingGuideControls input[type=checkbox]{flex:none;margin:0;width:16px;height:16px;min-height:0}
+#ldmWritingGuideControls .ldmWritingField{display:flex;flex-direction:column;align-items:stretch;gap:6px}
+#ldmWritingGuideControls [data-field=spacing]{grid-column:1 / -1}
+#ldmWritingGuideControls input[type=number]{display:block;width:100%;min-width:0;min-height:36px;margin:0;padding:6px 8px;box-sizing:border-box;font:inherit;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);text-align:left}
+#ldmWritingGuideControls p{grid-column:1 / -1;margin:0;font-size:12px;line-height:1.4;text-align:left}
+#ldmWritingGuideError:empty{display:none}
+@media(pointer:coarse){#ldmWritingGuideControls input[type=number]{min-height:44px}}
+@media(max-width:420px){#ldmWritingGuideControls{grid-template-columns:minmax(0,1fr)}}
+#ldmWritingGuideOverlay{position:absolute!important;pointer-events:none!important;z-index:8;overflow:hidden;color:var(--bp-text,#555)}
+
+/* GUI95: use all available panel width; balanced horizontal/vertical controls. */
+#ldmWritingGuideControls{width:100%!important;max-width:none!important;grid-column:1 / -1;flex:1 0 100%;align-self:stretch;justify-self:stretch}
+#ldmWritingGuideControls .ldmWritingDirection{grid-column:auto;order:0}
+#ldmWritingGuideControls label:has([data-writing=a4]){order:1}
+#ldmWritingGuideControls .ldmWritingField{order:2}
+#ldmWritingGuideControls [data-field=spacing]{grid-column:auto}
+#ldmWritingGuideControls label:has([data-writing=margin]),#ldmWritingGuideControls label:has([data-writing=include]),#ldmWritingGuideControls p{order:3}
+
+#ldmWritingGuidesSection,#ldmPerspectiveGuides{box-sizing:border-box;width:100%;max-width:none;grid-column:1 / -1;flex:1 0 100%;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);margin:12px 0;font-size:13px;text-align:left}
+#ldmWritingGuidesSection[hidden],#ldmPerspectiveGuides[hidden]{display:none!important}
+#ldmWritingGuidesSection>summary,#ldmPerspectiveGuides>summary{padding:10px 12px;font:inherit;font-weight:700;cursor:pointer;text-align:left}
+#ldmWritingGuidesSection #ldmWritingGuideControls{border:0;margin:0;width:100%}
+#ldmWritingGuidesSection legend{display:none}
+.ldmPerspectiveFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:12px}
+.ldmPerspectiveFields label{display:flex;flex-direction:column;gap:6px;min-width:0;margin:0;font:inherit;text-align:left}
+.ldmPerspectiveFields .ldmPerspectiveWide{grid-column:1 / -1}
+.ldmPerspectiveFields label:has(input[type=checkbox]){flex-direction:row;align-items:center;gap:8px}
+.ldmPerspectiveFields input:not([type=checkbox]),.ldmPerspectiveFields select{box-sizing:border-box;width:100%;min-width:0;min-height:36px;padding:6px 8px;font:inherit;background:var(--bp-panel,transparent);color:inherit;border:1px solid var(--bp-line,currentColor)}
+.ldmPerspectiveFields [hidden]{display:none!important}
+.ldmPerspectiveFields p{margin:0;text-align:left;line-height:1.4}
+#ldmPerspectiveGuideOverlay{position:absolute!important;z-index:8;pointer-events:none!important;overflow:hidden;color:var(--bp-text,#555);background:transparent!important}
+#ldmPerspectiveGuideOverlay line{stroke:currentColor;stroke-width:.25;opacity:.25;pointer-events:none!important}
+@media(pointer:coarse){.ldmPerspectiveFields input:not([type=checkbox]),.ldmPerspectiveFields select{min-height:44px}}
+@media(max-width:420px){.ldmPerspectiveFields{grid-template-columns:minmax(0,1fr)}}
+
+#ldmDrawFocusButton{position:absolute!important;right:8px;top:8px;z-index:50;min-width:36px;min-height:36px;padding:4px;font-size:22px;background:var(--bp-panel,#fff);color:var(--bp-text,#222);border:1px solid var(--bp-line,currentColor)}
+#ldmDrawFocusButton[hidden]{display:none!important}
+#bed.ldmDrawFocus{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;z-index:2147483000!important;box-sizing:border-box;aspect-ratio:auto!important;background:var(--bp-panel,#fff)}
+#bed.ldmDrawFocus #art{width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important}
+#ldmDrawPalmGuard{display:flex;align-items:center;gap:8px;margin-top:10px;font:inherit;text-align:left}
+#ldmPerspectiveReset{font:inherit;min-height:36px;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:inherit}
+
+/* GUI115: perspective controls match the aligned writing-guide fields. */
+html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:start!important;gap:12px!important;padding:12px!important;width:100%!important;box-sizing:border-box!important}
+html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields label{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:6px!important;min-width:0!important;width:100%!important;margin:0!important;text-align:left!important}
+html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields label:has(input[type=checkbox]){flex-direction:row!important;align-items:center!important;gap:8px!important}
+html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields :is(input[type=number],select){display:block!important;box-sizing:border-box!important;width:100%!important;max-width:none!important;min-width:0!important;min-height:var(--ldm-art-control-height,36px)!important;padding:6px 8px!important;margin:0!important;text-align:left!important;align-self:stretch!important}
+html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields [hidden]{display:none!important}
+@media(max-width:420px){html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPerspectiveFields{grid-template-columns:minmax(0,1fr)!important}}
+
+/* Round the containing section and its painted inner fieldset together. */
+html body .v3Direct-artwork #ldmWritingGuidesSection#ldmWritingGuidesSection{border-radius:var(--bp-radius,10px)!important}
+html body .v3Direct-artwork #ldmWritingGuidesSection #ldmWritingGuideControls#ldmWritingGuideControls{border:0!important;margin:0!important;border-radius:0 0 var(--bp-radius,10px) var(--bp-radius,10px)!important}
+html body .v3Direct-artwork #ldmWritingGuideControls #ldmWritingReset{grid-column:1 / -1!important;order:4!important;display:block!important;width:100%!important;box-sizing:border-box!important;min-height:var(--ldm-art-control-height,36px)!important;padding:6px 10px!important;font:inherit!important;color:var(--bp-text)!important;background:var(--bp-panel)!important;border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,0)!important}

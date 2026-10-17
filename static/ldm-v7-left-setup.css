@@ -1,0 +1,101 @@
+/* V7 left step rail: selected theme; no machine handlers or gates changed. */
+#ldmV7StepRail{display:none}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]){position:fixed!important;inset:64px auto 46px 0!important;width:72px!important;max-width:none!important;margin:0!important;transform:none!important;display:block!important;overflow:visible!important;background:var(--bp-panel,var(--ldm-panel,#f4f4f1))!important;border:0!important;z-index:200010!important;max-height:none!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]).open{width:min(460px,92vw)!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail{display:flex!important;position:absolute;inset:0 auto 0 0;width:72px;flex-direction:column;gap:5px;padding:6px;box-sizing:border-box;border-right:1px solid var(--bp-line,currentColor);background:var(--bp-panel,var(--ldm-panel,#f4f4f1));color:var(--bp-text,var(--ldm-text,#222))}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail button{width:100%!important;min-width:0!important;height:auto!important;min-height:66px!important;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:5px!important;font:inherit!important;color:inherit;background:transparent;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail button small{font-size:9px;line-height:1.2}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail button.active{background:var(--bp-text,var(--ldm-text,#222));color:var(--bp-panel,var(--ldm-panel,#fff))}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) > .v3QuickStepsPanel{position:absolute!important;inset:0 0 0 72px!important;width:calc(100% - 72px)!important;max-width:none!important;max-height:none!important;margin:0!important;overflow:auto!important;padding:12px!important;transform:none!important;border:0!important;box-sizing:border-box!important;background:var(--bp-panel,var(--ldm-panel,#f4f4f1))!important;color:var(--bp-text,var(--ldm-text,#222))!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]):not(.open) > .v3QuickStepsPanel{display:none!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) .v3QuickStepsRow.v4MachineMenu{display:flex!important;flex-direction:column!important;width:100%!important;min-width:0!important;gap:10px!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) .v4MenuCard{display:none!important;width:100%!important;min-width:0!important;max-width:none!important;box-sizing:border-box!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #v3QuickStepsHandle{display:none!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step])[data-v7-step="0"] #v4ConnectCard{display:flex!important;flex-direction:column!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step])[data-v7-step="1"] #v4HomeCard{display:flex!important;flex-direction:column!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step])[data-v7-step="2"] #v3QuickMaterialTile{display:flex!important;flex-direction:column!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step])[data-v7-step="3"] #v3QuickSurfaceTile{display:flex!important;flex-direction:column!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step])[data-v7-step="4"] #v4CenterCard{display:flex!important;flex-direction:column!important}
+@media(max-width:999px){html body #v3StepShow.open #v3QuickStepsDrawer.open #ldmV7StepRail{box-shadow:0 0 0 1px var(--bp-line,currentColor)}}
+
+/* V7.GUI2: original drawer deliberately disables hit testing outside its old panel. */
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail,
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail button,
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail button *{pointer-events:auto!important}
+
+/* V7GUI3: full-height floating setup, above artwork and SD queue. */
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]){top:0!important;bottom:0!important;height:100dvh!important;max-height:100dvh!important;z-index:2147000000!important;border-bottom:0!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) > .v3QuickStepsPanel,html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) #ldmV7StepRail{border-bottom:0!important}
+html body #v3StepShow.open:not(:has(.v3Direct-slicedfiles)) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) > .v3QuickStepsPanel::after{border-bottom:0!important}
+html body #v3StepShow#v3StepShow#v3StepShow.open:not(:has(.v3Direct-slicedfiles)):not(:has(.ldmMachineStepGuide)) .v3ShowViewport{padding-left:12px!important;margin-left:0!important;width:100%!important;box-sizing:border-box!important}
+
+/* V7GUI5 header-free workspace controls. */
+html body #v3StepShow#v3StepShow.open:not(:has(.ldmMachineStepGuide)):has(.v3DirectTabHost) > .v3ShowTop,
+html body #v3StepShow#v3StepShow.open:not(:has(.ldmMachineStepGuide)):has(.v3DirectTabHost) > .v3ShowProgress{display:none!important;height:0!important;flex-basis:0!important;border:0!important;animation:none!important}
+#ldmV7Logo{font:inherit;font-weight:900;font-size:17px;text-align:center;padding:8px 0;color:inherit}
+html body #ldmV7StepRail #ldmV7Exit{margin-top:auto!important;min-height:50px!important}
+html body #v3StepShow#v3StepShow#v3StepShow.open:not(:has(.ldmMachineStepGuide)) .v3ShowViewport{padding-left:6px!important;padding-right:6px!important}
+html body #v3StepShow#v3StepShow.open .v3Direct-artwork{padding-left:clamp(15px,2.5vw,32px)!important;padding-right:clamp(15px,2.5vw,32px)!important}
+.ldmPreviewBoundaryInfo{position:relative!important;padding-right:44px!important}
+html body #v3StepShow#v3StepShow.open .ldmPreviewBoundaryInfo #ldmArtworkBrowserWidth{position:absolute!important;right:6px!important;top:6px!important;display:block!important;width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;font-size:22px!important;line-height:1!important;border:1px solid var(--bp-line,currentColor);color:inherit;background:var(--bp-panel,transparent)}
+
+/* V7GUI6: compact slide titles, no repeated orange eyebrow labels. */
+html body #v3StepShow#v3StepShow.open .v3ShowKicker,
+html body #v3StepShow#v3StepShow.open .v3SceneEyebrow{display:none!important;margin:0!important;padding:0!important;height:0!important}
+html body #v3StepShow#v3StepShow.open .v3OnboardCard{padding-top:clamp(15px,2.5vw,32px)!important;padding-bottom:clamp(15px,2.5vw,32px)!important}
+html body #v3StepShow#v3StepShow.open .v3OnboardCard :is(h1,h2){margin-bottom:9px!important}
+html body #v3StepShow#v3StepShow.open .v3OnboardCard>.lead{margin-bottom:14px!important;margin-top:0!important}
+html body #v3StepShow#v3StepShow.open .v3ShowViewport{padding-top:12px!important}
+
+/* V7GUI7: reserve only the fixed72px rail; expanded drawer remains overlay. */
+html body #v3StepShow#v3StepShow#v3StepShow#v3StepShow.open:not(:has(.v3Direct-slicedfiles)):not(:has(.ldmMachineStepGuide)) .v3ShowViewport{padding-left:78px!important;padding-right:6px!important;width:100%!important;margin-left:0!important;box-sizing:border-box!important}
+html body #v3StepShow#v3StepShow.open .v3Direct-artwork.ldmArtworkWide{width:100%!important;max-width:none!important;box-sizing:border-box!important;padding-left:6px!important;padding-right:6px!important}
+
+/* V7GUI8: file navigation lives on the fixed rail. Existing content and actions remain. */
+html body #v3StepShow#v3StepShow.open #ldmArtworkFilesTab{display:none!important}
+html body #v3StepShow#v3StepShow.open #ldmFilesInboxSection > summary,
+html body #v3StepShow#v3StepShow.open #ldmFilesSdSection > summary{display:none!important}
+html body #ldmV7StepRail :is(#ldmV7Inbox,#ldmV7SdFiles){font-size:10px!important;line-height:1.3!important;overflow-wrap:anywhere}
+html body #ldmV7StepRail{overflow-y:auto!important}
+html body:not(:has(#ldmArtworkFilesHub)) #ldmV7StepRail :is(#ldmV7Inbox,#ldmV7SdFiles){display:none!important}
+
+html body #v3StepShow.open #v3QuickStepsDrawer #ldmV7StepRail #ldmV7SdFiles[hidden]{display:none!important}
+
+/* V7GUI9: live file sections reside in the overlay drawer, never duplicated. */
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] > .v3QuickStepsPanel > :not(#ldmV7FilesDock){display:none!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer #ldmV7FilesDock{display:none!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock{display:block!important;color:inherit;font:inherit}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock > [hidden]{display:none!important}
+html body #v3StepShow.open #ldmArtworkFilesHub{display:none!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer #ldmV7FilesDock :is(#v3ArtworkInboxHost,#v3ArtworkFilesHost){width:100%!important;min-width:0!important}
+
+/* V7GUI10: file drawer content reaches its edges without nested frame borders. */
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] > .v3QuickStepsPanel{padding-left:0!important;padding-right:0!important;padding-bottom:0!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock,
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock :is(.ldmFilesSection,#v3ArtworkFilesHost,#v3ArtworkInboxHost,#sdMainSection,.sd-card-body,#sdFileManagerDetails){border:0!important;box-shadow:none!important;outline:0!important;border-radius:0!important;margin-left:0!important;margin-right:0!important;margin-bottom:0!important;padding-left:0!important;padding-right:0!important;padding-bottom:0!important;width:100%!important;max-width:none!important;box-sizing:border-box!important}
+
+/* V7GUI11: the same inset and selected-theme header as machine steps. */
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] > .v3QuickStepsPanel{padding:12px!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock{font-family:inherit!important;color:var(--bp-text,var(--ldm-text,#222))!important;background:var(--bp-panel,var(--ldm-panel,#f4f4f1))!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesHeader{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;position:relative!important;min-height:28px!important;padding:0 0 5px!important;margin:0 0 8px!important;color:inherit!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesHeader b{font:inherit!important;font-size:13px!important;font-weight:900!important;letter-spacing:.04em!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesHeader button{position:static!important;margin-left:auto!important;font:inherit!important;font-size:11px!important;min-height:24px!important;width:auto!important;padding:3px 10px!important;color:inherit!important;background:var(--bp-panel,transparent)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock :is(#v3ArtworkInboxHost,#v3ArtworkFilesHost){font-family:inherit!important;font-size:12px!important;color:inherit!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock :is(button,select,input){font-family:inherit!important;border-radius:var(--bp-radius,0)!important}
+html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer[data-v7-files] #ldmV7FilesDock :is(#sdPlotFiles,#sdFileManagerDetails button){font-size:12px!important;color:var(--bp-text,var(--ldm-text,#222))!important;background:var(--bp-panel,var(--ldm-panel,#f4f4f1))!important;border-color:var(--bp-line,currentColor)!important}
+
+/* V7GUI13: file drawers share the existing floating STEP drawer layer. */
+
+html.ldm-artwork-guest body #v3StepShow#v3StepShow.open #ldmArtworkFilesTab[data-ldm-remote-inbox]{display:inline-flex!important}
+html.ldm-artwork-guest body #v3StepShow#v3StepShow.open #ldmArtworkFilesTab[data-ldm-remote-inbox][data-ldm-section-disabled]{display:none!important}
+html.ldm-artwork-guest #ldmFilesSdSection{display:none!important}
+
+/* GUI76: desktop hides the files hub; remote INBOX must reveal its content too. */
+html.ldm-artwork-guest body #v3StepShow#v3StepShow.open #ldmArtworkFilesHub:not([hidden]){display:block!important}
+html.ldm-artwork-guest body #v3StepShow#v3StepShow.open #ldmArtworkFilesHub[hidden]{display:none!important}
+html.ldm-artwork-guest #ldmFilesInboxSection{border:0!important;padding:0!important;margin:0!important;background:transparent!important}
+html.ldm-artwork-guest #ldmRemoteCanvasPanel{margin-top:0!important;font-family:inherit!important;font-size:13px!important;text-align:left!important}
+html.ldm-artwork-guest #ldmRemoteCanvasPanel > b{display:block;margin-bottom:10px;font-size:14px;font-weight:700}
+html.ldm-artwork-guest #ldmRemoteCanvasPanel .ldmMySubmissions > b{display:block;font-size:13px;font-weight:700;border-bottom:1px solid var(--bp-line,currentColor);padding-bottom:5px}
+html.ldm-artwork-guest #ldmRemoteCanvasPanel .ldmSubmissionRow{flex-wrap:wrap}
+html.ldm-artwork-guest #ldmRemoteCanvasPanel .ldmSubmissionRow > span{flex:1;min-width:120px;text-align:left}

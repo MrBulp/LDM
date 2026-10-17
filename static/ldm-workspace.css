@@ -1,0 +1,34 @@
+/* Permissions and new inbox layout only; approved V6 theme assets stay intact. */
+@layer ldmWorkspacePermissions {
+ #ldmV5IpadCanvasHint{display:none!important}
+ html.ldm-artwork-guest :is(#v3SvgSaveStartJobBtn,.v3SvgSaveStartJobBar,#sdMainSection,#v4SdQueueHandle,#v4SdQueueDrawer,#v3QuickStepsDrawer,#v3QuickStepsHandle,#v3MainMachine,#v3RemoteModal,#v3RemoteLaunch,#v3Nav,#v3QuickBar,#v3MachineSetupDrawer,.v3ShowBottom,.v3ShowExit,.v3ShowProgress,#v3ArtworkWorkflowGuide,.v3JobMotionLockNotice,.v4MachineSetupDrawer,#ldmSharedJobStatus,.v3RemoteModeBadge,#v3RecalHomeWarning,#v3JobMotionBanner,#v3GoldenRuleBanner,.v3TopMachineActions,#conn){display:none!important}
+ html.ldm-artwork-guest [data-ldm-admin-only],html.ldm-artwork-guest [data-ldm-section-disabled]{display:none!important}
+ html.ldm-remote-disabled #v3DirectTabHost{display:none!important}
+ html.ldm-artwork-guest .v3ShowTop{height:auto!important;min-height:44px!important;flex-basis:auto!important}
+ html.ldm-artwork-guest .v3ShowViewport{padding-bottom:24px!important}
+ html.ldm-artwork-guest .v3ShowSlide{min-height:0!important}
+ html.ldm-artwork-guest #v3ShowStepNote{display:none!important}
+}
+#ldmRemoteCanvasPanel{border:1px solid var(--bp-line,#777);background:var(--bp-panel,#f4f4f1);padding:10px;margin:10px 0 6px;color:var(--bp-text,#222);width:100%;box-sizing:border-box;text-align:left}
+#ldmRemoteCanvasPanel .ldmCanvasFields{display:flex;gap:8px;align-items:end;flex-wrap:wrap}
+#ldmRemoteCanvasPanel label{display:flex;flex-direction:column;gap:4px;min-width:120px;flex:1}
+#ldmRemoteCanvasPanel input{width:100%;box-sizing:border-box}
+#ldmRemoteCanvasPanel .ldmSubmissionRow{display:flex;gap:10px;align-items:center;justify-content:space-between;border-top:1px solid var(--bp-line,#aaa);padding:8px 0}
+#ldmRemoteCanvasPanel p{margin:8px 0}
+#ldmCanvasMessage{white-space:pre-wrap}
+#ldmAdminEntry{display:inline-block}
+
+/* V6.GUI.12 — shared Desktop/iPad preview helpers and aligned title field. */
+@layer ldmWorkspacePermissions {
+ #ldmRulerGrid{width:100%!important;box-sizing:border-box!important;margin:0!important;padding:0!important}
+ #ldmRulerGrid>summary{padding:8px 10px!important;cursor:pointer!important}
+ #ldmRulerGrid .ldmRulerGridBody{display:flex!important;flex-wrap:wrap!important;gap:8px 18px!important;align-items:center!important;padding:8px 10px!important}
+ #ldmRulerGrid .ldmRulerGridBody label{margin:0!important}
+ #ldmRemoteCanvasPanel :is(#ldmCanvasTitle,#ldmCanvasSubmit){height:40px!important;min-height:40px!important;box-sizing:border-box!important;padding:8px 10px!important;margin:0!important;font-size:14px!important;line-height:20px!important}
+ #ldmRemoteCanvasPanel #ldmCanvasTitle{min-width:0!important}
+ #ldmRemoteCanvasPanel #ldmCanvasSubmit{width:auto!important;max-width:100%!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+}
+
+/* Remote FOAM is artwork/planning only. Backend administrator gates remain authoritative. */
+html.ldm-artwork-guest #v3ArtworkFoamHost :is([data-foam-jog],[data-foam-save],#ldmFoam_heat,#ldmFoam_off,#ldmFoam_upload,#ldmFoam_open,#ldmFoam_file,#ldmFoam_confirm,#ldmFoam_canvas,#ldmFoamCanvasJob,#ldmFoam_home,#ldmFoam_calibration,#ldmFoam_cold){display:none!important}
+html.ldm-artwork-guest #v3ArtworkFoamHost details:has([data-foam-jog]),html.ldm-artwork-guest #v3ArtworkFoamHost details:has(#ldmFoam_upload){display:none!important}

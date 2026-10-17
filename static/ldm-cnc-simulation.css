@@ -1,0 +1,19 @@
+#ldmCncSimulator{border:1px solid var(--bp-line);background:var(--bp-panel);color:var(--bp-text);padding:10px;margin:12px 0;font:inherit}
+#ldmCncSimulator>summary{cursor:pointer;font:inherit;font-weight:var(--ldm-font-weight-semibold)}
+.ldmCncSimControls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0}
+.ldmCncSimControls button,.ldmCncSimControls select{font:inherit;min-height:36px}
+.ldmCncSimControls label{display:flex;align-items:center;gap:6px}
+#ldmCncSimCanvas{display:block;width:100%;height:auto;background:var(--bp-bg);color:var(--bp-text);border:1px solid var(--bp-line);box-sizing:border-box;touch-action:none}
+#ldmCncSimProgress{width:100%;margin:12px 0;box-sizing:border-box}
+#ldmCncSimInfo{white-space:pre-line;text-align:left;line-height:1.45;border:1px solid var(--bp-line);padding:8px;margin-top:8px}
+#ldmCncSimStep{text-align:left}
+
+#ldmCncSimPopup{position:fixed;inset:0;z-index:2147483600;background:var(--bp-bg);color:var(--bp-text);font:inherit;padding:12px;box-sizing:border-box;overflow:auto}
+#ldmCncSimPopup>header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--bp-line);padding:0 0 10px;margin-bottom:10px}
+#ldmCncSimPopup>header button{font:inherit;min-height:40px}
+#ldmCncSimPopup #ldmCncSimulator{margin:0;width:100%;box-sizing:border-box}
+#ldmCncSimPopup #ldmCncSimulator>summary{display:none}
+#ldmCncSimPopup #ldmCncSimCanvas{max-height:none;font:inherit}
+@media(max-width:600px){#ldmCncSimPopup{padding:6px}#ldmCncSimPopup>header{flex-wrap:wrap}}
+
+#ldmCncSimError{border:1px solid #e53935;padding:10px;margin:8px 0;color:inherit;background:var(--bp-panel,transparent);font:inherit;text-align:left;white-space:pre-wrap}#ldmCncSimError[hidden]{display:none!important}

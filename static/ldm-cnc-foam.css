@@ -1,0 +1,9 @@
+.ldmCncFoam{font:inherit;color:var(--bp-text,inherit);background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);padding:12px;border-radius:var(--bp-radius,0)}
+.ldmCncFoam h3{font:inherit;font-weight:900;margin:0 0 8px}
+.ldmCncFoam p{font:inherit;line-height:1.4}
+.ldmCncFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ldmCncFields label{display:flex;flex-direction:column;gap:5px;font:inherit}
+.ldmCncFoam :is(input,button){font:inherit;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);box-sizing:border-box;min-height:34px;padding:6px;width:100%}
+.ldmCncFoam canvas{width:100%;height:auto;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent)}
+.ldmCncFoam canvas[hidden]{display:none}
+@media(max-width:600px){.ldmCncFields{grid-template-columns:1fr}}

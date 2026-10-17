@@ -1,0 +1,47 @@
+#ldmFoamStep4{display:none!important}
+/* Override the shared drawer info-area display rule outside FOAM mode. */
+body:not(.ldm-foam-material) #v3QuickStepsDrawer #v3QuickSurfaceTile > #ldmFoamStep4,
+body:not(.ldm-foam-material) #v3QuickStepsDrawer #v3QuickSurfaceTile #ldmFoamSurfaceNote{display:none!important}
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickSurfaceTile > :not(#ldmFoamStep4):not(.v4BottomGate){display:none!important}
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickSurfaceTile > #ldmFoamStep4{display:flex!important;width:100%;box-sizing:border-box}
+#ldmFoamStep4 .v4CardBody{width:100%;min-width:0}
+#ldmFoamStep4Controls{font:inherit;color:inherit;width:100%}
+#ldmFoamStep4Controls summary{display:none}
+#ldmFoamStep4Controls .ldmFoamGrid{grid-template-columns:1fr;gap:8px}
+#ldmFoamStep4Controls label{font:inherit;text-align:left}
+#ldmFoamStep4Controls input,#ldmFoamStep4Controls button{font:inherit;color:inherit;width:100%;box-sizing:border-box}
+#ldmFoamStep4Controls p{font:inherit;line-height:1.35}
+#ldmFoamStep4Controls [role=status]{margin:8px 0}
+body:not(.ldm-foam-material) #ldmFoamCanvasJob{display:none!important}
+
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickSurfaceTile{grid-template-rows:auto!important;min-height:0!important;overflow:visible!important}
+
+/* Keep speed authoritative in STEP 5; kerf remains an internal setup value. */
+#ldmFoamStep4Controls label:has(#ldmFoam_feed_rate),
+#ldmFoamStep4Controls label:has(#ldmFoam_kerf){display:none!important}
+
+/* Guided FOAM uses Steps 1–5 and the final route confirmation. */
+body.ldm-foam-material .v3ArtworkModeTabs [data-artmode="text"],
+body.ldm-foam-material .v3ArtworkModeTabs [data-artmode="algorithm"],
+body.ldm-foam-material .v3ArtworkModeTabs [data-artmode="stl"],
+body.ldm-foam-material .ldmFoamCheck:has(#ldmFoam_home),
+body.ldm-foam-material .ldmFoamCheck:has(#ldmFoam_calibration),
+body.ldm-foam-material .ldmFoamCheck:has(#ldmFoam_cold){display:none!important}
+
+/* Shared measurements stay visible when compact mode hides the info card. */
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickMaterialTile > #ldmFoamMaterialFields{display:grid!important;grid-template-columns:1fr;gap:8px;order:2;width:100%;box-sizing:border-box}
+body:not(.ldm-foam-material) #v3QuickStepsDrawer #v3QuickMaterialTile > #ldmFoamMaterialFields{display:none!important}
+
+/* Reuse the standard confirmation gate only after saved origin succeeds. */
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickSurfaceTile.ldmFoamOriginConfirmed > .v4BottomGate.v4CheckGate{display:flex!important}
+
+body.ldm-foam-material #v3QuickStepsDrawer #v3QuickSurfaceTile:not(.ldmFoamOriginConfirmed) > .v4BottomGate.v4CheckGate{display:none!important}
+
+/* Compact FOAM keeps the inputs and standard confirmation, without the header/actions. */
+body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v3QuickSurfaceTile #ldmFoamStep4 > b,
+body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v3QuickSurfaceTile #ldmFoamStep4 > .v4CardBody > strong,
+body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v3QuickSurfaceTile #ldmFoam_live,
+body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v3QuickSurfaceTile #ldmFoamStep4Controls .ldmFoamButtons{display:none!important}
+
+/* GUI178: explicit STEP4 confirmation remains visible before origin is saved. */
+body.ldm-foam-material #v3StepShow #v3QuickStepsDrawer #v3QuickSurfaceTile > .v4BottomGate.v4CheckGate{display:flex!important}
