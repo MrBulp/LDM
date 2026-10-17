@@ -1,0 +1,9 @@
+.ldmSketchPanel { margin: .6em 0; padding: .7em; border: 1px solid currentColor; border-radius: var(--ldm-radius,4px); font: inherit; color: inherit; background: inherit; }
+.ldmSketchPanel summary { cursor: pointer; font-weight: 700; }
+.ldmSketchFields { display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:.65em; }
+.ldmSketchFields label { display:flex; flex-direction:column; gap:.25em; font:inherit; }
+.ldmSketchFields input,.ldmSketchFields select { box-sizing:border-box; width:100%; min-height:38px; font:inherit; }
+.ldmSketchChecks { display:flex; flex-wrap:wrap; gap:.65em; margin:.65em 0; }
+.ldmSketchChecks label { display:inline-flex; align-items:center; gap:.35em; font:inherit; }
+.ldmSketchChecks input { width:auto; margin:0; }
+.ldmSketchPanel button { font:inherit; min-height:38px; white-space:normal; }
