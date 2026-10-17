@@ -1,0 +1,19 @@
+/* Keep the handle above the inherited SD transfer/file popup plane (2147483400).
+   Existing HOME and guest hiding rules still apply; authentication remains enforced. */
+body:has(#v3StepShow.open).v4SdQueueEverActive #v4SdQueueHandle#v4SdQueueHandle#v4SdQueueHandle{
+ z-index:2147483502!important;pointer-events:auto!important;touch-action:manipulation!important;
+}
+/* Explicit drawer state wins over legacy job-state/layout selectors. Colours stay in the selected theme. */
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="closed"] #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus{
+ visibility:hidden!important;transform:translateY(calc(100% + 90px))!important;pointer-events:none!important;
+}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="open"] #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus{
+ display:block!important;visibility:visible!important;transform:translateY(0)!important;pointer-events:auto!important;
+}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer] #v4SdQueueHandle#v4SdQueueHandle#v4SdQueueHandle{
+ pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;
+}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="closed"] #v4SdQueueHandle#v4SdQueueHandle#v4SdQueueHandle{bottom:0!important}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="open"] #v4SdQueueHandle#v4SdQueueHandle#v4SdQueueHandle{bottom:calc(var(--v4-sd-queue-height,120px) - 2px)!important}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="closed"] #v3StepShow#v3StepShow .v3ShowBottom{visibility:visible!important;pointer-events:auto!important}
+body:has(#v3StepShow.open)[data-ldm-sd-drawer="open"] #v3StepShow#v3StepShow .v3ShowBottom{visibility:hidden!important;pointer-events:none!important}

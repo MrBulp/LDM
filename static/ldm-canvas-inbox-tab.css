@@ -1,0 +1,11 @@
+@layer ldmWorkspacePermissions {
+ /* HOME/direct slides only. Guided Back/Next controls keep their existing layout. */
+ #v3StepShow:has(.v3DirectTabScene) .v3ShowBottom{display:none!important}
+ #v3StepShow:has(.v3DirectTabScene) .v3ShowViewport{padding-bottom:24px!important}
+ #v3ArtworkInboxHost[hidden]{display:none!important}
+ #ldmHomeInboxDock[data-embedded]{position:static!important;width:100%!important;right:auto!important;bottom:auto!important;z-index:auto!important;display:block!important}
+ body:has(#v3StepShow.open) #v3ArtworkInboxHost #ldmHomeInboxDock[data-embedded]{display:block!important}
+ #v3ArtworkInboxHost{width:100%!important;min-width:0!important}
+ #v3ArtworkInboxHost .ldmCanvasOwnInbox{border:1px solid var(--bp-line)!important;padding:10px!important;background:var(--bp-panel)!important;color:var(--bp-text)!important}
+ #ldmCanvasInboxMine>div{display:flex!important;align-items:center!important;flex-wrap:wrap!important;gap:8px!important;border-top:1px solid var(--bp-line)!important;padding:8px 0!important}
+}

@@ -1,0 +1,29 @@
+/* V5 ORIGINAL dark palette: redeclare aliases where dark tokens change.
+   Root palette also covers top-layer UI and the browser-height background. */
+html:not(.ldm-v6):has(body.ldm-dark),
+html body.ldm-dark:not(.ldm-v6){
+ --ldm-bg:#171a1d;--ldm-panel:#22262a;--ldm-panel-soft:#292e33;
+ --ldm-text:#edf0ed;--ldm-muted:#aeb6b0;--ldm-border:#50585e;
+ --bp-bg:var(--ldm-bg);--bp-panel:var(--ldm-panel);--bp-panel2:var(--ldm-panel-soft);
+ --bp-text:var(--ldm-text);--bp-muted:var(--ldm-muted);--bp-line:var(--ldm-border);
+ --bp-accent:var(--ldm-primary);--bp-accent-dark:var(--ldm-primary-hover);
+ --bp-danger:var(--ldm-danger);--bp-radius:10px;--bp-font:var(--ldm-font-ui);
+ --v3-bg:var(--ldm-bg);--v3-panel:var(--ldm-panel);--v3-ink:var(--ldm-text);
+ --v3-muted:var(--ldm-muted);--v3-line:var(--ldm-border);
+ background:var(--bp-bg)!important;color:var(--bp-text)!important;color-scheme:dark;
+}
+
+/* Step 5 and detached Expert box: suppress inherited V5 accent fills/rings. */
+html body.ldm-dark:not(.ldm-v6) #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone{
+ background:var(--bp-panel)!important;background-image:none!important;color:var(--bp-text)!important;
+ border:3px solid #d93636!important;outline:0!important;box-shadow:none!important;
+}
+html body.ldm-dark:not(.ldm-v6) #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone .v4ExpertModeCheck{
+ background:transparent!important;background-image:none!important;color:var(--bp-text)!important;
+ border:0!important;outline:0!important;box-shadow:none!important;
+}
+html body.ldm-dark:not(.ldm-v6) #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone::before,
+html body.ldm-dark:not(.ldm-v6) #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone::after{display:none!important}
+html body.ldm-dark:not(.ldm-v6) #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard{
+ background:var(--bp-panel)!important;background-image:none!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;box-shadow:none!important;
+}

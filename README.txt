@@ -1,0 +1,1 @@
+Publish these files at /ldm/ on GitHub Pages. Open index.html through HTTPS, not file://. Enter your Desktop artwork-only HTTPS tunnel address and remote password. No submission is stored by GitHub. See ONLINE_ARTWORK_SETUP.md in the Desktop source package.

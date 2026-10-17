@@ -1,0 +1,7 @@
+body #ldmSTLTechList{display:grid;gap:6px;padding:0;margin:8px 0;border:0!important;background:transparent!important;font:inherit!important;color:var(--ldm-text,var(--bp-text))!important}
+#ldmSTLTechList .textObjectRow{grid-template-columns:minmax(0,1fr) auto auto}
+body #ldmSTLTechList .textObjectPick{text-align:left!important}
+body #ldmSTLTechList button.ldm3DFileVisibility{display:flex;align-items:center;justify-content:center;min-width:36px!important;min-height:34px!important;padding:6px!important;background:var(--ldm-panel,var(--bp-panel))!important;color:var(--ldm-text,var(--bp-text))!important;border:1px solid var(--ldm-border,var(--bp-line))!important}
+#ldmSTLTechList .ldm3DFileVisibility svg{pointer-events:none;flex:none}
+#ldmSTLTechList .ldm3DFileVisibility[aria-pressed="false"] svg{opacity:.55}
+.ldm3DFileHead{margin-top:10px}.ldm3DFileActions{margin:8px 0}

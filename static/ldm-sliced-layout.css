@@ -1,0 +1,36 @@
+/* GUI212: presentation only, scoped to HOME sliced OPEN FILES. */
+#v3StepShow:has(.v3Direct-slicedfiles) .v3ShowViewport{padding-left:clamp(12px,3vw,40px)!important;padding-right:clamp(12px,3vw,40px)!important}
+#v3StepShow:has(.v3Direct-slicedfiles) #v3ShowSlide,
+#v3StepShow:has(.v3Direct-slicedfiles) #v3ShowStage{width:100%!important;max-width:none!important;box-sizing:border-box!important}
+#v3StepShow #v3ShowStage>.v3Direct-slicedfiles{width:min(1040px,100%)!important;max-width:1040px!important;margin-left:auto!important;margin-right:auto!important;box-sizing:border-box!important;padding:clamp(12px,2vw,24px)!important;align-self:center!important}
+.v3Direct-slicedfiles .v3DirectTabHost{width:100%!important;max-width:none!important;margin:8px auto 0!important;box-sizing:border-box!important}
+#ldmSdSlicedCenter{width:100%;box-sizing:border-box;text-align:left}
+#ldmSdSlicedCenter>b{display:block;text-align:center}
+#ldmSdSlicedCenter .ldmSlicedUploadRow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;gap:10px;margin:12px 0}
+#ldmSdSlicedCenter .ldmSlicedUploadRow>*{width:100%;min-width:0;box-sizing:border-box;min-height:40px;margin:0}
+#ldmSdSlicedCenter #ldmSdSlicedStatus{margin:8px 0;line-height:1.4}
+#ldmSlicedPrint{margin-top:16px;padding-top:16px;border-top:1px solid var(--bp-line);text-align:left;font:inherit;color:var(--bp-text)}
+#ldmSlicedPrint .ldmPrintHeader>b{display:block;color:var(--bp-text)}
+#ldmSlicedPrint .ldmPrintHeader p{margin:6px 0 14px;line-height:1.4}
+#ldmSlicedPrint .ldmPrintReadRow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end;margin-bottom:12px}
+#ldmSlicedPrint .ldmPrintHardwareRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end;margin-bottom:12px}
+#ldmSlicedPrint .ldmPrintField{display:flex;flex-direction:column;gap:5px;margin:0;min-width:0;text-align:left}
+#ldmSlicedPrint .ldmPrintField select{width:100%;min-width:0;box-sizing:border-box}
+#ldmSlicedPrint select,#ldmSlicedPrint button{min-height:40px;font:inherit;box-sizing:border-box;margin:0}
+#ldmSlicedPrint .ldmPrintReadRow>button,#ldmSlicedPrint .ldmPrintActions>button{width:100%;white-space:normal}
+#ldmPrintNozzleInfo{border:1px solid var(--bp-line);background:var(--bp-panel);color:var(--bp-text);padding:10px;margin:12px 0;line-height:1.5;text-align:left;white-space:pre-line}
+#ldmSlicedPrint .ldmPrintCheck{display:flex;flex-direction:row;align-items:center;gap:8px;text-align:left;margin:0;line-height:1.4}
+#ldmSlicedPrint .ldmPrintCheck input[type=checkbox]{flex:0 0 auto;width:auto;min-height:0;margin:0}
+#ldmSlicedPrint .ldmPrintFilamentRow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end;margin:12px 0}
+#ldmSlicedPrint .ldmPrintFilamentRow>.ldmPrintCheck{min-height:40px;border:1px solid var(--bp-line);padding:8px 10px;box-sizing:border-box}
+#ldmSlicedPrint .ldmPrintActions{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:14px 0 10px}
+#ldmPrintStatus{text-align:left;line-height:1.4}
+@media(max-width:640px){
+ #ldmSdSlicedCenter .ldmSlicedUploadRow,#ldmSlicedPrint .ldmPrintHardwareRow,#ldmSlicedPrint .ldmPrintFilamentRow{grid-template-columns:1fr}
+ #ldmSlicedPrint .ldmPrintReadRow,#ldmSlicedPrint .ldmPrintActions{grid-template-columns:1fr}
+}
+@media(hover:none) and (pointer:coarse){#ldmSlicedPrint select,#ldmSlicedPrint button,#ldmSdSlicedCenter .ldmSlicedUploadRow>*{min-height:52px}}
+
+/* GUI235: machine calibration is outside sliced-print workflow. */
+body:has(#v3StepShow.open .v3Direct-slicedfiles) #v3QuickStepsDrawer,
+body:has(#v3StepShow.open .v3Direct-slicedfiles) #v3QuickStepsHandle{display:none!important}

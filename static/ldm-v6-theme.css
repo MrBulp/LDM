@@ -1,0 +1,110 @@
+/* V6.GUI.1 — plain editorial theme. Appearance only; no geometry/layout overrides. */
+html.ldm-v6,body.ldm-v6{
+ --ldm-bg:#efefed;--ldm-panel:#f4f4f2;--ldm-panel-soft:#e8e8e5;--ldm-text:#191919;--ldm-muted:#505050;--ldm-border:#626262;
+ --ldm-primary:#b64b00;--ldm-primary-hover:#953e00;--ldm-font-ui:Arial,Helvetica,sans-serif;
+ --bp-bg:#efefed;--bp-panel:#f4f4f2;--bp-panel2:#e8e8e5;--bp-text:#191919;--bp-muted:#505050;--bp-line:#626262;--bp-radius:0px;
+ --v3-bg:#efefed;--v3-panel:#f4f4f2;--v3-ink:#191919;--v3-muted:#505050;--v3-line:#626262;
+ background:#efefed!important;color:#191919!important;font-family:Arial,Helvetica,sans-serif!important;
+}
+body.ldm-v6.ldm-dark{
+ --ldm-bg:#202020;--ldm-panel:#292929;--ldm-panel-soft:#333;--ldm-text:#eee;--ldm-muted:#bbb;--ldm-border:#888;
+ --bp-bg:#202020;--bp-panel:#292929;--bp-panel2:#333;--bp-text:#eee;--bp-muted:#bbb;--bp-line:#888;
+ --v3-bg:#202020;--v3-panel:#292929;--v3-ink:#eee;--v3-muted:#bbb;--v3-line:#888;
+ background:#202020!important;color:#eee!important;
+}
+html.ldm-v6:has(body.ldm-dark){background:#202020!important}
+body.ldm-v6 :is(.top,.card,.toolbox,details,.previewWrap,.previewDashboard,.dashBox,.v3flow,.v3step,.v3nav,.v3ArtworkPane,.v3ArtworkModeTabs,.v3ArtworkTabs,.v3OnboardCard,.v3modalCard,.ldmUnifiedPopupCard,.ldm-modal-card){
+ border-radius:0!important;box-shadow:none!important;text-shadow:none!important;background-image:none!important;
+}
+body.ldm-v6 :is(.top,.card,.toolbox,.previewDashboard,.dashBox,details,.v3flow,.v3step,.v3nav){background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important}
+body.ldm-v6 :is(button,input,select,textarea){border-radius:0!important;box-shadow:none!important;text-shadow:none!important;background-image:none!important;font-family:Arial,Helvetica,sans-serif!important}
+body.ldm-v6 :is(input,select,textarea){background:var(--bp-bg)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important}
+body.ldm-v6 button:not(.primary):not(.stop):not(.danger):not(.active):not(.v3active){background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important}
+body.ldm-v6 button.primary{background:var(--bp-panel)!important;color:var(--ldm-primary)!important;border:1px solid var(--ldm-primary)!important}
+body.ldm-v6 button:is(.active,.v3active){background:#fff0e3!important;color:#9a4000!important;border-color:#b64b00!important}
+body.ldm-v6 button:is(.stop,.danger){color:#b21f24!important;border-color:#b21f24!important}
+body.ldm-v6 button:disabled{opacity:.5!important}
+body.ldm-v6 :is(button,input,select,textarea):focus-visible{outline:2px solid var(--ldm-primary)!important;outline-offset:2px}
+body.ldm-v6 :is(h1,h2,h3,summary){font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important}
+body.ldm-v6 :is(.brand,h1,h2,h3){text-shadow:none!important}
+body.ldm-v6 :is(pre,code,.statusline){font-family:Consolas,'Courier New',monospace}
+body.ldm-v6 .v3step.qs-done{border-color:#317746!important;background:#edf5ed!important}
+body.ldm-v6 .v3step.qs-error{border-color:#b21f24!important;background:#fff0f0!important}
+body.ldm-v6 .v3step.qs-current{border-color:#b64b00!important}
+body.ldm-v6.ldm-dark .v3step.qs-done{background:#213528!important}
+body.ldm-v6.ldm-dark .v3step.qs-error{background:#3e2525!important}
+body.ldm-v6 .v3step:before{border-radius:0!important;box-shadow:none!important}
+#ldmVisualThemeSelect{width:auto;min-width:85px;font-size:11px}
+body.ldm-v6 :is(.v4InfoGateCard,.v4InfoArea,.v4BottomGate,.v3CardState,.v3Scene,.v3SceneCard,.v3SceneEyebrow,.v3SvgStickySaveBar,.v3MaterialSetupPermanent,.v3MaterialSetupConfirm,.sd-ready-card,.sd-file-row,.v3RemoteCard,.v3RemoteSecurity,.ldmPreviewBoundaryInfo){border-radius:0!important;box-shadow:none!important;background-image:none!important;text-shadow:none!important}
+
+/* V6.GUI.2 — explicit drawer/compact/queue scopes outrank inherited ID rules.
+   Repeated IDs increase specificity only; no DOM, layout or handlers change. */
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection,#v4SdQueueHandle#v4SdQueueHandle#v4SdQueueHandle){
+ border-radius:0!important;box-shadow:none!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;background-image:none!important;text-shadow:none!important;font-family:Arial,Helvetica,sans-serif!important;
+}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection) :is(div,section,details,summary,button,input,select,textarea,label,span,b,strong,small,em){
+ border-radius:0!important;box-shadow:none!important;text-shadow:none!important;background-image:none!important;font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important;
+}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection) :is(div,section,details,summary){
+ background-color:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;
+}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection) :is(label,small,em,.tiny){color:var(--bp-muted)!important;font-weight:400!important}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection) :is(b,strong,summary){font-weight:600!important}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus,#sdMainSection#sdMainSection#sdMainSection) :is(input,select,textarea,button){
+ background:var(--bp-bg)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;font-weight:500!important;
+}
+body.ldm-v6 #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer :is(.v4InfoGateCard,.v4InfoArea,.v4BottomGate,.v4CheckGate,.v4ConnectionSetupDetails,.v4Step4ZJogBody,.v4ExperiencedSurfaceBox,.v4FirstTimeZJogHelp,.v4ConnectMiniLog>div){border-width:1px!important;border-color:var(--bp-line)!important}
+body.ldm-v6 #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer .v4InfoArea>b{border-radius:0!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important}
+body.ldm-v6 #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer #v3QuickStepsHandle{background:var(--bp-panel)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important;border-radius:0!important;box-shadow:none!important}
+body.ldm-v6 #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer .v4GateGreen{border-color:#317746!important}
+body.ldm-v6 #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer .v4GateGreen :is(.v4BottomGate,.v4CheckGate){color:#236136!important;border-color:#317746!important;background:#edf5ed!important}
+body.ldm-v6.ldm-dark #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer .v4GateGreen :is(.v4BottomGate,.v4CheckGate){color:#b9e6c2!important;background:#213528!important}
+body.ldm-v6 :is(#sdMainSection#sdMainSection#sdMainSection,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus) .sd-transfer-track{background:var(--bp-bg)!important;border:1px solid var(--bp-line)!important}
+body.ldm-v6 :is(#sdMainSection#sdMainSection#sdMainSection,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus) .sd-transfer-bar{background:#317746!important}
+body.ldm-v6 :is(#sdMainSection#sdMainSection#sdMainSection,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus) button.v3RepeatGreen{background:#edf5ed!important;color:#236136!important;border-color:#317746!important}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#sdMainSection#sdMainSection#sdMainSection,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus) :is(button.stop,button.danger,#v4ExpertModeZone,.v4ExpertModeCheck,.v4ExperiencedSurfaceTag,#v3SdActiveJobViewOnly){color:#b21f24!important;border-color:#b21f24!important}
+body.ldm-v6 :is(#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,#sdMainSection#sdMainSection#sdMainSection,#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus) :is(button,input,select,textarea):disabled{opacity:.5!important}
+
+/* V6.GUI.3 — total plain appearance. Layered !important overrides legacy
+   unlayered !important rules without modifying layout or application scripts. */
+@layer ldmV6Total {
+ body.ldm-v6{
+  --ldm-primary:#444;--ldm-primary-hover:#222;--ldm-primary-hover-text:#fff;
+  --bp-accent:#444;--bp-accent-dark:#222;
+ }
+ body.ldm-v6 :is(div,section,aside,header,footer,nav,article,details,summary,fieldset,button,input,select,textarea,label,span,b,strong,small,em,h1,h2,h3,h4,pre,code,table,th,td){
+  border-radius:0!important;box-shadow:none!important;text-shadow:none!important;background-image:none!important;
+  font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important;
+ }
+ body.ldm-v6 :is(div,section,aside,header,footer,nav,article,details,summary,fieldset,table,th,td):not(#bed):not(.previewWrap):not(#tracePreviewBox):not(.sd-transfer-bar):not(.sd-transfer-track){
+  background-color:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;
+ }
+ body.ldm-v6 :is(button,input,select,textarea){
+  border-color:var(--bp-line)!important;background:var(--bp-bg)!important;color:var(--bp-text)!important;
+  font-family:Arial,Helvetica,sans-serif!important;font-weight:500!important;accent-color:#555!important;
+ }
+ body.ldm-v6 :is(label,span,b,strong,small,em,h1,h2,h3,h4,summary,pre,code){color:var(--bp-text)!important;background-color:transparent!important}
+ body.ldm-v6 :is(b,strong,h1,h2,h3,h4,summary){font-weight:600!important}
+ body.ldm-v6 :is(label,small,em,.tiny){font-weight:400!important;color:var(--bp-muted)!important}
+ body.ldm-v6 button:is(.primary,.active,.v3active,[aria-selected="true"]){background:#dededb!important;color:#191919!important;border-color:#444!important}
+ body.ldm-v6.ldm-dark button:is(.primary,.active,.v3active,[aria-selected="true"]){background:#484848!important;color:#fff!important;border-color:#aaa!important}
+ body.ldm-v6 button:not(:disabled):hover{background:#d8d8d5!important;color:#191919!important;border-color:#333!important}
+ body.ldm-v6.ldm-dark button:not(:disabled):hover{background:#444!important;color:#fff!important;border-color:#aaa!important}
+ body.ldm-v6 :is(button,input,select,textarea):focus-visible{outline:2px solid #666!important;outline-offset:2px}
+ body.ldm-v6 :is(button,input,select,textarea):disabled{opacity:.5!important}
+ body.ldm-v6 :is(.v3QuickStepsPanel,.v3QuickStepsHead,#v3QuickStepsHandle,#v4SdQueueHandle,.v4MenuHead,.sd-ready-title,.v3CardState){background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important}
+ body.ldm-v6 :is(.v3step,.v4InfoGateCard)::before{background:var(--bp-panel)!important;color:var(--bp-text)!important;border-color:var(--bp-line)!important;border-radius:0!important;box-shadow:none!important}
+ body.ldm-v6 :is(.v3ArtworkModeTabs,.v3ArtworkTabs,.v3nav) button{border-bottom-color:var(--bp-line)!important}
+ body.ldm-v6 :is(pre,code,.statusline){font-family:Consolas,'Courier New',monospace!important}
+ /* Preserve preview/artwork colours. Only the HTML preview frame shape changes;
+    SVG strokes, selection handles, grids and canvas pixels are untouched. */
+ body.ldm-v6 :is(.previewWrap,#bed,#tracePreviewBox,canvas){border-radius:0!important;box-shadow:none!important}
+ body.ldm-v6 .sd-transfer-track{background:var(--bp-bg)!important;border-color:var(--bp-line)!important}
+ body.ldm-v6 .sd-transfer-bar{background:#317746!important}
+ /* Semantic status colours remain, independent of the monochrome selection theme. */
+ body.ldm-v6 :is(.v4GateGreen,.qs-done){border-color:#317746!important}
+ body.ldm-v6 :is(.v4GateGreen .v4BottomGate,.v4GateGreen .v4CheckGate,button.v3RepeatGreen){background:#edf5ed!important;color:#236136!important;border-color:#317746!important}
+ body.ldm-v6.ldm-dark :is(.v4GateGreen .v4BottomGate,.v4GateGreen .v4CheckGate,button.v3RepeatGreen){background:#213528!important;color:#b9e6c2!important;border-color:#579e68!important}
+ body.ldm-v6 :is(button.stop,button.danger,.qs-error,#v3SdActiveJobViewOnly,#v3RecalHomeWarning,.v4ExpertModeCheck,.v4ExperiencedSurfaceTag){color:#b21f24!important;border-color:#b21f24!important}
+ body.ldm-v6.ldm-dark :is(button.stop,button.danger,.qs-error,#v3SdActiveJobViewOnly,#v3RecalHomeWarning,.v4ExpertModeCheck,.v4ExperiencedSurfaceTag){color:#ff999e!important;border-color:#d66970!important}
+}

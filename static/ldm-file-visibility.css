@@ -1,0 +1,5 @@
+#svgObjectList .textObjectRow{grid-template-columns:minmax(0,1fr) auto auto}
+body #svgObjectList button.ldmFileVisibility{display:flex;align-items:center;justify-content:center;min-width:36px!important;min-height:34px!important;padding:6px!important;background:var(--ldm-panel,var(--bp-panel))!important;color:var(--ldm-text,var(--bp-text))!important;border:1px solid var(--ldm-border,var(--bp-line))!important}
+body #svgObjectList button.ldmFileVisibility:hover{background:var(--ldm-panel-soft,var(--bp-panel2))!important}
+#svgObjectList button.ldmFileVisibility[aria-pressed="false"] svg{opacity:.55}
+#svgObjectList button.ldmFileVisibility svg{flex:none;pointer-events:none}

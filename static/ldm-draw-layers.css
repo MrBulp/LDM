@@ -1,0 +1,74 @@
+#ldmDrawLayers{border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);padding:10px;margin-bottom:10px;font-size:13px}
+#ldmDrawLayers .ldmDrawLayerTools,#ldmDrawLayers .ldmDrawLayerRow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-top:6px}
+#ldmDrawLayers .ldmDrawLayerTools button,#ldmDrawLayers input:not([type=checkbox]){font:inherit;min-height:36px;box-sizing:border-box;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:inherit}
+#ldmDrawLayers input:not([type=color]):not([type=checkbox]){min-width:80px;flex:1;width:120px}
+#ldmDrawLayers input[type=color]{width:40px;padding:2px}
+#ldmDrawLayers #ldmDrawEraser[aria-pressed=true]{outline:2px solid var(--bp-line,currentColor);outline-offset:-3px;font-weight:700}
+@media(pointer:coarse){#ldmDrawLayers button{min-height:44px}}
+
+/* Legacy show-drawing state cannot hide active multi-layer DRAW content. */
+#art.ldmWorkspaceDraw > #ldmLiveDrawLayer{display:block!important;visibility:visible!important;pointer-events:none!important}
+#art.ldmWorkspaceDraw #ldmLiveDrawLayer > [data-draw-layer][data-draw-visible=true]{display:block!important;visibility:visible!important}
+#art.ldmWorkspaceDraw #ldmLiveDrawLayer > [data-draw-layer][data-draw-visible=false]{display:none!important}
+#art.ldmWorkspaceDraw #ldmLiveDrawLayer [data-draw-layer] .livePreviewDraw{visibility:visible!important;stroke:var(--ldm-draw-colour,#b03a2e)!important;pointer-events:none!important}
+#art:not(.ldmWorkspaceDraw) #ldmLiveDrawLayer{display:none!important}
+
+/* GUI86: reuse VECTOR row classes and geometry, including its coloured name picker. */
+#ldmDrawLayers #ldmDrawLayerList .textObjectRow{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;align-items:center;margin:0}
+#ldmDrawLayerList .textObjectPick{text-align:left!important;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0!important;width:100%}
+#ldmDrawLayerList button.ldmFileVisibility{display:flex;align-items:center;justify-content:center;min-width:36px!important;min-height:34px!important;padding:6px!important;background:var(--ldm-panel,var(--bp-panel))!important;color:var(--ldm-text,var(--bp-text))!important;border:1px solid var(--ldm-border,var(--bp-line))!important}
+#ldmDrawLayerList .ldmFileVisibility svg{flex:none;pointer-events:none}
+#ldmDrawLayerList .ldmFileVisibility[aria-pressed=false] svg{opacity:.55}
+#ldmDrawLayers .ldmDrawLayerTools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
+#ldmDrawLayerList .textObjectPick[aria-pressed=true]{outline:none!important;font-weight:inherit}
+#ldmDrawLayerList .textObjectRow.selected{outline:2px solid var(--bp-accent,#16a66a);outline-offset:1px}
+
+/* GUI87: draft rendering is physically outside production #art. */
+#ldmDrawDraftSurface{position:absolute!important;pointer-events:none!important;z-index:7;overflow:hidden}
+#ldmDrawDraftSurface *{pointer-events:none!important}
+#ldmDrawDraftSurface [data-draw-visible=false]{display:none!important}
+#ldmDrawDraftSurface [data-draw-visible=true]{display:block!important;visibility:visible!important}
+#ldmDrawDraftSurface .livePreviewDraw{visibility:visible!important;stroke:var(--ldm-draw-colour,#b03a2e)!important}
+#art #ldmLiveDrawLayer,#art .livePreviewDraw{display:none!important}
+#ldmDrawDraftSurface,#ldmWritingGuideOverlay{background:transparent!important;background-image:none!important}
+
+/* GUI91: never let stale inline overlay visibility leak into another preview. */
+#ldmDrawDraftSurface[hidden],
+.previewWrap:not(.ldmSandboxDraw) #ldmDrawDraftSurface{display:none!important;visibility:hidden!important}
+
+/* Legacy reference/capture surfaces belong to DRAW, never production previews. */
+.previewWrap:not(.ldmSandboxDraw) #ldmLiveGlyphCanvas,
+.previewWrap:not(.ldmSandboxDraw) #ldmPreviewReferenceImage,
+.previewWrap:not(.ldmSandboxDraw) #ldmPreviewImageEditor,
+.previewWrap:not(.ldmSandboxDraw) #ldmLiveDrawMoveBox{display:none!important;pointer-events:none!important}
+
+#ldmDrawLayerEditor,#ldmDrawLayerEditor *{pointer-events:none!important}
+#ldmDrawVectorStatus{grid-column:1 / -1;text-align:left}
+#ldmDrawVectorFile[hidden]{display:none!important}
+
+#ldmDrawLayerTransforms{margin-top:10px;border:1px solid var(--bp-line,currentColor);padding:8px;background:var(--bp-panel,transparent);color:inherit;text-align:left}
+#ldmDrawLayerTransforms summary{font:inherit;font-weight:700;cursor:pointer;text-align:left}
+#ldmDrawLayerTransforms label{display:flex;flex-direction:column;gap:6px;min-width:0;text-align:left;margin:0;font:inherit}
+#ldmDrawLayerTransforms input{width:100%!important;min-width:0!important;margin:0;box-sizing:border-box}
+#ldmDrawLayerTransforms button{width:100%;min-width:0}
+#ldmDrawLayerTransforms p{text-align:left;line-height:1.4}
+
+#ldmDrawLayers #ldmDrawLayerList .textObjectRow{grid-template-columns:minmax(0,1fr) auto auto auto}
+#ldmDrawLayerList .ldmDrawLayerMove{display:flex;align-items:center;justify-content:center;min-width:36px;min-height:34px;padding:6px;background:var(--bp-panel,transparent);color:var(--bp-text,inherit);border:1px solid var(--bp-line,currentColor)}
+#ldmDrawLayerList .ldmDrawLayerMove svg{pointer-events:none;flex:none}
+#ldmDrawLayerList .ldmDrawLayerMove[aria-pressed=true]{outline:2px solid var(--bp-accent,#16a66a);outline-offset:-2px}
+#ldmDrawImportVector{grid-column:1 / -1}
+
+#ldmDrawLayers #ldmDrawLayerList .textObjectRow{grid-template-columns:20px minmax(0,1fr) auto auto auto}
+#ldmDrawLayerList .ldmDrawLayerSelect{width:16px;height:16px;min-height:0!important;margin:0;justify-self:center;accent-color:var(--bp-accent,#16a66a)}
+#ldmDrawSelectionTools{margin:8px 0;text-align:left}
+#ldmDrawSelectionTools #ldmDrawMergeSelected{grid-column:1 / -1}
+#ldmDrawSelectionTools #ldmDrawDeleteSelected{grid-column:1 / -1}
+#ldmDrawSelectionCount{margin-top:6px;text-align:left}
+
+/* Keep the active outline inside the scrollport and include the checkbox. */
+html body .v3Direct-artwork #ldmDrawLayers #ldmDrawLayerList#ldmDrawLayerList .textObjectRow{
+ box-sizing:border-box!important;min-width:0!important;max-width:100%!important;padding:3px!important;border:2px solid transparent!important;border-radius:var(--bp-radius,0)!important;outline:0!important;box-shadow:none!important;
+}
+html body .v3Direct-artwork #ldmDrawLayers #ldmDrawLayerList#ldmDrawLayerList .textObjectRow.selected{border-color:var(--bp-accent,var(--ldm-primary))!important;outline:0!important;box-shadow:none!important}
+html body .v3Direct-artwork #ldmDrawLayers #ldmDrawActiveLayer{margin:8px 0!important;text-align:left!important;font:inherit!important;font-size:12px!important;color:var(--bp-muted)!important;overflow-wrap:anywhere}

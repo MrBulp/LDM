@@ -1,0 +1,5 @@
+html body #ldmV7StepRail #ldmDarkModeToggle#ldmDarkModeToggle{border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;box-shadow:none!important}
+@layer ldmWorkspacePermissions{html body #ldmV7StepRail #ldmDarkModeToggle#ldmDarkModeToggle{border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;box-shadow:none!important}
+}
+@layer ldmV6Total{html body #ldmV7StepRail #ldmDarkModeToggle#ldmDarkModeToggle{border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;box-shadow:none!important}
+}

@@ -1,0 +1,18 @@
+#ldmMachineProfiles{border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);padding:10px;margin:10px 0;font:inherit;text-align:left}
+#ldmMachineProfiles summary{font:inherit;font-weight:700;cursor:pointer}
+.ldmProfileFields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.ldmProfileFields label{display:flex;flex-direction:column;gap:6px;margin:0;min-width:0;font:inherit;text-align:left}
+.ldmProfileFields input,.ldmProfileFields select,.ldmProfileFields button{width:100%;min-width:0;box-sizing:border-box;font:inherit;min-height:36px;padding:6px 8px;background:var(--bp-panel,transparent);color:inherit;border:1px solid var(--bp-line,currentColor)}
+.ldmProfileFields .ldmProfileWide{grid-column:1 / -1}
+.ldmProfileFields p{margin:0;text-align:left;line-height:1.4}
+@media(max-width:480px){.ldmProfileFields{grid-template-columns:minmax(0,1fr)}}
+@media(pointer:coarse){.ldmProfileFields input,.ldmProfileFields select,.ldmProfileFields button{min-height:44px}}
+
+#ldmOfflineDestination{border:1px solid var(--bp-line,currentColor);padding:10px;margin:12px 0;font:inherit;font-weight:700;text-align:left;background:var(--bp-panel,transparent);color:inherit}
+
+#v3GoldenConnectModal #ldmMachineProfiles{margin:12px 0!important;border:1px solid var(--bp-line)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;font:inherit!important}
+#v3GoldenConnectModal #ldmMachineProfiles .ldmProfileFields label{display:flex!important;flex-direction:column!important;align-items:stretch!important;text-align:left!important;font:inherit!important}
+#v3GoldenConnectModal #ldmMachineProfiles :is(input,select,button){font:inherit!important;color:var(--bp-text)!important;background:var(--bp-panel)!important;border:1px solid var(--bp-line)!important;min-height:36px!important}
+
+#ldmEntryDialog #ldmMachineProfiles,#ldmEntryDialog #ldmMachineProfiles :is(label,input,select,button,summary){pointer-events:auto!important}
+#ldmEntryDialog #ldmMachineProfiles input{user-select:text!important;cursor:text!important}

@@ -1,0 +1,20 @@
+#v3GoldenConnectModal.ldm-fresh-entry{z-index:2147483000!important}
+.ldmEntrySection{margin:10px 0;padding:10px;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;border-radius:var(--bp-radius,0)}
+.ldmEntrySection :is(p,label,button,input,summary,li){font:inherit;color:inherit}
+.ldmEntrySection ol{padding-left:22px;line-height:1.5;margin:8px 0}
+.ldmEntrySection label{display:flex;flex-direction:column;gap:5px;margin:8px 0}
+.ldmEntrySection :is(button,input){background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);padding:6px;min-height:32px;box-sizing:border-box}
+
+
+#v3GoldenConnectModal .gc-card > .gc-actions{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:8px!important;margin:10px 0!important}
+#v3GoldenConnectModal .gc-card > .gc-actions .gc-connect{width:auto!important;min-width:110px!important;padding:6px 14px!important;font:inherit!important;color:var(--bp-text,inherit)!important;background:var(--bp-panel,transparent)!important;border:1px solid var(--bp-line,currentColor)!important}
+#v3GoldenConnectModal.ldm-entry-locked :is(#v3GoldenCredentials input,#v3GoldenCredentials button,.gc-actions button,#v3GoldenOkBtn,#ldmPrintConnectModel){pointer-events:none!important;opacity:.45!important}
+#v3GoldenConnectModal #ldmEntryAdmin,#v3GoldenConnectModal #ldmEntryAdmin :is(input,button,label,form){pointer-events:auto!important;opacity:1!important}
+#v3GoldenConnectModal#v3GoldenConnectModal #v3GoldenCancelBtn{display:inline-block!important;pointer-events:auto!important;opacity:1!important}
+
+/* Native top-layer entry avoids every legacy preview/drawer backdrop. */
+#ldmEntryDialog{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;max-height:none!important;margin:0!important;padding:20px!important;box-sizing:border-box!important;border:0!important;background:transparent!important;overflow:auto!important;pointer-events:auto!important}
+#ldmEntryDialog[open]{display:flex!important;align-items:center!important;justify-content:center!important}
+#ldmEntryDialog::backdrop{background:rgba(20,24,22,.42)}
+#ldmEntryDialog .gc-card{position:relative!important;pointer-events:auto!important;isolation:isolate}
+#ldmEntryDialog #ldmEntryAdmin input{pointer-events:auto!important;user-select:text!important;cursor:text!important}

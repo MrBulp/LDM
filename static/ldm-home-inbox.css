@@ -1,0 +1,43 @@
+@layer ldmWorkspacePermissions {
+ #ldmHomeInboxDock{position:fixed!important;right:12px!important;bottom:12px!important;width:min(360px,calc(100vw - 24px))!important;z-index:9000!important}
+ #ldmHomeCanvasInbox{position:relative!important;width:100%!important;background:var(--bp-panel,#f3f3f0)!important;color:var(--bp-text,#222)!important;border:1px solid var(--bp-line,#777)!important;border-radius:var(--bp-radius,0)!important;padding:0!important;box-shadow:none!important;margin:0!important;font-size:12px!important}
+ body:has(#v3StepShow.open) #ldmHomeInboxDock,html.ldm-artwork-guest #ldmHomeInboxDock{display:none!important}
+ #ldmHomeInboxPreview[hidden]{display:none!important}
+ #ldmHomeInboxPreview{background:var(--bp-panel,#f3f3f0)!important;color:var(--bp-text,#222)!important;border:1px solid var(--bp-line,#777)!important;padding:6px!important;margin:0 0 8px!important;border-radius:var(--bp-radius,0)!important}
+ #ldmHomeInboxPreview .ldmInboxPreviewHead{display:flex!important;justify-content:space-between!important;align-items:center!important;gap:8px!important;font-size:12px!important}
+ #ldmHomeInboxPreview .ldmInboxPreviewHead span{overflow:hidden!important;white-space:nowrap!important;text-overflow:ellipsis!important}
+ #ldmHomeInboxPreview button{padding:2px 6px!important;min-height:24px!important;min-width:24px!important;width:auto!important}
+ #ldmHomeInboxPreview svg{display:block!important;width:100%!important;height:min(220px,28vh)!important;background:var(--bp-panel,#f3f3f0)!important;margin-top:5px!important}
+ #ldmHomeCanvasInbox summary{display:flex!important;align-items:center!important;gap:8px!important;padding:9px 10px!important;cursor:pointer!important;list-style:none!important;font-size:12px!important;letter-spacing:.04em!important}
+ #ldmHomeCanvasInbox summary::before{content:'▸';font-size:12px!important}
+ #ldmHomeCanvasInbox[open] summary::before{content:'▾'}
+ #ldmHomeInboxCount{margin-left:auto!important;border:1px solid var(--bp-line,#777)!important;min-width:24px!important;text-align:center!important;padding:1px 4px!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxBody{border-top:1px solid var(--bp-line,#777)!important;padding:6px 8px!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxToolbar{display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:5px!important;margin-bottom:4px!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxToolbar a{margin-right:auto!important;color:inherit!important;font-size:12px!important}
+ #ldmHomeInboxList{max-height:min(280px,40vh)!important;overflow:auto!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxRow{display:flex!important;align-items:center!important;gap:6px!important;padding:6px 0!important;border-top:1px solid var(--bp-line,#aaa)!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxName{flex:1!important;min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:12px!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxName small{display:block!important;font-size:11px!important;opacity:.75!important;letter-spacing:.04em!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxActions{display:flex!important;gap:4px!important;flex-shrink:0!important}
+ #ldmHomeCanvasInbox button{min-height:26px!important;min-width:26px!important;width:auto!important;padding:3px 6px!important;font-size:12px!important;line-height:1.2!important;border-radius:var(--bp-radius,0)!important}
+ #ldmHomeCanvasInbox button.ldmInboxApprove{color:#267c3a!important;border-color:#267c3a!important;font-size:18px!important;font-weight:bold!important;padding:0 6px!important}
+ body.ldm-dark #ldmHomeCanvasInbox button.ldmInboxApprove{color:#8fdda0!important;border-color:#70b780!important}
+ #ldmHomeCanvasInbox button.ldmInboxReject{color:#ba2026!important;border-color:#ba2026!important;font-size:16px!important;font-weight:900!important;padding:0 6px!important}
+ body.ldm-dark #ldmHomeCanvasInbox button.ldmInboxReject{color:#ff8c92!important;border-color:#e86a72!important}
+ #ldmHomeCanvasInbox .ldmInboxEye svg{display:block!important;width:17px!important;height:17px!important}
+ #ldmHomeInboxNote{font-size:12px!important;white-space:pre-wrap!important;line-height:1.4!important;margin-top:4px!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxFooter{border-top:1px solid var(--bp-line,#aaa)!important;padding-top:6px!important;margin-top:4px!important;text-align:right!important}
+}
+
+/* GUI.32: resolve selected-theme aliases on the inbox itself. V5 dark
+   changes body --ldm-* tokens, while root --bp-* aliases retain light values. */
+@layer ldmWorkspacePermissions {
+ #ldmHomeInboxDock{--bp-panel:var(--ldm-panel);--bp-text:var(--ldm-text);--bp-line:var(--ldm-border);font-family:var(--bp-font,inherit)!important;font-size:12px!important;line-height:1.4!important;text-align:left!important}
+ #ldmHomeInboxPreview,#ldmHomeCanvasInbox{font-family:inherit!important;text-align:left!important}
+ #ldmHomeInboxPreview svg{color:var(--bp-text)!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxName,#ldmHomeCanvasInbox .ldmHomeInboxName small{font-family:inherit!important;text-align:left!important}
+ #ldmHomeCanvasInbox .ldmHomeInboxName{line-height:1.4!important}
+ #ldmHomeCanvasInbox button{font-family:inherit!important;border:1px solid var(--bp-line)!important}
+ #ldmHomeInboxNote{font-size:11px!important;text-align:left!important}
+}

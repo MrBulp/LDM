@@ -1,0 +1,20 @@
+/* Presentation only. Original enabled/checked/gate state remains authoritative. */
+html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard{
+ --ldm-final-fill:var(--bp-panel);--ldm-final-border:var(--bp-line);border-color:var(--ldm-final-border)!important;
+}
+html body:not(.ldm-dark) #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard:is(.is-success,.v4GateGreen){--ldm-final-fill:#eaf8ef;--ldm-final-border:#22a45a}
+html body.ldm-dark #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard:is(.is-success,.v4GateGreen){--ldm-final-fill:#173126;--ldm-final-border:#22a45a}
+html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard,
+html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard > .v4InfoArea{
+ background:var(--ldm-final-fill)!important;background-image:none!important;
+}
+html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard#v4CenterCard#v4CenterCard#v4CenterCard #v3QuickCenterBtn{
+ background:var(--ldm-final-fill)!important;background-image:none!important;border:1px solid var(--ldm-final-border)!important;border-radius:var(--bp-radius,0)!important;min-height:44px!important;box-sizing:border-box!important;padding:8px 10px!important;font:inherit!important;font-weight:700!important;
+}
+html body #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone{
+ border:0!important;padding:0!important;background:transparent!important;box-shadow:none!important;
+}
+html body #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone .v4ExpertModeCheck{
+ display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:8px!important;min-height:44px!important;width:100%!important;box-sizing:border-box!important;padding:8px 10px!important;margin:0!important;border:1px solid #d93636!important;border-radius:var(--bp-radius,0)!important;background:#fff0f0!important;background-image:none!important;color:#9b2525!important;font:inherit!important;font-weight:700!important;box-shadow:none!important;
+}
+html body.ldm-dark #v3StepShow #v3QuickStepsDrawer #v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone#v4ExpertModeZone .v4ExpertModeCheck{background:#3e2525!important;color:#ffb4b4!important}

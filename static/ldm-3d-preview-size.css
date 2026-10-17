@@ -1,0 +1,4 @@
+.ldm3DPreviewSize{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:end;margin:10px 0;color:var(--ldm-text,var(--bp-text));font:inherit}
+.ldm3DPreviewSize label{display:block;text-align:left}.ldm3DPreviewSize input[type="number"]{width:100%;box-sizing:border-box}
+.ldm3DPreviewSize .ldm3DPreviewDimensionCheck{grid-column:1/-1;display:flex;gap:8px;align-items:center}
+.ldm3DPreviewDimensionCheck input{width:18px!important;height:18px!important;margin:0!important}

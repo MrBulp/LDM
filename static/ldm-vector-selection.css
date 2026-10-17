@@ -1,0 +1,16 @@
+#svgObjectList .textObjectRow{grid-template-columns:24px minmax(0,1fr) auto auto!important}
+#svgObjectList input.ldmVectorSelect{width:18px;height:18px;min-height:0!important;min-width:0!important;margin:0;justify-self:center;accent-color:var(--bp-accent,#16a66a)}
+#svgObjectList .ldmVectorMultiSelected{box-shadow:inset 3px 0 var(--bp-accent,#16a66a)}
+/* Keep selection and existing layer actions on the same two-column rhythm. */
+#ldmVectorSelectionBar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:6px;margin:8px 0;font:inherit;color:inherit}
+#ldmVectorSelectionBar button{box-sizing:border-box;width:100%;min-width:0;min-height:36px;padding:6px 8px;margin:0;font:inherit;line-height:1.2;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);white-space:normal;overflow-wrap:anywhere}
+#ldmVectorSelectionBar [data-merge]{grid-column:1 / -1}
+#ldmVectorSelectionBar [role=status]{grid-column:1 / -1;display:block;text-align:left;font-size:12px;line-height:1.4;padding:0 0 2px}
+.svgObjectManager > .row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important;align-items:stretch}
+.svgObjectManager > .row > button{box-sizing:border-box;width:100%;min-width:0;min-height:36px;margin:0;padding:6px 8px;line-height:1.2;white-space:normal;overflow-wrap:anywhere}
+@media(pointer:coarse){#ldmVectorSelectionBar button,.svgObjectManager > .row > button{min-height:44px}}
+
+/* Match DRAW: active highlight stays fully inside the layer scrollport. */
+html body .v3Direct-artwork #svgObjectList#svgObjectList#svgObjectList .textObjectRow{box-sizing:border-box!important;min-width:0!important;max-width:100%!important;padding:3px!important;border:2px solid transparent!important;border-radius:var(--bp-radius,0)!important;outline:0!important}
+html body .v3Direct-artwork #svgObjectList#svgObjectList#svgObjectList .textObjectRow.selected{border-color:var(--bp-accent,var(--ldm-primary))!important;outline:0!important}
+html body .v3Direct-artwork #ldmVectorActiveLayer{margin:8px 0!important;text-align:left!important;font:inherit!important;font-size:12px!important;color:var(--bp-muted)!important;overflow-wrap:anywhere}

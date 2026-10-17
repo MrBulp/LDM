@@ -1,0 +1,81 @@
+@layer ldmWorkspacePermissions {
+ #ldmHomeInboxDock:not([data-embedded]){display:none!important}
+ #ldmAdminLoginPopup{position:fixed!important;inset:0!important;z-index:2000000!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:20px!important;background:rgba(0,0,0,.42)!important}
+ #ldmAdminLoginPopup .ldm-modal-card{width:min(460px,100%)!important;max-height:85vh!important;overflow:auto!important;padding:20px!important;border:1px solid var(--bp-line)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important}
+ #ldmAdminLoginPopup label,#ldmAdministratorPane label{display:flex!important;flex-direction:column!important;gap:6px!important;margin:12px 0!important}
+ #ldmAdminLoginPopup input{width:100%!important;box-sizing:border-box!important}
+ #ldmAdminLoginPopup [role=status]{color:#b21f24!important;white-space:pre-wrap!important}
+ #ldmAdministratorPane[hidden],#ldmAdministratorPane [hidden]{display:none!important}
+ #ldmAdministratorPane{display:none!important;width:100%!important;box-sizing:border-box!important}
+ #v3StepShow.open .v3Direct-advanced #ldmAdministratorPane:not([hidden]){display:block!important}
+ #ldmAdministratorPane>header,#ldmAdministratorPane .heading,#ldmAdministratorPane nav{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;flex-wrap:wrap!important}
+ #ldmAdministratorPane section{padding:14px!important;border:1px solid var(--bp-line)!important;margin:12px 0!important}
+ #ldmAdministratorPane label.check{flex-direction:row!important;align-items:center!important}
+ #ldmAdministratorPane input:not([type=checkbox]),#ldmAdministratorPane select{width:100%!important;max-width:440px!important;box-sizing:border-box!important}
+ #ldmAdministratorPane input[type=checkbox]{width:16px!important;height:16px!important;margin:0!important}
+ #ldmAdministratorPane #message,#ldmAdministratorPane #selectedInfo{white-space:pre-wrap!important}
+ #ldmAdministratorPane .inboxItem{width:100%!important;text-align:left!important;margin:5px 0!important}
+ #ldmAdministratorPane .inboxItem span{display:block!important;font-size:var(--ldm-font-size-sm,12px)!important}
+ #ldmAdministratorPane #canvasPreview{width:100%!important;height:260px!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important}
+ #ldmAdministratorPane #reviewActions{display:flex!important;flex-wrap:wrap!important;gap:8px!important}
+ /* Administrator typography follows the selected LDM theme tokens. */
+ #ldmAdministratorPane{font-family:var(--bp-font,inherit)!important;font-size:var(--ldm-font-size-base,14px)!important;line-height:1.4!important}
+ #ldmAdministratorPane :is(p,label,legend,input,select,button,a,div,span,summary,code,pre){font-family:inherit!important;font-size:var(--ldm-font-size-base,14px)!important;line-height:1.4!important}
+ #ldmAdministratorPane h1{font-family:inherit!important;font-size:var(--ldm-font-size-title,18px)!important;line-height:1.3!important;margin:4px 0 10px!important;letter-spacing:0!important}
+ #ldmAdministratorPane :is(h2,h3){font-family:inherit!important;font-size:var(--ldm-font-size-lg,16px)!important;line-height:1.3!important;margin:0 0 12px!important;letter-spacing:0!important}
+ #ldmAdministratorPane :is(small,.tiny,.inboxItem span){font-size:var(--ldm-font-size-sm,12px)!important;line-height:1.4!important}
+
+}
+
+@layer ldmWorkspacePermissions {
+ .ldmPackToolbar{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:8px!important;margin:8px 0!important;font-size:12px!important}
+ .ldmPackToolbar button{width:auto!important;font-size:12px!important}
+}
+
+/* DRAW reference ownership: trace through the image, edit by frame/handles. */
+@layer ldmWorkspacePermissions {
+ #art.ldmWorkspaceDraw #ldmPreviewImageEditor .ldmImgEditorRect{fill:none!important;pointer-events:stroke!important}
+ #art:not(.ldmWorkspaceDraw) :is(#ldmPreviewReferenceImage,#ldmPreviewImageEditor){display:none!important;visibility:hidden!important;pointer-events:none!important}
+ /* Only the missing left edge needs an added line; existing inner frames remain. */
+ :is(#v3ArtworkVectorHost,#v3ArtworkTextHost){border:0!important;border-left:1px solid var(--bp-line)!important;box-sizing:border-box!important}
+}
+
+/* V6.GUI.21 — GUI.19 workflows, selected-theme connection popup and drawers. */
+@layer ldmWorkspacePermissions {
+ #v3GoldenConnectModal{position:fixed!important;inset:0!important;z-index:2000000!important;padding:20px!important;align-items:center!important;justify-content:center!important;background:rgba(0,0,0,.42)!important}
+ #v3GoldenConnectModal.is-open{display:flex!important}
+ /* HOME's inherited sticky -10px navigation offset can cover its top edge. */
+ body:not(:has(#v3StepShow.open)) #rightPanel{border:1px solid var(--bp-line)!important;box-sizing:border-box!important}
+ body:not(:has(#v3StepShow.open)) #rightPanel>#v3Nav{position:static!important;top:auto!important;margin:0!important;width:100%!important;box-sizing:border-box!important;border:0!important}
+ :is(#v3QuickStepsDrawer .v3QuickStepsPanel,#v3QuickActiveJobStatus){border:1px solid var(--bp-line)!important;box-sizing:border-box!important}
+ #v3QuickStepsDrawer::before{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--bp-line);z-index:10000;pointer-events:none}
+ :is(#v3QuickStepsHandle,#v4SdQueueHandle){width:208px!important;min-width:208px!important;max-width:208px!important;height:38px!important;min-height:38px!important;box-sizing:border-box!important;padding:0 12px!important;border:1px solid var(--bp-line)!important;background:var(--bp-panel)!important;color:var(--bp-text)!important;line-height:36px!important}
+ #v3GoldenConnectModal .gc-card{background:var(--bp-panel)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,10px)!important;box-sizing:border-box!important}
+ #v3GoldenConnectModal :is(.gc-credentials,pre,.gc-auto-log,.gc-autoip-status){background:var(--bp-panel)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,8px)!important}
+ #v3GoldenConnectModal :is(input,button){background:var(--bp-panel)!important;color:var(--bp-text)!important;border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,8px)!important;box-sizing:border-box!important}
+ #v3GoldenConnectModal :is(label,.gc-foot){color:var(--bp-text)!important}
+ body.ldm-v6 #v3GoldenConnectModal :is(.gc-card,button,input,label,.gc-title,.gc-foot){font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important;box-shadow:none!important}
+}
+
+/* GUI.34: fresh-load administrator popup resolves the active body palette. */
+@layer ldmWorkspacePermissions {
+ #ldmAdminLoginPopup{--bp-panel:var(--ldm-panel);--bp-text:var(--ldm-text);--bp-line:var(--ldm-border)}
+ #ldmAdminLoginPopup .ldm-modal-card{background:var(--ldm-panel)!important;color:var(--ldm-text)!important;border:1px solid var(--ldm-border)!important;border-radius:var(--bp-radius,0)!important}
+ #ldmAdminLoginPopup :is(h2,p,label){color:var(--ldm-text)!important}
+ #ldmAdminLoginPopup input{background:var(--ldm-bg)!important;color:var(--ldm-text)!important;border-color:var(--ldm-border)!important}
+ #ldmAdminLoginPopup button{background:var(--ldm-panel-soft)!important;color:var(--ldm-text)!important;border:1px solid var(--ldm-border)!important}
+ #ldmAdminLoginPopup button:hover{background:var(--ldm-panel)!important;color:var(--ldm-text)!important;border-color:var(--ldm-border)!important}
+ body.ldm-dark #ldmAdminLoginPopup [role=status]{color:#ff8c92!important}
+}
+
+/* GUI.35: cover the entire viewport with the selected HOME palette. */
+@layer ldmWorkspacePermissions {
+ html{min-height:100%!important}
+ body{min-height:100vh!important;min-height:100dvh!important;background:var(--ldm-bg)!important;box-sizing:border-box!important}
+}
+
+@layer ldmWorkspacePermissions {
+ #ldmAdministratorPane .ldmAdminCollapsible{margin:12px 0!important;padding:0!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel,transparent)!important;color:inherit!important}
+ #ldmAdministratorPane .ldmAdminCollapsible>summary{padding:12px 14px!important;cursor:pointer!important;font-family:inherit!important;font-size:var(--ldm-font-size-lg,16px)!important;font-weight:600!important;color:inherit!important}
+ #ldmAdministratorPane .ldmAdminCollapsibleBody{padding:0 14px 14px!important}
+}
