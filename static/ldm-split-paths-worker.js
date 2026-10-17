@@ -1,0 +1,17 @@
+/* Bounded sweep broad-phase; interpolation only, no contour deletion/reordering. */
+function splitPaths(paths){
+ if(!Array.isArray(paths)||!paths.length)throw Error('Layer has no paths.');const segments=[],cuts=paths.map(()=>[]);let points=0,checks=0;const EPS=1e-8,junctions=new Set();
+ for(let p=0;p<paths.length;p++){const path=paths[p];if(!Array.isArray(path)||path.length<2)throw Error('Invalid path.');points+=path.length;if(points>20000)throw Error('Split preview limit: 20,000 points. Use a smaller layer.');for(const q of path)if(!Array.isArray(q)||q.length!==2||!q.every(Number.isFinite))throw Error('Invalid path coordinates.');for(let i=0;i<path.length-1;i++){const a=path[i],b=path[i+1];if(Math.hypot(b[0]-a[0],b[1]-a[1])<EPS)continue;segments.push({p,i,a,b,minx:Math.min(a[0],b[0]),maxx:Math.max(a[0],b[0]),miny:Math.min(a[1],b[1]),maxy:Math.max(a[1],b[1])});}}
+ function cut(s,t){const pos=s.i+Math.max(0,Math.min(1,t));if(pos>EPS&&pos<paths[s.p].length-1-EPS&&!cuts[s.p].some(x=>Math.abs(x-pos)<EPS)){cuts[s.p].push(pos);if(cuts.reduce((n,c)=>n+c.length,paths.length)>200)throw Error('Split would exceed 200 path layers. Split a smaller selection.');}}
+ segments.sort((a,b)=>a.minx-b.minx);let active=[];
+ for(const s of segments){active=active.filter(t=>t.maxx>=s.minx-EPS);for(const t of active){if(++checks>2000000)throw Error('Intersection search limit reached. Use a smaller layer.');if(t.maxy<s.miny-EPS||s.maxy<t.miny-EPS)continue;if(s.p===t.p){if(Math.abs(s.i-t.i)===1)continue;const p=paths[s.p],closed=Math.hypot(p[0][0]-p.at(-1)[0],p[0][1]-p.at(-1)[1])<EPS;if(closed&&Math.min(s.i,t.i)===0&&Math.max(s.i,t.i)===p.length-2)continue;}
+ const rx=s.b[0]-s.a[0],ry=s.b[1]-s.a[1],sx=t.b[0]-t.a[0],sy=t.b[1]-t.a[1],dx=t.a[0]-s.a[0],dy=t.a[1]-s.a[1],den=rx*sy-ry*sx,tolerance=1e-12*Math.hypot(rx,ry)*Math.hypot(sx,sy);
+ if(Math.abs(den)<=tolerance){if(Math.abs(dx*ry-dy*rx)>EPS*Math.hypot(rx,ry))continue;const axis=Math.abs(rx)>=Math.abs(ry)?0:1,overlap=Math.min(Math.max(s.a[axis],s.b[axis]),Math.max(t.a[axis],t.b[axis]))-Math.max(Math.min(s.a[axis],s.b[axis]),Math.min(t.a[axis],t.b[axis]));if(overlap>EPS)throw Error('Overlapping/retraced segments are ambiguous. Separate repeated passes before splitting.');continue;}
+ const u=(dx*sy-dy*sx)/den,v=(dx*ry-dy*rx)/den;if(u<-EPS||u>1+EPS||v<-EPS||v>1+EPS)continue;cut(s,u);cut(t,v);junctions.add((s.a[0]+u*rx).toFixed(7)+','+(s.a[1]+u*ry).toFixed(7));
+ }active.push(s);}
+ const result=[],sources=[];
+ for(let index=0;index<paths.length;index++){const path=paths[index],positions=[0,...cuts[index].sort((a,b)=>a-b),path.length-1];const at=pos=>{const i=Math.min(path.length-2,Math.floor(pos)),f=pos-i;return [path[i][0]+f*(path[i+1][0]-path[i][0]),path[i][1]+f*(path[i+1][1]-path[i][1])];};for(let j=1;j<positions.length;j++){const a=positions[j-1],b=positions[j],piece=[at(a)];for(let i=Math.floor(a)+1;i<b-EPS;i++)piece.push(path[i].slice());piece.push(at(b));result.push(piece);sources.push(index);}}
+ if(!cuts.some(c=>c.length))throw Error('No interior intersections found. This path cannot be split further at crossings.');return {paths:result,sources,junctions:junctions.size,cuts:cuts.reduce((n,c)=>n+c.length,0)};
+}
+if(typeof module!=='undefined')module.exports={splitPaths};
+if(typeof self!=='undefined'&&typeof document==='undefined')self.onmessage=e=>{try{self.postMessage({ok:true,result:splitPaths(e.data.paths)})}catch(error){self.postMessage({ok:false,error:error.message})}};
