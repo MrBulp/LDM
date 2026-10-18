@@ -36,7 +36,7 @@
    }
    return canvas;
  }
- async function submit(){
+ async function submit(){if(state.submission_authenticated!==true){const connection=el('ldmOnlineConnection');if(connection?.dataset.open!=='true')el('ldmOnlineDrawerButton')?.click();connection?.querySelector('[name=password]')?.focus();message('Enter your access password in LOGIN before submitting. Your artwork is retained.');return;}
    if(submitting)return;submitting=true;el('ldmCanvasSubmit').disabled=true;
    try{
      const snapshot=capture();
@@ -62,6 +62,7 @@
  }catch(error){message(error.message);}finally{pngDownloads.delete(item.id);button.disabled=false;}}
 
  async function refresh(){
+   if(state.submission_authenticated!==true){const mine=el('ldmCanvasMine');if(mine&&mine.textContent!=='Use LOGIN with your access password to view submissions.')mine.textContent='Use LOGIN with your access password to view submissions.';return;}
    if(refreshing||!el('ldmCanvasMine'))return;refreshing=true;
    try{
      const d=await call('/api/canvas');const host=el('ldmCanvasMine');host.replaceChildren();
@@ -96,7 +97,7 @@
    document.querySelectorAll('button[onclick]').forEach(b=>{
      if(/\b(startJob|v3SvgSaveStartJob|startSelectedProject|traceBridgeSD|downloadA1PlotPackage|v3OpenRepeatSdJobs|penUp|penDown|moveZAbs|homeXYZ|raw)\s*\(/.test(b.getAttribute('onclick')))b.setAttribute('data-ldm-admin-only','');
    });
-   const button=el('ldmCanvasSubmit');if(button){button.disabled=state.mode==='off'||state.inbox_enabled===false||state.submissions_remaining===0||submitting;const label=state.mode==='off'?'SUBMISSIONS DISABLED':state.submissions_remaining===0?'LIMIT REACHED':'SUBMIT';if(button.textContent!==label)button.textContent=label;}
+   const button=el('ldmCanvasSubmit');if(button){button.disabled=state.mode==='off'||state.inbox_enabled===false||(state.submission_authenticated===true&&state.submissions_remaining===0)||submitting;const label=state.mode==='off'?'SUBMISSIONS DISABLED':state.submission_authenticated!==true?'LOGIN TO SUBMIT':state.submissions_remaining===0?'LIMIT REACHED':'SUBMIT';if(button.textContent!==label)button.textContent=label;}
    const remoteTab=el('ldmArtworkFilesTab');if(remoteTab?.dataset.ldmRemoteInbox)remoteTab.toggleAttribute('data-ldm-section-disabled',state.online_inbox_visible===false||state.inbox_enabled===false||!state.sections.includes('inbox'));
    const current=mode();if((current==='inbox'&&(state.inbox_enabled===false||state.online_inbox_visible===false))||!state.sections.includes(current))document.querySelector(`.v3ArtworkModeTabs [data-artmode="${state.sections[0]||'none'}"]`)?.click();
  }

@@ -41,3 +41,5 @@
  #ldmHomeCanvasInbox button{font-family:inherit!important;border:1px solid var(--bp-line)!important}
  #ldmHomeInboxNote{font-size:11px!important;text-align:left!important}
 }
+
+.ldmInboxFilterSection{margin:.5em 0;color:inherit;font:inherit}.ldmInboxFilterSection>summary{cursor:pointer;font:inherit;font-weight:700;padding:.5em 0}.ldmInboxFilterSection:not([open])>.ldmInboxFilters{display:none!important}
