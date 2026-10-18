@@ -1,3 +1,18 @@
 {
-  "desktop_url": "https://vip-coupon-funeral-allow.trycloudflare.com"
+  "desktop_url": "https://emily-administered-methodology-watch.trycloudflare.com",
+  "guest_policy": {
+    "schema": 1,
+    "enabled": true,
+    "inbox_enabled": true,
+    "online_inbox_visible": false,
+    "draw_svg_upload": false,
+    "sections": [
+      "draw"
+    ],
+    "draw_helpers": {
+      "a4": true,
+      "writing": true
+    },
+    "revision": "c7ab0e1488d18038"
+  }
 }
