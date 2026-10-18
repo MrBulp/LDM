@@ -9,6 +9,14 @@
   const a=art.getBoundingClientRect(),b=bed.getBoundingClientRect();for(const [key,value]of Object.entries({left:(a.left-b.left-bed.clientLeft+bed.scrollLeft)+'px',top:(a.top-b.top-bed.clientTop+bed.scrollTop)+'px',width:a.width+'px',height:a.height+'px',display:drawing()?'block':'none'}))if(draftSvg.style[key]!==value)draftSvg.style[key]=value;const hidden=!drawing();if(draftSvg.hidden!==hidden)draftSvg.hidden=hidden;for(const [key,value]of Object.entries({'aria-hidden':String(hidden),viewBox:art.getAttribute('viewBox'),preserveAspectRatio:art.getAttribute('preserveAspectRatio')||'xMidYMid meet'}))if(draftSvg.getAttribute(key)!==value)draftSvg.setAttribute(key,value);return draftRoot;
  }
  window.ldmGetDrawDraftRoot=draftSurface;
+ // JSON drafts use paper coordinates; DRAW uses the preview viewBox coordinates.
+ window.ldmRestoreDrawComposition=function(canvas){
+  if(before||layerDrag||window.ldmCanvasImportBusy||document.body.classList.contains('v3PreviewEditLocked'))throw Error('Finish the current action or unlock the preview before loading.');
+  const v=id('art')?.viewBox?.baseVal;if(!v)throw Error('DRAW preview unavailable.');
+  const restored=canvas.layers.map(source=>{const l=make('draw'+(++serial),source.name,source.colour);l.visible=source.visible;l.strokes=source.paths.map(path=>({points:path.map(p=>(p[0]+v.x)+','+(p[1]+v.y)).join(' '),width:'1.15',transform:''}));l.resetStrokes=copy(l.strokes);return l;});
+  layers=restored;selected=(layers.find(l=>l.visible)||layers[0]).id;checked.clear();render();
+ };
+
  function root(){return draftSurface()}
  function group(l){return root()?.querySelector('[data-draw-layer="'+l.id+'"]')}
  function strokes(l){return [...(group(l)?.querySelectorAll('.livePreviewDraw')||[])].map(p=>({points:p.getAttribute('points')||'',width:p.getAttribute('stroke-width')||'1.15',transform:p.getAttribute('transform')||''}))}
