@@ -58,3 +58,5 @@ html body .v3Direct-artwork #ldmPerspectiveGuides#ldmPerspectiveGuides .ldmPersp
 html body .v3Direct-artwork #ldmWritingGuidesSection#ldmWritingGuidesSection{border-radius:var(--bp-radius,10px)!important}
 html body .v3Direct-artwork #ldmWritingGuidesSection #ldmWritingGuideControls#ldmWritingGuideControls{border:0!important;margin:0!important;border-radius:0 0 var(--bp-radius,10px) var(--bp-radius,10px)!important}
 html body .v3Direct-artwork #ldmWritingGuideControls #ldmWritingReset{grid-column:1 / -1!important;order:4!important;display:block!important;width:100%!important;box-sizing:border-box!important;min-height:var(--ldm-art-control-height,36px)!important;padding:6px 10px!important;font:inherit!important;color:var(--bp-text)!important;background:var(--bp-panel)!important;border:1px solid var(--bp-line)!important;border-radius:var(--bp-radius,0)!important}
+
+#ldmWritingGuidesSection[hidden],#ldmWritingGuideControls[hidden],#ldmWritingGuideControls label[hidden],label:has(> #showA4Boundary)[hidden]{display:none!important}

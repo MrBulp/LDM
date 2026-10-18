@@ -144,7 +144,7 @@
      try{
        const next=await call('/api/access');
        if(state.admin&&!next.admin){location.replace('/');return;}
-       Object.assign(state,next);
+       Object.assign(state,next);document.dispatchEvent(new Event('ldm-draw-helper-access'));
        if(!state.admin){
          document.documentElement.classList.toggle('ldm-remote-disabled',!state.remote_enabled);
          if(!state.remote_enabled){message('Remote workspace disabled by administrator.');return;}
