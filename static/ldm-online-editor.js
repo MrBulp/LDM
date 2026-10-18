@@ -89,7 +89,25 @@ window.fetch=async function(input,init){const url=new URL(typeof input==='string
  return response({ok:false,success:false,error:'ARTWORK_ONLY',message:'This online editor has no machine controls.'},403);
 };
 window.ldmOnlineImportModule=async function(path){if(!path.startsWith('/api/art-lab/packs/'))return import(new URL(path,document.baseURI).href);const r=await remote(path);if(!r.ok)throw Error('Algorithm unavailable.');const blob=URL.createObjectURL(new Blob([await r.text()],{type:'text/javascript'}));try{return await import(blob);}finally{URL.revokeObjectURL(blob);}};
-window.ldmGalleryRequest=async function(path){if(!endpoint){const config=await original(new URL('online-config.json',document.baseURI),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(10000)}).then(r=>r.json());endpoint=validEndpoint(config.desktop_url);}const r=await original(endpoint+path,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok)throw Error(d.error||'Gallery unavailable.');return d;};
+let galleryPublishedCache=null;
+function gallerySnapshotResponse(snapshot,path){
+ if(snapshot.schema!==1||typeof snapshot.enabled!=='boolean'||!Array.isArray(snapshot.items)||snapshot.items.length>200)throw Error('Invalid published Gallery snapshot.');
+ if(path==='/online/gallery')return {ok:true,enabled:snapshot.enabled,offline_snapshot:true,updated_at:snapshot.updated_at,items:snapshot.enabled?snapshot.items.map(({canvas,...metadata})=>metadata):[]};
+ const item=snapshot.enabled&&snapshot.items.find(i=>i.id===path.split('/').at(-1));if(!item)throw Error('Gallery artwork is unavailable in the published snapshot.');return {ok:true,item,offline_snapshot:true,updated_at:snapshot.updated_at};
+}
+window.ldmGalleryRequest=async function(path){
+ if(!/^\/online\/gallery(?:\/[a-f0-9]{24})?$/.test(path))throw Error('Invalid Gallery request.');
+ if(path!=='/online/gallery'&&galleryPublishedCache)return gallerySnapshotResponse(galleryPublishedCache,path);
+ try{
+  if(!endpoint){const config=await original(new URL('online-config.json',document.baseURI),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(4000)}).then(r=>r.json());endpoint=validEndpoint(config.desktop_url);}
+  const r=await original(endpoint+path,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(4000)});
+  if(!r.ok){const e=Error('Gallery unavailable.');e.permanent=r.status<500;throw e;}galleryPublishedCache=null;return await r.json();
+ }catch(error){
+  if(error.permanent)throw error;
+  const r=await original(new URL('gallery-snapshot.json',document.baseURI),{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('Published Gallery snapshot is not available yet.');const snapshot=await r.json();
+  galleryPublishedCache=snapshot;return gallerySnapshotResponse(snapshot,path);
+ }
+};
 window.ldmImportGalleryDraft=d=>{if(!access.sections?.includes('draw'))throw Error('DRAW / WRITE is not enabled for this user.');return importDraft(d);};
 function download(name,value){const u=URL.createObjectURL(new Blob([JSON.stringify(value)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),5000);}
 function saveCompositionSvg(){
