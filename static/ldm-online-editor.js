@@ -1,9 +1,29 @@
 /* GitHub Pages adapter: existing Remote View editor; no cloud storage or machine API. */
 (()=>{'use strict';
 const original=window.fetch.bind(window),access=window.LDM_ACCESS;
-// Fragment is consumed before editor boot. Never send it to Desktop or persist it.
+// Capture initial scans, scans opened into an existing tab, and restored pages.
+// Keep the password in memory/form only; remove only its fragment parameter.
 let scannedPassword='';
-try{const fragment=new URLSearchParams(location.hash.slice(1));if(fragment.has('ldm_password')){const value=fragment.get('ldm_password')||'';if(value.length>=6&&value.length<=256&&!/[\r\n\x00]/.test(value))scannedPassword=value;history.replaceState(history.state,'',location.pathname+location.search);}}catch(_){}
+function applyScannedPassword(){
+ const bar=document.getElementById('ldmOnlineConnection'),input=bar?.querySelector('[name=password]');
+ if(!scannedPassword||!input)return;
+ input.value=scannedPassword;scannedPassword='';
+ bar.dataset.qrPrefilled='true';
+ const username=bar.querySelector('[name=username]');if(username)username.readOnly=false;
+ status('QR PASSWORD FILLED — enter your username, then CONNECT');
+ document.dispatchEvent(new Event('ldm-online-qr-password'));
+}
+function consumeQRPassword(){
+ try{const fragment=new URLSearchParams(location.hash.slice(1));if(!fragment.has('ldm_password'))return;
+ const value=fragment.get('ldm_password')||'';
+ fragment.delete('ldm_password');
+ history.replaceState(history.state,'',location.pathname+location.search+(fragment.size?'#'+fragment.toString():''));
+ if(value.length>=6&&value.length<=256&&!/[\r\n\x00]/.test(value)){scannedPassword=value;applyScannedPassword();}
+ }catch(_){}
+}
+consumeQRPassword();
+window.addEventListener('hashchange',consumeQRPassword);
+window.addEventListener('pageshow',consumeQRPassword);
 
 let accessClock=null;
 function viewReady(ready){if(!ready){accessClock=null;const timer=document.getElementById('ldmOnlineAllowance');if(timer)timer.hidden=true;const badge=document.getElementById('ldmOnlineDrawAllowance');if(badge)badge.hidden=true;}access.online_view_ready=!!ready;document.documentElement.classList.toggle('ldm-online-view-ready',!!ready);if(!ready)access.sections=[];document.dispatchEvent(new Event('ldm-online-view'));}
@@ -44,8 +64,8 @@ async function importDraft(d){const c=d?.canvas;if(d?.schema!==1||!c||!Number.is
 function mount(){const bar=document.createElement('details');bar.id='ldmOnlineConnection';bar.open=true;bar.innerHTML='<summary>ONLINE ARTWORK · DIRECT TO DESKTOP</summary><form><label>Username<input name="username" type="text" maxlength="40" autocomplete="username" required></label><label>Online access password<input name="password" type="password" maxlength="256" autocomplete="current-password" required></label><button>CONNECT</button><button type="button" data-disconnect>DISCONNECT</button></form><p id="ldmOnlineAllowance" role="status" hidden></p><p id="ldmOnlineStatus" role="status"></p><div data-composition-tools hidden><button type="button" data-save>SAVE COMPOSITION</button><button type="button" data-load>LOAD COMPOSITION</button><input type="file" accept=".json,application/json" hidden></div><p class="tiny">Desktop must be online to submit. Keep this page open until your artwork is submitted. DRAW / WRITE submits directly; other artwork tabs use CANVAS.</p>';
  document.body.appendChild(bar);const bed=document.getElementById('bed');if(bed){const badge=document.createElement('span');badge.id='ldmOnlineDrawAllowance';badge.hidden=true;badge.setAttribute('aria-label','Remaining login time and submissions');bed.append(badge);}
  const form=bar.querySelector('form'),connect=form.querySelector('button');connect.disabled=true;form.elements.password.disabled=true;try{form.elements.username.value=localStorage.getItem('ldmOnlineUsername')||''}catch{}
- if(scannedPassword){form.elements.password.value=scannedPassword;scannedPassword='';bar.dataset.qrPrefilled='true';}
- const configure=async()=>{try{const r=await original(new URL('online-config.json',document.baseURI),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Configuration unavailable.');const config=await r.json();if(!config.desktop_url)throw Error('Admin has not configured online submissions yet. You can compose and save locally.');endpoint=validEndpoint(config.desktop_url);connect.disabled=false;form.elements.password.disabled=false;status('ENTER REMOTE PASSWORD TO CONNECT');}catch(e){endpoint='';status(e.message||'Online submissions are not configured. You can compose and save locally.');}};
+ applyScannedPassword();
+ const configure=async()=>{try{const r=await original(new URL('online-config.json',document.baseURI),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Configuration unavailable.');const config=await r.json();if(!config.desktop_url)throw Error('Admin has not configured online submissions yet. You can compose and save locally.');endpoint=validEndpoint(config.desktop_url);connect.disabled=false;form.elements.password.disabled=false;status(bar.dataset.qrPrefilled==='true'?'QR PASSWORD FILLED — enter your username, then CONNECT':'ENTER REMOTE PASSWORD TO CONNECT');}catch(e){endpoint='';status(e.message||'Online submissions are not configured. You can compose and save locally.');}};
  form.onsubmit=async e=>{e.preventDefault();const b=form.querySelector('button');b.disabled=true;try{if(!endpoint)throw Error('Admin has not configured online submissions yet. You can compose and save locally.');token='';viewReady(false);status('CONNECTING TO DESKTOP…');const r=await original(endpoint+'/online/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'omit',body:JSON.stringify({username:form.elements.username.value.trim(),password:form.elements.password.value,resume_key:resume}),signal:AbortSignal.timeout(20000)});const d=await r.json();if(!r.ok)throw Error(d.error||'Connection failed.');token=d.token;Object.assign(access,d);delete access.token;syncAllowance(d);viewReady(access.online_view_ready===true);try{localStorage.setItem('ldmOnlineUsername',d.username)}catch{}form.elements.username.readOnly=true;document.dispatchEvent(new Event('ldm-online-identity'));form.elements.password.value='';status('DESKTOP ONLINE — DIRECT INBOX');await window.ldmRefreshOwnCanvasSubmissions?.();document.dispatchEvent(new Event('change'));}catch(e){status(e.message||'DESKTOP OFFLINE — SUBMISSION UNAVAILABLE');}finally{b.disabled=false;}};
  bar.querySelector('[data-disconnect]').onclick=()=>{token='';viewReady(false);delete access.username;form.elements.username.readOnly=false;document.dispatchEvent(new Event('ldm-online-identity'));status('DISCONNECTED — COMPOSITION RETAINED');};
  bar.querySelector('[data-save]').onclick=()=>{try{const canvas=window.ldmCaptureSubmissionCanvas();if(!canvas.layers)throw Error('Place artwork into VECTOR layers first.');download('LDM-COMPOSITION-'+Date.now()+'.json',{schema:1,canvas});}catch(e){status(e.message)}};
