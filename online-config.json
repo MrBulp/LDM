@@ -1,11 +1,11 @@
 {
-  "desktop_url": "https://emily-administered-methodology-watch.trycloudflare.com",
+  "desktop_url": "https://projects-antonio-charity-advances.trycloudflare.com",
   "guest_policy": {
     "schema": 1,
     "enabled": true,
     "inbox_enabled": true,
     "online_inbox_visible": false,
-    "draw_svg_upload": false,
+    "draw_svg_upload": true,
     "sections": [
       "draw"
     ],
@@ -13,6 +13,6 @@
       "a4": true,
       "writing": true
     },
-    "revision": "c7ab0e1488d18038"
+    "revision": "6624414095a732c6"
   }
 }
