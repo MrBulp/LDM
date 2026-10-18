@@ -89,6 +89,8 @@ window.fetch=async function(input,init){const url=new URL(typeof input==='string
  return response({ok:false,success:false,error:'ARTWORK_ONLY',message:'This online editor has no machine controls.'},403);
 };
 window.ldmOnlineImportModule=async function(path){if(!path.startsWith('/api/art-lab/packs/'))return import(new URL(path,document.baseURI).href);const r=await remote(path);if(!r.ok)throw Error('Algorithm unavailable.');const blob=URL.createObjectURL(new Blob([await r.text()],{type:'text/javascript'}));try{return await import(blob);}finally{URL.revokeObjectURL(blob);}};
+window.ldmGalleryRequest=async function(path){if(!endpoint){const config=await original(new URL('online-config.json',document.baseURI),{cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(10000)}).then(r=>r.json());endpoint=validEndpoint(config.desktop_url);}const r=await original(endpoint+path,{credentials:'omit',cache:'no-store',signal:AbortSignal.timeout(15000)});const d=await r.json();if(!r.ok)throw Error(d.error||'Gallery unavailable.');return d;};
+window.ldmImportGalleryDraft=d=>{if(!access.sections?.includes('draw'))throw Error('DRAW / WRITE is not enabled for this user.');return importDraft(d);};
 function download(name,value){const u=URL.createObjectURL(new Blob([JSON.stringify(value)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),5000);}
 function saveCompositionSvg(){
  const canvas=window.ldmCaptureSubmissionCanvas?.();if(!canvas)throw Error('Open DRAW / WRITE or VECTOR / CANVAS, then SAVE COMPOSITION (SVG).');
