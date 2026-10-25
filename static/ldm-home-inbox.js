@@ -66,8 +66,8 @@
    document.querySelector('.v3ArtworkModeTabs [data-artmode="inbox"]')?.click();
    // The existing importer rechecks approval before loading the numeric snapshot.
    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
-   await window.ldmImportApprovedCanvas(item.id);
-   note.textContent='Approved. Desktop CANVAS opened; machine sending stays manual.';
+   const loaded=await window.ldmImportApprovedCanvas(item.id);
+   note.textContent=loaded===false?'Approved. Artwork was not loaded; retry loading when the current capture/import finishes.':'Approved. Added to the artwork draft; machine sending stays manual.';
  }
  function mount(){
    panel=document.createElement('details');panel.id='ldmHomeCanvasInbox';panel.setAttribute('aria-label','Canvas inbox quick list');

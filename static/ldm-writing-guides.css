@@ -62,3 +62,8 @@ html body .v3Direct-artwork #ldmWritingGuideControls #ldmWritingReset{grid-colum
 #ldmWritingGuidesSection[hidden],#ldmWritingGuideControls[hidden],#ldmWritingGuideControls label[hidden],label:has(> #showA4Boundary)[hidden]{display:none!important}
 
 #ldmDrawLayers [data-ldm-svg-hidden="true"]{display:none!important}
+
+/* GUI.54: paper limit selector uses the same theme and standard control height. */
+#ldmWritingGuideControls select{box-sizing:border-box;width:100%;min-width:0;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;font:inherit;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
+#ldmWritingGuideControls label:has([data-writing=a5]),#ldmWritingGuideControls label:has([data-writing=wrap]){order:1}
+@media(pointer:coarse){#ldmWritingGuideControls select{min-height:44px}}

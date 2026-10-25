@@ -1,10 +1,19 @@
 /* GUI.189: shared preparation presentation and OPEN FILES lock for PLOT/FOAM.
    No commands, host reservations or machine-motion flags are changed here. */
-(()=>{'use strict';let preparing=false,repeatPreparing=false,submitted=false,cleanupNeeded=false;
+(()=>{'use strict';let preparing=false,repeatPreparing=false,submitted=false,cleanupNeeded=false,artworkUnlockPending=false,repeatArtworkCycle=false;
  const machineBusy=()=>!!(V3_JOB_MOTION_LOCK||V3_SVG_SAVE_START_MOVING_LOCK);
  const transferBusy=()=>!!(V3_SD_TRANSFER_ACTIVE||V3_AUTO_START_IN_FLIGHT||V3_AUTO_START_NEW_SD);
  const locked=()=>preparing||repeatPreparing||submitted||machineBusy()||transferBusy();
+ function releaseFinishedArtwork(){
+  if(!artworkUnlockPending||locked()||window.ldmCanvasImportBusy||(typeof V3_REPEAT_PROCESSING!=='undefined'&&V3_REPEAT_PROCESSING)||(typeof V3_QS_INTERNAL_REPEAT_HOME!=='undefined'&&V3_QS_INTERNAL_REPEAT_HOME))return;
+  artworkUnlockPending=false;V3_PREVIEW_SAVE_CLICK_LOCK=false;
+  // Only edit/click locks are released. Calibration, Step 5 and machine state stay authoritative.
+  window.v3SetPreviewEditLock?.(false);window.v3G3LResetSaveStartClickLock?.();window.v3SyncSvgSaveStartJobLock?.();
+ }
+ window.ldmConfirmSendArtworkBusy=()=>preparing||repeatPreparing;
  function syncFiles(){
+  window.ldmSyncArtworkJobEditing?.();
+  releaseFinishedArtwork();
   if(!locked()&&cleanupNeeded){
    cleanupNeeded=false;window.V3_QUICK_SD_QUEUE_CYCLE=false;V3_PREVIEW_SAVE_CLICK_LOCK=false;
    window.v3SetPreviewEditLock?.(false);window.v3G3LResetSaveStartClickLock?.();window.v3SyncQuickActiveJobStatus?.();
@@ -15,11 +24,11 @@
  // Repeat owns the same file lock from the first double-click, including
  // file verification, confirmation dialogs and saved FOAM setup reads.
  window.ldmRepeatFilesPending=()=>repeatPreparing;
- window.ldmRepeatFilesBegin=()=>{if(locked())return false;repeatPreparing=true;syncFiles();return true;};
+ window.ldmRepeatFilesBegin=()=>{if(locked())return false;window.ldmArtworkCaptureBegin?.();repeatPreparing=true;repeatArtworkCycle=true;artworkUnlockPending=false;syncFiles();return true;};
  window.ldmRepeatFilesSubmitted=()=>{if(repeatPreparing){submitted=true;syncFiles();}};
  window.ldmRepeatFilesFinish=()=>{repeatPreparing=false;
   if(!submitted&&!machineBusy()&&!transferBusy()){
-   window.V3_QUICK_SD_QUEUE_CYCLE=false;V3_PREVIEW_SAVE_CLICK_LOCK=false;
+   repeatArtworkCycle=false;window.V3_QUICK_SD_QUEUE_CYCLE=false;V3_PREVIEW_SAVE_CLICK_LOCK=false;
    if(typeof V3_REPEAT_PROCESSING!=='undefined')V3_REPEAT_PROCESSING=false;
   }
   syncFiles();window.v3SyncQuickActiveJobStatus?.();
@@ -32,7 +41,7 @@
  if(typeof filesSync==='function')window.v3SyncSdFilesActiveJobLock=function(){const result=filesSync.apply(this,arguments);syncFiles();return result;};
  window.ldmConfirmSendBegin=function(){
   if(locked())return false;
-  preparing=true;cleanupNeeded=false;window.V3_QUICK_SD_QUEUE_CYCLE=true;window.V3_QUICK_CURRENT_JOB_FILE='';
+  window.ldmArtworkCaptureBegin?.();preparing=true;cleanupNeeded=false;artworkUnlockPending=false;repeatArtworkCycle=false;window.V3_QUICK_SD_QUEUE_CYCLE=true;window.V3_QUICK_CURRENT_JOB_FILE='';
   V3_PREVIEW_SAVE_CLICK_LOCK=true;window.v3SetPreviewEditLock?.(true);
   syncFiles();window.ldmPreparingBegin?.();window.ldmResetSdQueueDrawerChoice?.();
   window.v4OpenAcceptedSdJobQueue?.();window.v3SyncQuickActiveJobStatus?.();
@@ -56,10 +65,12 @@
  // FINISH / authoritative STOP remain the only successful-job release points.
  for(const name of ['v3MarkJobFinished','v3ForceRecal123AfterMachineStop']){
   const previous=window[name];if(typeof previous!=='function')continue;
-  window[name]=function(...args){const result=previous.apply(this,args);
-   if(!preparing){submitted=false;syncFiles();queueMicrotask(syncFiles);}return result;
+  window[name]=function(...args){const finishedRepeat=name==='v3MarkJobFinished'&&(repeatArtworkCycle||(typeof V3_REPEAT_PROCESSING!=='undefined'&&V3_REPEAT_PROCESSING));const result=previous.apply(this,args);
+   if(!preparing){submitted=false;if(finishedRepeat)artworkUnlockPending=true;repeatArtworkCycle=false;syncFiles();queueMicrotask(syncFiles);}return result;
   };
  }
+ const motion=window.v3SetJobMotionLock;
+ if(typeof motion==='function')window.v3SetJobMotionLock=function(){const r=motion.apply(this,arguments);queueMicrotask(syncFiles);return r;};
  function bind(){
   const previous=window.v3SvgSaveStartJob;
   if(typeof previous!=='function')return;
@@ -91,7 +102,7 @@
   const raw=String(payload.filename||''),expected=raw.toLowerCase().endsWith('.3mf')?raw:raw+'.3mf';
   window.v3SetQuickCurrentJobFile?.(expected);beginSDProgress(expected);
   const thumb=payload.foam_token?null:await ldmBuild3mfCanvasThumbnail(raw);
-  const response=await fetch('/bridge/sd/save-plot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({},thumb||{},payload))});
+  const response=await fetch('/bridge/sd/save-plot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({},thumb||{},payload,{replace_ready:true}))});
   const result=await response.json();
   if(!response.ok||!result.success){
    // A returned server rejection is definitive; a network loss above is not.

@@ -104,23 +104,26 @@
  function svgString(canvas){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${canvas.width} ${canvas.height}">${canvas.paths.map(st=>`<polyline fill="none" stroke="black" points="${st.map(p=>p.join(',')).join(' ')}"/>`).join('')}</svg>`}
  async function importApproved(id){
    try{
+     if(window.ldmCanvasImportBusy||window.ldmArtworkPreparationBusy?.())throw new Error('Artwork is being captured. You can browse/review INBOX now; load this submission after capture finishes.');
      const d=await call(`/api/admin/canvas/${encodeURIComponent(id)}`);const item=d.item;
      if(item.status!=='APPROVED')throw new Error('This submission is not approved. Review it in ADMINISTRATOR first.');
      // Deliberately no source SVG import: preserve accepted point order and placement.
+     if(window.ldmCanvasImportBusy||window.ldmArtworkPreparationBusy?.())throw new Error('Artwork capture is in progress. Retry loading this submission after capture finishes.');
+     const draftOnly=!!window.ldmArtworkJobEditing?.();
      const c=item.canvas;
      if(window.ldmSvgObjects.length)ldmSnapshot();
-     else{el('paperW').value=c.width;el('paperH').value=c.height;el('paperW').dispatchEvent(new Event('input',{bubbles:true}));el('paperH').dispatchEvent(new Event('input',{bubbles:true}));}
+     else if(!draftOnly){el('paperW').value=c.width;el('paperH').value=c.height;el('paperW').dispatchEvent(new Event('input',{bubbles:true}));el('paperH').dispatchEvent(new Event('input',{bubbles:true}));}
      const paperWidth=Number(el('paperW').value),paperHeight=Number(el('paperH').value);
      const layers=c.layers?.length?c.layers:[{name:`APPROVED · ${item.title}`,paths:c.paths,visible:true}];
      const objects=layers.map(layer=>{const paths=JSON.parse(JSON.stringify(layer.paths));let minx=Infinity,miny=Infinity,maxx=-Infinity,maxy=-Infinity;for(const st of paths)for(const [x,y]of st){minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);}return {name:layer.name,text:svgString({...c,paths}),raw:paths,x:(minx+maxx)/2-paperWidth/2,y:(miny+maxy)/2-paperHeight/2,scale:100,rot:0,mx:false,my:false,visible:layer.visible!==false,...(layer.colour?{lineColour:layer.colour}:{}),ldmCanvasSnapshotId:item.id,ldmCanvasSnapshotSha256:item.sha256,ldmCanvasSourceWidth:c.width,ldmCanvasSourceHeight:c.height};});
      window.ldmSvgObjects.push(...objects);svgText=objects.at(-1).text;rawSvgPaths=objects.at(-1).raw;placedSvgPaths=[];
-     if(c.vector_options){window.ldmSetVectorColour?.(c.vector_options.multicolour);window.ldmVectorColourEnabled=c.vector_options.multicolour;const check=document.querySelector('.ldmVectorColourOption input[type="checkbox"]');if(check)check.checked=c.vector_options.multicolour;if(el('ldmVectorHoldSeconds'))el('ldmVectorHoldSeconds').value=c.vector_options.hold_seconds;}
+     if(c.vector_options&&!draftOnly){window.ldmSetVectorColour?.(c.vector_options.multicolour);window.ldmVectorColourEnabled=c.vector_options.multicolour;const check=document.querySelector('.ldmVectorColourOption input[type="checkbox"]');if(check)check.checked=c.vector_options.multicolour;if(el('ldmVectorHoldSeconds'))el('ldmVectorHoldSeconds').value=c.vector_options.hold_seconds;}
      window.ldmSelectedSvg=window.ldmSvgObjects.length-1;selectedPreviewObject={kind:'vector',idx:window.ldmSelectedSvg};
      clearObjectEditOverlay?.();ldmLoadControls();ldmRefreshSvgList();ldmRenderComposition();refreshTextObjectList?.();FTE.built=false;
      window.LDM_IMPORTED_CANVAS={id:item.id,sha256:item.sha256};
      el('job').textContent=`APPROVED CANVAS LAYER ADDED · ${item.title}. Review machine setup, then use the existing CONFIRM & SEND.`;
-     history.replaceState(null,'',location.pathname);
-   }catch(e){window.ldmAlert?ldmAlert(e.message):alert(e.message)}
+     window.ldmCanvasDraftAdded?.();history.replaceState(null,'',location.pathname);return true;
+   }catch(e){window.ldmAlert?ldmAlert(e.message):alert(e.message);return false}
  }
  let started=false;
  async function start(){

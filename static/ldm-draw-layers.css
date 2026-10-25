@@ -78,3 +78,6 @@ html body .v3Direct-artwork #ldmDrawLayers #ldmDrawActiveLayer{margin:8px 0!impo
 #art.ldmWorkspaceDraw{touch-action:none!important;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
 #ldmDrawDraftSurface,#ldmDrawDraftSurface *{pointer-events:none!important}
 }
+
+/* GUI.47: checkbox, name, move, lock, visibility, delete. */
+#ldmDrawLayers #ldmDrawLayerList .textObjectRow{grid-template-columns:20px minmax(0,1fr) auto auto auto auto}

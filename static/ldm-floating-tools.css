@@ -1,0 +1,16 @@
+#ldmFloatToolsBar84[hidden],#ldmFloatToolsHeader84{display:none!important}
+#v3StepShow.ldmFloatToolsMode .v3ShowViewport{perspective:none!important}
+#v3StepShow.ldmFloatToolsMode :is(#v3ShowSlide,#v3ShowStage,.v3Direct-artwork){transform:none!important;filter:none!important;will-change:auto!important;contain:none!important;animation:none!important;clip-path:none!important}
+#v3StepShow .ldmFloatToolsShell .v3DirectTabHost.v3ArtworkTwoColHost{grid-template-columns:minmax(0,1fr)!important;max-width:none!important}
+#v3StepShow .ldmFloatToolsShell .v3ArtworkPreviewCol{grid-column:1!important;width:100%!important;max-width:none!important}
+#v3StepShow .ldmFloatToolsShell .v3ArtworkColumnDivider{display:none!important}
+#v3StepShow .ldmFloatToolsShell #ldmFloatToolsBar84:not([hidden]){display:flex!important;position:sticky;top:0;z-index:10;justify-content:flex-end;padding:4px 0 7px;background:var(--bp-panel,#fff)}
+#v3StepShow .ldmFloatToolsShell .v3ArtworkToolsCol{display:none!important}
+#v3StepShow .ldmFloatToolsShell.ldmFloatToolsOpen .v3ArtworkToolsCol{display:block!important;position:fixed!important;top:var(--ldm-float-top,80px)!important;right:max(12px,env(safe-area-inset-right))!important;bottom:auto!important;left:auto!important;width:min(430px,calc(100vw - 24px))!important;max-width:calc(100vw - 24px)!important;max-height:min(78vh,var(--ldm-float-height,78vh))!important;max-height:min(78dvh,var(--ldm-float-height,78dvh))!important;overflow:auto!important;overscroll-behavior:contain;box-sizing:border-box;padding:10px!important;z-index:200020!important;background:var(--bp-panel,#fff)!important;color:var(--bp-text,#222);border:1px solid var(--v3-line,var(--bp-line,#c8d0d4));border-radius:12px;box-shadow:0 10px 36px #0005;text-align:left}
+#v3StepShow .ldmFloatToolsShell #ldmFloatToolsHeader84{display:flex!important;position:sticky;top:-10px;z-index:20;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;background:var(--bp-panel,#fff);border-bottom:1px solid var(--v3-line,var(--bp-line,#c8d0d4));margin-bottom:8px}
+#ldmFloatToolsHeader84 b{font-size:12px}#ldmFloatToolsHeader84 button{flex:none;white-space:nowrap}
+body.ldm-dark #v3StepShow .ldmFloatToolsShell :is(.v3ArtworkToolsCol,#ldmFloatToolsHeader84,#ldmFloatToolsBar84){background:#202529!important;color:#f1f3f2}
+
+/* V9.EXPERIMENT.7: keep the live width toggle beside OPEN TABS / TOOLS. */
+#v3StepShow .ldmFloatToolsShell #ldmFloatToolsBar84{gap:6px;align-items:center}
+#v3StepShow .ldmFloatToolsShell #ldmFloatToolsBar84 > #ldmArtworkBrowserWidth{flex:none;min-width:36px;max-width:none;white-space:nowrap}

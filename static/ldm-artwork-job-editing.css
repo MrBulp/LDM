@@ -1,0 +1,7 @@
+/* Only artwork editing changes; machine locks stay visible and authoritative. */
+body.ldmJobDraftEditing.v3PreviewEditLocked #bed .v3PreviewEditLock{display:none!important}
+body.ldmJobDraftEditing.v3PreviewEditLocked #art .ldmObjectEditorLocal,
+body.ldmJobDraftEditing.v3PreviewEditLocked #art .ldmTextEditorLocal,
+body.ldmJobDraftEditing.v3PreviewEditLocked #art #objectEditOverlay,
+body.ldmJobDraftEditing.v3PreviewEditLocked #art #kSvgEditOverlay{display:inline!important}
+#ldmJobDraftNotice{color:var(--ldm-text,var(--bp-text));border:1px solid var(--ldm-border,var(--bp-line));padding:6px}

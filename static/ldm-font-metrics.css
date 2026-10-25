@@ -1,0 +1,20 @@
+/* GUI.49: font units are relative to TEXT size; editor uses the selected LDM theme. */
+#ldmGlyphMetrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;min-width:0;margin:10px 0;padding:10px;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit}
+#ldmGlyphMetrics legend{font:inherit;font-weight:700}
+#ldmGlyphMetrics label{display:flex;flex-direction:column;gap:6px;min-width:0;margin:0;font:inherit;text-align:left}
+#ldmGlyphMetrics .ldmGlyphMetricCheck{grid-column:1/-1;flex-direction:row;align-items:center;gap:8px}
+#ldmGlyphMetrics input[type=checkbox]{width:16px;height:16px;min-height:0!important;min-width:0!important;margin:0;accent-color:var(--bp-accent,var(--ldm-primary))}
+#ldmGlyphMetrics input[type=number]{width:100%;min-width:0;box-sizing:border-box;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;font:inherit;background:var(--bp-panel);color:var(--bp-text);border:1px solid var(--bp-line);border-radius:var(--bp-radius,0)}
+#ldmGlyphMetrics p{grid-column:1/-1;margin:0;text-align:left;line-height:1.4}
+#ldmUseFontSpacing{display:block;box-sizing:border-box;width:100%;margin:8px 0;min-height:var(--ldm-art-control-height,36px);padding:6px 10px;font:inherit;background:var(--bp-panel);color:var(--bp-text);border:1px solid var(--bp-line);border-radius:var(--bp-radius,0)}
+@media(max-width:420px){#ldmGlyphMetrics{grid-template-columns:minmax(0,1fr)}}
+
+/* GUI.55: compact disclosure leaves DRAW / EDIT within reach. */
+#ldmGlyphMetricsSection{box-sizing:border-box;min-width:0;width:100%;margin:10px 0;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;text-align:left}
+#ldmGlyphMetricsSection>summary{box-sizing:border-box;padding:8px 10px;min-height:var(--ldm-art-control-height,36px);font:inherit;font-weight:700;cursor:pointer;text-align:left;border-radius:inherit}
+#ldmGlyphMetricsSection>summary:hover{background:var(--bp-hover,var(--bp-panel,transparent))}
+#ldmGlyphMetricsSection>summary:focus-visible{outline:2px solid var(--bp-accent,currentColor);outline-offset:2px}
+#ldmGlyphMetricsSection #ldmGlyphMetrics{border:0;margin:0;border-radius:0 0 var(--bp-radius,0) var(--bp-radius,0)}
+#ldmGlyphMetricsSection #ldmGlyphMetrics legend{display:none}
+#ldmGlyphMetricsSection:not([open])>#ldmGlyphMetrics{display:none!important}
+@media(pointer:coarse){#ldmGlyphMetricsSection>summary{min-height:44px}}

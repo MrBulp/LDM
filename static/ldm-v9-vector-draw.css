@@ -1,0 +1,32 @@
+/* V9 experiment only; machine and normal VECTOR selection layouts stay unchanged. */
+/* GitHub Online retains its standalone DRAW / WRITE tab; existing access rules decide visibility. */
+#ldmV9VectorDraw[hidden],#ldmV9DrawModeBar[hidden]{display:none!important}
+#ldmV9DrawModeBar{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+#ldmV9DrawModeBar button{flex:1;min-height:36px;font:inherit;padding:6px 8px;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit)}
+#ldmV9DrawModeBar button.active{outline:2px solid var(--bp-accent,currentColor);outline-offset:-2px;font-weight:bold}
+#ldmV9VectorDraw .row{flex-wrap:wrap}#ldmV9VectorDraw input[type=color]{width:36px;height:36px;padding:2px}#ldmV9VectorDraw details{margin:8px 0}
+#ldmV9DrawSurface{position:absolute;z-index:8;touch-action:none;user-select:none;pointer-events:all;cursor:crosshair;overflow:hidden}
+#ldmV9DrawSurface *{pointer-events:none}
+body.ldmV9VectorDrawActive #art .ldmObjectEditorLocal,body.ldmV9VectorDrawActive #art #kSvgEditOverlay{visibility:hidden;pointer-events:none}
+#ldmV9Reference{pointer-events:none!important}
+
+/* V9.EXPERIMENT.4: interaction SVG is a transparent surface above real ART.
+   The dark preview theme also targets descendant SVGs; never paint paper here. */
+html body #ldmV9DrawSurface{background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important}
+
+/* V9.EXPERIMENT.5: layer-local pencil and compact red-X deletion. */
+html body #svgObjectList .textObjectRow{grid-template-columns:24px minmax(0,1fr) auto auto auto auto!important}
+html body #svgObjectList button:is(.ldmV9LayerPencil,.ldmV9DeleteIcon){display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-width:36px!important;width:36px;min-height:var(--ldm-art-control-height,36px)!important;padding:6px!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel,transparent)!important;color:var(--bp-text,inherit)!important}
+html body #svgObjectList button.ldmV9DeleteIcon{color:var(--bp-danger,#e34c4c)!important}
+html body #svgObjectList button.ldmV9LayerPencil[aria-pressed=true]{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:-2px;color:var(--bp-accent,currentColor)!important}
+html body #svgObjectList button.ldmV9LayerPencil[hidden]{display:none!important}
+html body #svgObjectList button:is(.ldmV9LayerPencil,.ldmV9DeleteIcon) svg{pointer-events:none;flex:none}
+html body #svgObjectList button:is(.ldmV9LayerPencil,.ldmV9DeleteIcon):focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:2px}
+
+/* V9.EXPERIMENT.6: keep the drawing engine; hide the experiment controls.
+   The ordinary DRAW / WRITE tab uses its original position and access rules. */
+html body #ldmV9VectorDraw{display:none!important}
+
+/* V9.EXPERIMENT.7: visible entry point above the normal VECTOR layer list. */
+#ldmV9CreateDrawLayer{display:block;width:100%;margin:8px 0;box-sizing:border-box}
+#ldmV9CreateDrawLayer[hidden]{display:none!important}

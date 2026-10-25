@@ -4,19 +4,19 @@
  let accepted=null,suppress=false,initializing=true,armed=false,initial=null;
  const num=v=>{if(v==null||String(v).trim()==='')return null;const n=Number(v);return Number.isFinite(n)?n:null};
  function type(){return $('v4MaterialJobType')?.value==='vinyl'?'vinyl':'pen'}
- function values(){return {cd:type()==='vinyl'?num($('cutDepth')?.value):0,sz:num($('v3QuickSurfaceValue')?.value),zl:num($('v4MaterialZLift')?.value??$('v3JobLift')?.value),zls:num($('v4MaterialZLiftSpeed')?.value??$('zFeed')?.value),ms:num((type()==='vinyl'?$('cutFeed'):$('plotSpeed'))?.value??$('v4FinalMachineSpeed')?.value)}}
- function valid(v){return v&&['cd','sz','zl','zls','ms'].every(k=>v[k]!==null&&Number.isFinite(v[k]))&&v.zl>=0&&v.zls>0&&v.ms>0}
- function same(a,b){return valid(a)&&valid(b)&&['cd','sz','zl','zls','ms'].every(k=>Math.abs(a[k]-b[k])<=0.0000005)}
+ function values(){return {ez:window.ldmFoamMaterialActive?.()?0:(window.ldmEndLiftValid?.()?num($('ldmEndZLift')?.value):null),cd:type()==='vinyl'?num($('cutDepth')?.value):0,sz:num($('v3QuickSurfaceValue')?.value),zl:num($('v4MaterialZLift')?.value??$('v3JobLift')?.value),zls:num($('v4MaterialZLiftSpeed')?.value??$('zFeed')?.value),ms:num((type()==='vinyl'?$('cutFeed'):$('plotSpeed'))?.value??$('v4FinalMachineSpeed')?.value)}}
+ function valid(v){return v&&['ez','cd','sz','zl','zls','ms'].every(k=>v[k]!==null&&Number.isFinite(v[k]))&&v.zl>=0&&v.zls>0&&v.ms>0}
+ function same(a,b){return valid(a)&&valid(b)&&['ez','cd','sz','zl','zls','ms'].every(k=>Math.abs(a[k]-b[k])<=0.0000005)}
  function persist(){try{if(armed&&valid(accepted))sessionStorage.setItem(key,JSON.stringify({values:accepted,type:type()}));else sessionStorage.removeItem(key)}catch(_){} }
  try{initial=JSON.parse(sessionStorage.getItem(key)||'null')}catch(_){}
  function disarm(warn=true){
    armed=false;accepted=null;persist();const cb=$('v4ExpertModeCheck');
    if(cb?.checked){suppress=true;cb.checked=false;cb.dispatchEvent(new Event('change',{bubbles:true}));suppress=false;}
    $('v3QuickStepsDrawer')?.classList.remove('v4fiExpertPostFinishLock');
-   if(warn){const m='EXPERT MODE RESET — MACHINE SETUP CHANGED\n\nCUT DEPTH, SZ, Z LIFT, Z LIFT SPEED or TRAVEL SPEED changed. Review the values, then check EXPERT MODE again.';window.ldmAlert?window.ldmAlert(m):alert(m)}
+   if(warn){const m='EXPERT MODE RESET — MACHINE SETUP CHANGED\n\nEND Z LIFT, CUT DEPTH, SZ, Z LIFT, Z LIFT SPEED or TRAVEL SPEED changed. Review the values, then check EXPERT MODE again.';window.ldmAlert?window.ldmAlert(m):alert(m)}
  }
  function checkChanged(){if(!initializing&&!suppress&&armed&&!same(values(),accepted))disarm()}
- const fields=new Set(['cutDepth','v3JobCutDepth','v7MaterialCutDepth','v3QuickSurfaceValue','v4ExpertSurfaceZ','v4MaterialZLift','v4MaterialZLiftSpeed','v3JobLift','penLift','zFeed','v4FinalMachineSpeed','v4dtCompactLift','v4dtCompactLiftSpeed','v4dtCompactMachineSpeed','v4duCompactMachineSpeed','plotSpeed','cutFeed','v4MaterialJobType']);
+ const fields=new Set(['ldmEndZLift','ldmCompactEndZLift','cutDepth','v3JobCutDepth','v7MaterialCutDepth','v3QuickSurfaceValue','v4ExpertSurfaceZ','v4MaterialZLift','v4MaterialZLiftSpeed','v3JobLift','penLift','zFeed','v4FinalMachineSpeed','v4dtCompactLift','v4dtCompactLiftSpeed','v4dtCompactMachineSpeed','v4duCompactMachineSpeed','plotSpeed','cutFeed','v4MaterialJobType']);
  document.addEventListener('change',e=>{
    if(e.target?.id==='v4ExpertModeCheck'){
      if(suppress||initializing)return;
@@ -30,7 +30,7 @@
  function restore(){
    const cb=$('v4ExpertModeCheck');
    if(initial&&valid(initial.values)&&initial.type===type()){
-     const v=initial.values;
+     const v=initial.values;if(!window.ldmFoamMaterialActive?.()){set('ldmEndZLift',v.ez);set('ldmCompactEndZLift',v.ez);}
      if(type()==='vinyl'){set('cutDepth',v.cd);set('v3JobCutDepth',v.cd);set('v7MaterialCutDepth',v.cd);}
      // Restore numeric preferences only. Never restore HOME/center/material flags.
      set('v3QuickSurfaceValue',v.sz);set('v4ExpertSurfaceZ',v.sz);

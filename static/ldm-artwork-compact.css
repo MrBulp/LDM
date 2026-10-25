@@ -1,0 +1,47 @@
+/* Use the selected LDM theme and normal control sizing. */
+.ldmArtworkFold{margin:7px 0!important;border:1px solid var(--bp-line,var(--v3-line,#c8d0d4))!important;padding:0!important;border-radius:var(--bp-radius,9px)}
+.ldmArtworkFold>summary{display:list-item!important;cursor:pointer;padding:10px!important;font-weight:800}
+.ldmArtworkFoldBody{padding:8px;min-width:0}.ldmArtworkFold[hidden]{display:none!important}
+body[data-ldm-art-mode82="text"] :is(#paperCenterOverlay,#bedPlateCenterOverlay,#paperCenterCross,#bedCenterCross,[data-paper-center],[data-bed-center],.paperCenterOverlay,.bedPlateCenterOverlay,.paper-center-overlay,.bed-center-cross,.ldmCenterCrossToggle){display:none!important}
+.ldmTempPreviewDialog{position:fixed;inset:0;margin:0;width:100vw;height:100vh;height:100dvh;max-width:none;max-height:none;box-sizing:border-box;border:0;padding:12px;background:var(--bp-panel,#fff);color:var(--bp-text,#222)}
+.ldmTempPreviewDialog[open]{display:flex;flex-direction:column;gap:8px}.ldmTempPreviewDialog::backdrop{background:#0009}
+.ldmTempPreviewDialog header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.ldmTempPreviewDialog header .row{align-items:center;margin:0;flex-wrap:wrap}.ldmTempPreviewDialog p{margin:0;flex-shrink:0;max-height:20vh;overflow:auto}
+.ldmTempPreviewViewport{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;border:1px solid var(--v3-line,var(--bp-line,#c8d0d4));background:var(--bp-panel,#fff)}
+.ldmTempPreviewZoom{min-width:25%;min-height:25%}.ldmTempPreviewZoom>svg{display:block;width:100%!important;height:100%!important;max-height:none!important}
+body.ldm-dark .ldmTempPreviewDialog,body.ldm-dark .ldmTempPreviewViewport{background:#181c1f;color:#f1f3f2}
+
+#ldmVectorTempFullscreenBtn{display:block;margin:6px 0 6px auto}
+
+/* GUI.85: sibling DRAW sections, preserving all existing drawing-engine selectors. */
+#ldmDrawLayers.ldmDrawSections85{border:0;background:transparent;padding:0;margin-bottom:10px}
+#ldmDrawLayers [data-ldm-draw-heading85]{display:none!important}
+#ldmDrawLayers.ldmDrawSections85>.ldmArtworkFold{width:100%;box-sizing:border-box}
+
+/* GUI.86: shared fold headers, selected-theme FOAM borders and no duplicate DRAW banner. */
+#v3ArtworkDrawHost .ldmDrawHeader,[data-ldm-art-heading86]{display:none!important}
+html body .v3Direct-artwork .ldmArtworkFold{
+ border:1px solid var(--bp-line,var(--ldm-border,#c8d0d4))!important;
+ border-radius:var(--bp-radius,9px)!important;background:var(--bp-panel,transparent)!important;
+ color:var(--bp-text,inherit)!important;padding:0!important;margin:7px 0!important;box-sizing:border-box;
+}
+html body .v3Direct-artwork .ldmArtworkFold>summary{
+ display:list-item!important;box-sizing:border-box;min-height:var(--ldm-art-control-height,36px);
+ padding:10px!important;margin:0!important;border:0!important;border-radius:inherit!important;
+ font-family:inherit!important;font-size:14px!important;font-weight:700!important;line-height:1.4!important;
+ background:var(--bp-panel,transparent)!important;color:var(--bp-text,inherit)!important;cursor:pointer;
+}
+html body .v3Direct-artwork .ldmArtworkFold>summary:hover{background:var(--bp-panel2,var(--bp-panel,transparent))!important}
+html body .v3Direct-artwork .ldmArtworkFold>summary:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:-2px}
+html body .v3Direct-artwork :is(#ldmVectorCleanPanel,#ldmVectorOffset)>:not(summary){margin-left:8px;margin-right:8px}
+html body :is(#v3ArtworkFoamHost .ldmFoamPanel,#v3ArtworkFoamHost .ldmFoamPanel details,#v3ArtworkFoamHost .ldmFoamSequence,#ldmFoamRouteSection,#ldmFoamSimulator,#ldmFoamSimCanvas,#ldmFoamSimInfo,#ldmFoam_canvasReview>svg){
+ border-color:var(--bp-line,var(--ldm-border,#c8d0d4))!important;border-radius:var(--bp-radius,9px)!important;
+ background:var(--bp-panel,transparent);color:var(--bp-text,inherit);
+}
+
+/* GUI.87: navigation above the existing standalone EXIT control. */
+#ldmDetachedNavigation87[hidden]{display:none!important}
+#ldmDetachedNavigation87{position:fixed;left:6px;bottom:80px;display:grid;gap:8px;width:60px;z-index:2147000001}
+html body #ldmDetachedNavigation87 button{box-sizing:border-box;width:60px;min-height:66px;padding:5px;font:inherit;font-size:9px;line-height:1.2;overflow-wrap:anywhere;color:var(--bp-text,var(--ldm-text));background:var(--bp-panel,var(--ldm-panel));border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);cursor:pointer}
+html body #ldmDetachedNavigation87 button:hover{background:var(--bp-panel2,var(--bp-panel))}
+html body #ldmDetachedNavigation87 button:focus-visible{outline:2px solid var(--bp-accent,currentColor);outline-offset:2px}
+html body #ldmLayoutToolbar83[hidden]{display:none!important}

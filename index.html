@@ -2892,7 +2892,7 @@ body.ldm-dark .ldmPreviewBoundaryInfo{background:rgba(255,153,0,.14);border-colo
       <div class="ldmPreviewBoundaryTitle">CANVAS — VIRTUAL PLOT BOUNDARY</div>
       <div class="ldmPreviewBoundaryRule">WHAT YOU SEE IS WHAT YOU PLOT</div>
     </div>
-    <div id="bed"><svg id="art" viewBox="0 0 256 256"></svg><div class="ldmPreviewWatermark" aria-hidden="true">LAN-DEV-MODE · LDM</div><label id="ldmSparsePreviewControl"><input id="ldmSparsePreviewEnabled" type="checkbox" onchange="ldmSetSparsePreview(this.checked)"> SPARSE LIGHT PREVIEW</label><div class="ldmLiveDrawOverlay" id="ldmLiveDrawOverlay" hidden aria-hidden="true" style="display:none!important"></div>
+    <div id="bed"><svg id="art" viewBox="0 0 256 256"></svg><div class="ldmPreviewWatermark" aria-hidden="true">LAN-DEV-MODE · LDM</div><label id="ldmSparsePreviewControl"><input id="ldmSparsePreviewEnabled" type="checkbox" onchange="ldmSetSparsePreview(this.checked)"> SPARSE PREVIEW</label><div class="ldmLiveDrawOverlay" id="ldmLiveDrawOverlay" hidden aria-hidden="true" style="display:none!important"></div>
       <div id="v3PreviewEditLock" class="v3PreviewEditLock" aria-hidden="true">
         <div class="v3PreviewEditLockCard">
           <div class="v3PreviewEditLockTitle">CANVAS LOCKED</div>
@@ -2971,7 +2971,7 @@ body.ldm-dark .ldmPreviewBoundaryInfo{background:rgba(255,153,0,.14);border-colo
 <section class="card rightPanel" id="rightPanel">
 <div class="v3nav" id="v3Nav">
   <!-- PATCH19: MAIN STEPS HOME button removed; underlying machine/workflow code remains available internally. -->
-  <button type="button" data-v3tab="design" onclick="v3PresentationOpenTab('artwork')">ARTWORK</button>
+  <button type="button" data-v3tab="design" onclick="v3PresentationOpenTab('artwork')">WORKSPACE</button>
   <button type="button" onclick="v3PresentationOpenTab('files')">BAMBU OFFLINE PRINT JOB</button>
   <button type="button" data-v3tab="advanced" onclick="v3PresentationOpenTab('advanced')">SETTING</button>
   <button type="button" data-v3tab="trace" onclick="v3SetTab('trace')" style="display:none" aria-hidden="true" tabindex="-1">TRACE</button>
@@ -3008,7 +3008,7 @@ body.ldm-dark .ldmPreviewBoundaryInfo{background:rgba(255,153,0,.14);border-colo
       <button type="button" onclick="v3ApplyJobBehavior(true)">SET TOOL BEHAVIOR</button><button type="button" id="v3ToolReuseBtn" class="v3ReuseBtn" onclick="v3ToggleToolReuse()">🔓 REUSE SAVED</button>
     </div></div>
     <div class="v3step" id="v3QuickCard6"><b>5 · Z MESH — MATERIAL MUST BE READY</b><span class="v3CardState" id="v3QuickCardState6"></span><span class="v3hint"><b>⚠ INSTALL &amp; SECURE THE ACTUAL PLOT / CUT MATERIAL BEFORE Z MESH.</b> Z Mesh measures the working surface, not the bare plate.</span><div class="v3MeshActions"><button type="button" id="v3OpenMeshBtn" onclick="v3OpenZMeshOverlay()">OPEN Z MESH</button><button type="button" id="v3MeshReuseBtn" class="v3ReuseBtn" onclick="v3ToggleMeshReuse()">🔓 REUSE SAVED</button></div><label class="v3SessionSkip"><input id="v3SkipMeshCheck" type="checkbox" onchange="v3SetSkipMesh(this.checked)"><span><b>SKIP Z MESH — USE FIXED SURFACE Z</b><small>Session only. Mesh is explicitly set OFF; Step 3 Surface Z is used as fixed Contact Z.</small></span></label></div>
-    <div class="v3step" id="v3QuickCard7"><b>6 · ARTWORK + SAVE TO SD</b><span class="v3CardState" id="v3QuickCardState7"></span><span class="v3hint">Load, position, scale and rotate artwork in the ARTWORK workspace.</span><button type="button" onclick="v3PresentationOpenTab('artwork')">ARTWORK</button><label class="v3SessionSkip"><input id="v3SkipArtworkCheck" type="checkbox" onchange="v3SetSkipArtwork(this.checked)"><span><b>EXPERIENCED USER — SKIP STEP 6</b><small>Session only. Use an existing PROJECT READY file from A1 SD. Checking this bypasses the visible Step 6 prerequisite warning for existing SD-file access; machine-motion and SAVE/START safety locks remain active.</small></span></label></div>
+    <div class="v3step" id="v3QuickCard7"><b>6 · ARTWORK + SAVE TO SD</b><span class="v3CardState" id="v3QuickCardState7"></span><span class="v3hint">Load, position, scale and rotate artwork in the ARTWORK workspace.</span><button type="button" onclick="v3PresentationOpenTab('artwork')">WORKSPACE</button><label class="v3SessionSkip"><input id="v3SkipArtworkCheck" type="checkbox" onchange="v3SetSkipArtwork(this.checked)"><span><b>EXPERIENCED USER — SKIP STEP 6</b><small>Session only. Use an existing PROJECT READY file from A1 SD. Checking this bypasses the visible Step 6 prerequisite warning for existing SD-file access; machine-motion and SAVE/START safety locks remain active.</small></span></label></div>
     <div class="v3step v3QuickHiddenSaveStep" id="v3QuickCard8"><b>8 · SAVE TO SD</b><span class="v3CardState" id="v3QuickCardState8"></span><span class="v3hint">Build the A1-ready project and transfer it to microSD.</span><button type="button" class="primary" onclick="startJob('sd')">SAVE TO PRINTER SD CARD</button></div>
     <div class="v3step" id="v3QuickCard9"><b>7 · OPEN FILES</b><span class="v3CardState" id="v3QuickCardState9"></span><span class="v3hint">Open A1 SD files and choose an existing PROJECT READY package.</span><label class="v3SessionSkip"><input id="v3Step7ExperiencedCheck" type="checkbox" onchange="v3Step7ExperiencedChanged(this.checked)"><span><b>EXPERIENCED USER</b><small>Session only. OPEN FILES stays available during an active machine job and uses the Repeat Job file-browser flow. Repeat/Start remains hidden while the machine is moving.</small></span></label><button type="button" id="v3OpenFilesMainBtn" onclick="v3OpenSdOverlay(true)">OPEN FILES</button><button type="button" id="v3Step10MainBtn" class="primary" style="display:none" onclick="v3OpenRepeatSdJobs()">REPEAT JOB</button><div class="v3MachineLcdOnly"><strong>AFTER JOB STARTS</strong><br>PAUSE · RESUME · STOP → MACHINE LCD ONLY</div><button type="button" id="v3RepeatChooseBtn" style="display:none;margin-left:8px;font-weight:900" onclick="v3OpenRepeatSdJobs()">REPEAT / CHOOSE SD JOB</button><div id="v3RepeatHint" class="v3hint" style="display:none;width:100%;margin-top:6px">Repeat mode will HOME XYZ automatically before returning to the saved Bed/Paper Center. Use only while calibration remains unchanged.</div><div id="v3RepeatSafety" class="v3RepeatSafety"><div class="v3RepeatSafetyRow"><div class="v3RepeatSafetyBadge">6</div><div><div class="v3RepeatSafetyTitle">REPEAT JOB — SAVED CALIBRATION</div><div>Repeat Job may automatically HOME XYZ as part of its proven recovery sequence. This HOME does <b>not</b> mean Steps 3–7 must be taught again while the physical setup remains unchanged.</div><div style="margin-top:6px"><b>For a changed/new setup:</b> return to STEP 2 HOME XYZ → STEP 3 Surface Z → STEP 4 Bed/Paper Center before continuing.</div><label class="v3RepeatSafetyCheck"><input id="v3RepeatWarningBypass" type="checkbox" onchange="v3SetRepeatWarningBypass(this.checked)"><span><b>I understand the Repeat Job workflow — don’t show this warning again</b><br>Repeat jobs may reuse the previously confirmed STEP 3 Surface Z, STEP 4 Bed/Paper Center, STEP 5 Tool and STEP 6 Z Mesh settings.</span></label></div></div></div></div>
   </div>
@@ -3083,8 +3083,8 @@ body.ldm-dark .ldmPreviewBoundaryInfo{background:rgba(255,153,0,.14);border-colo
   <option value="on" selected>ON</option>
   <option value="off">OFF</option>
  </select>
- <label>Pen lift (end of plot)</label>
- <select id="penLiftEndPlot">
+ <label>End clearance: set END Z LIFT in STEP 5</label>
+ <select id="penLiftEndPlot" hidden disabled>
   <option value="up" selected>PEN UP</option>
   <option value="stay">STAY AS IS</option>
  </select>
@@ -3107,8 +3107,8 @@ body.ldm-dark .ldmPreviewBoundaryInfo{background:rgba(255,153,0,.14);border-colo
 <label>Blade lift (mm)</label><input id="bladeLift" type="number" step=".05" value="1.0">
 <label>Cut depth offset (mm)</label><input id="cutDepth" type="number" min="0" max=".30" step=".01" value=".05">
 <label>Cut speed (mm/min)</label><input id="cutFeed" type="number" value="300">
-<label>Blade lift (end of cut)</label>
-<select id="bladeLiftEndCut">
+<label>End clearance: set END Z LIFT in STEP 5</label>
+<select id="bladeLiftEndCut" hidden disabled>
  <option value="up" selected>BLADE UP</option>
  <option value="stay">STAY AS IS</option>
 </select>
@@ -3211,18 +3211,24 @@ ENABLE PREFLIGHT SAFETY (BOUNDARY CHECK)
 <details class="toolbox main-toolbox" id="svgMainSection">
 <summary>ARTWORK</summary>
 
-<input id="file" type="file" accept=".svg,image/svg+xml">
+<input id="file" type="file" accept=".svg,.png,.jpg,.jpeg,.tif,.tiff,image/svg+xml,image/png,image/jpeg,image/tiff">
 <div class="row"><button type="button" onclick="sendSvgToPreview()">PLACE INTO PREVIEW</button></div>
 <div class="textObjectManager svgObjectManager" style="margin-top:8px">
- <div class="textObjectHead"><b>FILES ON PREVIEW</b><span id="svgObjectCount" class="tiny">0 items</span></div>
+ <div class="textObjectHead"><b>FILES ON CANVAS</b><span id="svgObjectCount" class="tiny">0 items</span></div>
  <label class="ldmVectorColourOption"><input type="checkbox" onchange="ldmSetVectorColour(this.checked)"> MULTICOLOUR VECTOR — timed hold between files (SD only)</label><label class="ldmVectorColourOption">PEN CHANGE TIMED HOLD (seconds)<input id="ldmVectorHoldSeconds" type="number" min="1" max="600" step="1" value="60" onchange="if(typeof FTE!=='undefined')FTE.built=false"></label><div class="ldmVectorColourHint">List order = pen order. Tool stays at Z LIFT during each hold, then automatically continues. Finish changing the pen before the timer ends. Test with two small files first.</div><div id="svgObjectList" class="textObjectList svgObjectList"><div class="tiny textObjectEmpty">No files inserted yet.</div></div>
+<div id="ldmVectorAlignControls">
+ <label for="ldmVectorAlignReference">ALIGN SELECTED VECTOR LAYERS TO</label>
+ <select id="ldmVectorAlignReference"><option value="canvas">CANVAS</option><option value="selection">SELECTION BOUNDS</option></select>
+ <div class="row" role="group" aria-label="Align selected VECTOR layers" style="flex-wrap:wrap"><button type="button" data-vector-align="center">CENTER</button><button type="button" data-vector-align="left">LEFT</button><button type="button" data-vector-align="right">RIGHT</button><button type="button" data-vector-align="bottom">BOTTOM</button><button type="button" data-vector-align="top">TOP</button></div>
+ <div id="ldmVectorAlignStatus" class="tiny" role="status">Checked layers, or the active layer if none are checked. CENTER aligns both axes. Locked layers must be unlocked.</div>
+</div>
  <div class="row"><button type="button" onclick="ldmDuplicateSvg()">DUPLICATE</button><button type="button" id="ldmVectorDeleteChecked" onclick="ldmDeleteSvg()">DELETE SELECTED</button></div>
  <div class="row"><button type="button" onclick="ldmMoveSvg(-1)">MOVE UP</button><button type="button" onclick="ldmMoveSvg(1)">MOVE DOWN</button></div>
 </div>
 <label>Scale (%)</label><input id="scale" type="number" min="1" max="500" step="0.01" value="100">
 <label>Rotate (°)</label><input id="rotate" type="number" min="-180" max="180" step="0.1" value="0">
 <div class="row"><button type="button" onclick="applyPreciseSvgTransform()">UPDATE</button></div>
-<div class="tiny">Transforms apply to the selected SVG object. Multiple SVGs remain independent and BUILD FTE combines all objects.</div><input id="mirrorX" type="checkbox" hidden><input id="mirrorY" type="checkbox" hidden>
+<div class="tiny">Transforms apply to checked layers as a group; with none checked, the active layer is used. Values use the active layer as reference; unchecked layers stay unchanged. Locked selections are protected. CLEAR clears the canvas.</div><input id="mirrorX" type="checkbox" hidden><input id="mirrorY" type="checkbox" hidden>
 <div class="row"><button type="button" id="mirrorXBtn" onclick="toggleMirrorButton('X')">MIRROR X</button><button type="button" id="mirrorYBtn" onclick="toggleMirrorButton('Y')">MIRROR Y</button></div>
 <div class="row"><button onclick="fitArt()">FIT</button><button onclick="centerArt()">CENTER</button></div><div class="row"><button onclick="clearPreviewArea()">CLEAR</button><button type="button" onclick="resetSvgToImportState()" title="Restore SVG to its original imported centered state">RESET</button></div>
 <div class="row">
@@ -3365,7 +3371,7 @@ ENABLE PREFLIGHT SAFETY (BOUNDARY CHECK)
 <label>Font source</label>
 <select id="fontSource"><option value="builtin">Built-in Single-Line</option><option value="custom">Custom Glyph Font</option><option value="typewriter">Typewriter Single-Line</option></select>
 <div class="row"><div><label>Size (mm)</label><input id="textSize" type="number" value="20" min="1" step=".5" oninput="textSizeChanged(this.value)" title="Font size in mm. Applies live to the selected TEXT object and is inherited by new TEXT."></div><div><label>Line spacing</label><input id="lineSpacing" type="number" value="1.25" min=".5" step=".05" oninput="textLineSpacingChanged(this.value)" title="Paragraph line spacing. Applies live to the selected TEXT object and is inherited by new TEXT."></div></div>
-<div><label>Glyph / alphabet spacing (mm)</label><input id="glyphSpacing" type="number" value="-10.00" step="0.10" oninput="textGlyphSpacingChanged(this.value)" title="Extra spacing inserted between each character. Applies to the selected TEXT object and to new TEXT."></div>
+<div><label>Extra glyph / alphabet spacing (mm)</label><input id="glyphSpacing" type="number" value="0.00" step="0.10" oninput="textGlyphSpacingChanged(this.value)" title="Extra spacing inserted between each character. Applies to the selected TEXT object and to new TEXT."></div>
 <label>Paragraph alignment</label><div class="row"><select id="align" title="Align each paragraph line relative to the text object anchor"><option>Left</option><option selected>Center</option><option>Right</option><option>Justify</option></select><button onclick="addParagraph()">ADD TO PREVIEW</button></div>
 <div class="tiny">Text is generated as single-line stroke geometry for plotting/cutting, not filled outline text.</div>
 <div class="row"><button type="button" id="textMirrorXBtn" onclick="textToggleMirror('X')">MIRROR X</button><button type="button" id="textMirrorYBtn" onclick="textToggleMirror('Y')">MIRROR Y</button></div>
@@ -3413,8 +3419,8 @@ ENABLE PREFLIGHT SAFETY (BOUNDARY CHECK)
   </div>
   <div class="sfc-set-filter" aria-label="Character set filter">
    <button type="button" data-glyphset="all" class="active" onclick="glyphSetFilter('all')">ALL</button>
-   <button type="button" data-glyphset="caps" onclick="glyphSetFilter('caps')">A–Z</button>
-   <button type="button" data-glyphset="lower" onclick="glyphSetFilter('lower')">a–z</button>
+   <button type="button" data-glyphset="caps" title="Capital letters A–Z" aria-label="Capital letters A to Z" onclick="glyphSetFilter('caps')">A–Z</button>
+   <button type="button" data-glyphset="lower" title="Lowercase letters a–z" aria-label="Lowercase letters a to z" onclick="glyphSetFilter('lower')">a–z</button>
    <button type="button" data-glyphset="numbers" onclick="glyphSetFilter('numbers')">0–9</button>
    <button type="button" data-glyphset="symbols" onclick="glyphSetFilter('symbols')">SYMBOLS</button>
    <button type="button" data-glyphset="chinese" onclick="glyphSetFilter('chinese')">中文</button>
@@ -3432,7 +3438,7 @@ ENABLE PREFLIGHT SAFETY (BOUNDARY CHECK)
    <button class="primary" onclick="installGlyphFont()">INSTALL + USE FONT</button>
   </div>
  </div>
- <div class="tiny">Draw freely with mouse, stylus, or finger. Each press-and-drag gesture becomes one centerline stroke. Lift and draw again for disconnected parts. No grid and no snapping. Font editing sends no machine motion.</div>
+ <div class="tiny">Draw freely with mouse, stylus, or finger. Each press-and-drag gesture becomes one centerline stroke. Lift and draw again for disconnected parts. Guides mark the baseline, descenders and character spacing; drawing remains freehand without snapping. Font editing sends no machine motion.</div>
  <div id="glyphList" class="glyphGrid"></div>
 </div>
 </details>
@@ -3993,6 +3999,7 @@ async function machineHomeForPaper(){
  }catch(e){ldmAlert(e.message)}
 }
 async function setPaperOrigin(){
+ if(!window.ldmFoamMaterialActive?.())window.ldmRequireEndLift?.(false);
  if(!Number.isFinite(liveToolPos.x)||!Number.isFinite(liveToolPos.y)||!Number.isFinite(liveToolPos.z))
    return ldmAlert('Current XYZ is not known yet. HOME XYZ, manually set TOOL MODE and SURFACE Z to tool contact first.');
 
@@ -4321,6 +4328,7 @@ function glyphInit(){
    c.dataset.freehandBound='1';
    let drawing=false,last=null;
    const point=e=>{
+     if(window.ldmGlyphPointFromEvent)return window.ldmGlyphPointFromEvent(e,c);
      const r=c.getBoundingClientRect();
      let nx=(e.clientX-r.left)/r.width,ny=1-(e.clientY-r.top)/r.height;
      nx=Math.max(0,Math.min(1,nx));ny=Math.max(0,Math.min(1,ny));
@@ -4352,11 +4360,12 @@ function glyphInit(){
 }
 function drawGlyphCanvas(){
  const c=$('glyphCanvas'),x=c.getContext('2d'),w=c.width,h=c.height;
- x.clearRect(0,0,w,h);x.fillStyle='#fff';x.fillRect(0,0,w,h);
- const P=p=>[p[0]*w,h-p[1]*h];
+ x.clearRect(0,0,w,h);x.fillStyle=window.ldmGlyphCanvasTheme?.().paper||'#fff';x.fillRect(0,0,w,h);
+ window.ldmDrawGlyphGuides?.(x,w,h);
+ const P=p=>window.ldmGlyphCanvasPoint?.(p,w,h)||[p[0]*w,h-p[1]*h];
  function stroke(st,active){
    if(!st.length)return;
-   x.strokeStyle='#111';x.lineWidth=2.2;x.lineCap='round';x.lineJoin='round';
+   x.strokeStyle=window.ldmGlyphCanvasTheme?.().ink||'#111';x.lineWidth=2.2;x.lineCap='round';x.lineJoin='round';
    x.beginPath();let q=P(st[0]);x.moveTo(...q);
    for(let i=1;i<st.length;i++){q=P(st[i]);x.lineTo(...q)}
    x.stroke();
@@ -4376,14 +4385,14 @@ function clearGlyph(){glyphStrokes=[];glyphStroke=[];let ch=$('glyphChar').value
 function newGlyphStroke(){glyphCommitStroke();drawGlyphCanvas()}
 function undoGlyphPoint(){if(glyphStroke.length)glyphStroke.pop();else if(glyphStrokes.length){glyphStroke=glyphStrokes.pop();glyphStroke.pop()}drawGlyphCanvas()}
 function undoGlyphStroke(){if(glyphStroke.length)glyphStroke=[];else glyphStrokes.pop();drawGlyphCanvas()}
-function saveGlyphNext(){glyphSaveCurrent();glyphNext()}
+function saveGlyphNext(){if(glyphSaveCurrent()!==false)glyphNext()}
 function skipGlyph(){glyphNext()}
 function refreshGlyphList(){let g=$('glyphList');if(g){g.innerHTML='';Object.keys(glyphFont).sort().forEach(ch=>{let b=document.createElement('button');b.textContent=glyphDisplay(ch);b.onclick=()=>glyphSelect(ch);g.appendChild(b)})}renderGlyphPalette()}
 function exportFont(){
- glyphSaveCurrent();let payload={format:'DATOYOL_STROKE_FONT',version:1,name:glyphMeta.name,spacing:glyphMeta.spacing,glyphs:glyphFont};
+ if(glyphSaveCurrent()===false)return;let payload={format:'DATOYOL_STROKE_FONT',version:1,name:glyphMeta.name,spacing:glyphMeta.spacing,glyphs:glyphFont};
  let blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=(glyphMeta.name.replace(/[^a-z0-9_-]+/gi,'_')||'DAToyol_Stroke_Font')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);
 }
-function installGlyphFont(){glyphSaveCurrent();$('fontSource').value='custom';ldmAlert(`Stroke font installed for TEXT: ${glyphMeta.name}\n${Object.keys(glyphFont).length} glyph(s)`)}
+function installGlyphFont(){if(glyphSaveCurrent()===false)return;$('fontSource').value='custom';$('fontSource').dispatchEvent(new Event('change',{bubbles:true}));window.ldmUseFontSpacing?.();ldmAlert(`Stroke font installed for TEXT: ${glyphMeta.name}\n${Object.keys(glyphFont).length} glyph(s)`)}
 $('fontUpload').addEventListener('change',async e=>{let f=e.target.files[0];if(!f)return;try{let j=JSON.parse(await f.text());glyphFont=j.glyphs||j;glyphMeta={name:j.name||'Imported Stroke Font',spacing:+j.spacing||1.18};localStorage.setItem('a1GlyphFont',JSON.stringify(glyphFont));localStorage.setItem('a1GlyphFontMeta',JSON.stringify(glyphMeta));$('fontName').value=glyphMeta.name;$('fontSpacing').value=glyphMeta.spacing;loadNewGlyph();refreshGlyphList()}catch(err){ldmAlert('Invalid font JSON: '+err.message)}e.target.value=''});
 
 const builtin={
@@ -4398,12 +4407,12 @@ const builtin={
  'T':[[[0,0],[1,0]],[[.5,0],[.5,1]]],
  ' ':[]
 };
-function glyphFor(ch,o){if(o?.fontSource==='typewriter')return window.ldmTypewriterGlyph(ch);return glyphFont[ch]||{strokes:builtin[ch.toUpperCase()]||[],advance:1}}
+function glyphFor(ch,o){if(o?.fontMetrics===2){if(o?.fontSource==='custom'&&glyphFont[ch])return glyphFont[ch];if(window.ldmSchoolGlyph)return window.ldmSchoolGlyph(ch,o?.fontSource);}if(o?.fontSource==='typewriter')return window.ldmTypewriterGlyph(ch);return glyphFont[ch]||{strokes:builtin[ch.toUpperCase()]||[],advance:1}}
 function addParagraph(){
  let text=$('paraText').value;if(!text)return;
  // Every newly inserted text object starts at the physical paper centre.
  const pw=Number($('paperW')?.value)||256, ph=Number($('paperH')?.value)||256;
- let obj={text,x:0,y:0,size:Number($('textSize').value),spacing:Number($('lineSpacing').value),glyphSpacing:Number($('glyphSpacing')?.value)||0,align:($('align')?.value||'Center'),fontSource:($('fontSource')?.value||'builtin'),rot:0,scale:1};
+ let obj={text,fontMetrics:2,x:0,y:0,size:Number($('textSize').value),spacing:Number($('lineSpacing').value),glyphSpacing:Number($('glyphSpacing')?.value)||0,align:($('align')?.value||'Center'),fontSource:($('fontSource')?.value||'builtin'),rot:0,scale:1};
  textObjects.push(obj);selectedText=textObjects.length-1;renderTextObjects();
 }
 function selectTextObject(idx){
@@ -4439,15 +4448,16 @@ function refreshTextObjectList(){
    TEXT strokes + hit area + editor live in ONE transformed group.  This mirrors the
    proven BC9M MultiSVG architecture and eliminates the legacy screen-space overlay. */
 function ldmTextLocalRawPaths(o){
+ const guided=window.ldmParagraphGuideLayout?.(o);if(guided)return guided.paths;
  const out=[],size=Number(o?.size)||0,spacing=Number(o?.spacing)||1.25,glyphGap=Number(o?.glyphSpacing)||0;
  const lines=String(o?.text||'').split('\n');
- const layout=lines.map(line=>{const chars=[...line],widths=chars.map(ch=>(glyphFor(ch,o).advance||1)*size*.75),advances=widths.map((w,i)=>i<chars.length-1?Math.max(.25,w+glyphGap):w);return {chars,advances,total:advances.reduce((a,b)=>a+b,0)}});
+ const layout=lines.map((line,lineIndex)=>{const chars=[...line],glyphs=chars.map((ch,i)=>window.ldmTextGlyphAt?.(ch,o,lineIndex,i)||glyphFor(ch,o)),widths=glyphs.map(gl=>window.ldmGlyphAdvance?.(gl,o,size)??(gl.advance||1)*size*.75),advances=widths.map((w,i)=>i<chars.length-1?Math.max(.25,(window.ldmHandwritingAdvance?.(chars[i],chars[i+1],o,lineIndex,i,w)??w)+glyphGap):w);return {chars,glyphs,advances,total:advances.reduce((a,b)=>a+b,0)}});
  const target=Math.max(0,...layout.map(l=>l.total));let y=0;
- layout.forEach(({chars,advances,total},lineIndex)=>{
+ layout.forEach(({chars,glyphs,advances,total},lineIndex)=>{
   const gaps=chars.map((ch,i)=>ch===' '&&chars.slice(0,i).some(c=>c!==' ')&&chars.slice(i+1).some(c=>c!==' ')?i:-1).filter(i=>i>=0);
   const extra=o?.align==='Justify'&&lineIndex<layout.length-1&&gaps.length?(target-total)/gaps.length:0;
   let x=o?.align==='Right'?-total:(o?.align==='Left'||o?.align==='Justify'?0:-total/2);
-  chars.forEach((ch,i)=>{const gl=glyphFor(ch,o);(gl.strokes||[]).forEach(st=>{if(st?.length>1)out.push(st.map(p=>[x+Number(p[0])*size,y+(1-Number(p[1]))*size]))});x+=(advances[i]||0)+(gaps.includes(i)?extra:0)});
+  const items=chars.map((ch,i)=>{const gl=glyphs[i],item={ch,joinKey:lineIndex+':'+i,glyph:gl,paths:(gl.strokes||[]).map(st=>st.map(p=>[x+(Number(p[0])-(window.ldmGlyphLeft?.(gl,o)||0))*size,y+(1-Number(p[1]))*size]))};x+=(advances[i]||0)+(gaps.includes(i)?extra:0);return item;});out.push(...(window.ldmConnectedGlyphPaths?window.ldmConnectedGlyphPaths(items,o):items.flatMap(it=>it.paths.filter(st=>st.length>1))));
   y+=size*spacing;
  });return out;
 }
@@ -4465,7 +4475,7 @@ function renderTextObjects(){
   if(pts.length){
    const xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),b={minx:Math.min(...xs),maxx:Math.max(...xs),miny:Math.min(...ys),maxy:Math.max(...ys)};
    const pw=Number($('paperW')?.value)||256,ph=Number($('paperH')?.value)||256;
-   const cx=(b.minx+b.maxx)/2,cy=(b.miny+b.maxy)/2;
+   const guided=!!window.ldmParagraphGuideArea?.(),cx=guided?0:(b.minx+b.maxx)/2,cy=guided?0:(b.miny+b.maxy)/2;
    grp.setAttribute('transform',`translate(${pw/2+(Number(o.x)||0)} ${ph/2+(Number(o.y)||0)}) rotate(${Number(o.rot)||0}) scale(${(o.mx?-1:1)*objScale} ${(o.my?-1:1)*objScale}) translate(${-cx} ${-cy})`);
    const hit=document.createElementNS(NS,'rect');hit.setAttribute('x',b.minx);hit.setAttribute('y',b.miny);hit.setAttribute('width',Math.max(.01,b.maxx-b.minx));hit.setAttribute('height',Math.max(.01,b.maxy-b.miny));hit.setAttribute('fill','transparent');hit.setAttribute('stroke','none');hit.style.pointerEvents='all';hit.style.cursor='move';hit.dataset.ldmTextHit=String(idx);hit.dataset.role='move';grp.insertBefore(hit,grp.firstChild);
    if(selectedPreviewObject?.kind==='text'&&selectedPreviewObject.idx===idx){
@@ -4488,7 +4498,7 @@ let svgArtDrag=null;
 function initSvgArtworkDrag(){
  const svg=$('art');
  svg.addEventListener('pointerdown',ev=>{
-   if(!ldmProductionPointerAllowed()||kSvgEdit.mode||ev.target.closest?.('#kSvgEditOverlay,[data-ldm-svg-hit]'))return;
+   if(ldmVectorLayerLocked()||!ldmProductionPointerAllowed()||kSvgEdit.mode||ev.target.closest?.('#kSvgEditOverlay,[data-ldm-svg-hit]'))return;
    if(!svgText || ev.target.closest?.('.ldmSvgObject') || ev.target.closest?.('#objectEditOverlay') || ev.target.closest?.('.a1text') || ev.target.closest?.('.teachPath') || ev.target.closest?.('#toolPositionOverlay') || ev.target.closest?.('#cameraPaperOverlay'))return;
    const p=svgPointerPoint(ev);
    svgArtDrag={x:p.x,y:p.y,ox:Number($('svgX').value||0),oy:Number($('svgY').value||0),id:ev.pointerId};ldmBeginVectorGesture();
@@ -5333,7 +5343,7 @@ function ldmBeginVectorGesture(){
  ldmVectorGesture={inverse:art?.getScreenCTM()?.inverse(),bounds:artworkBounds(),object:o||null};
 }
 function ldmApplyVectorGesture(){
- if(!ldmProductionPointerAllowed())return;const session=ldmVectorGesture,b=session?.bounds;if(!b)return;
+ if(!ldmProductionPointerAllowed())return;const session=ldmVectorGesture,b=session?.bounds;if(!b||session.object?.locked)return;
  const o=session.object,art=$('art'),layer=o?art?.querySelector(`.ldmMultiSvg[data-svg-index="${window.ldmSelectedSvg}"]`):$('plotArtworkLayer');if(!layer)return;
  let x=Number($('svgX').value)||0,y=Number($('svgY').value)||0,scale=(Number($('scale').value)||100)/100,rot=Number($('rotate').value)||0;
  if(o){ldmSnapshot()}else{
@@ -5398,6 +5408,7 @@ window.addEventListener('pointermove',kSvgEditMove,true);
 window.addEventListener('pointerup',kSvgEditEnd,true);
 window.addEventListener('pointercancel',kSvgEditEnd,true);
 function centerArt(){
+ if(ldmVectorLayerLocked()){ldmLoadControls();ldmLayerLockNotice();return;}
  $('svgX').value='0.0'; $('svgY').value='0.0';
  updateSvgPlacement();
  if($('job')&&svgText)$('job').textContent='SVG CENTERED — X offset 0.0 / Y offset 0.0.';
@@ -5407,12 +5418,14 @@ function sendtoPreview(){
 }
 
 function fitArt(){
+ if(ldmVectorLayerLocked()){ldmLoadControls();ldmLayerLockNotice();return;}
  const b=artworkBounds(); if(!b)return;
  const pw=Number($('paperW').value||256),ph=Number($('paperH').value||256),w=b.maxx-b.minx,h=b.maxy-b.miny;
  if(w<=0||h<=0)return;
  $('scale').value=Math.max(1,Math.min(300,90*Math.min(pw/w,ph/h))).toFixed(1); centerArt();
 }
 function nudgeSvg(dx,dy){
+ if(ldmVectorLayerLocked()){ldmLoadControls();ldmLayerLockNotice();return;}
  $('svgX').value=(Number($('svgX').value||0)+dx).toFixed(1); $('svgY').value=(Number($('svgY').value||0)+dy).toFixed(1); updateSvgPlacement();
 }
 function collectPaths(){
@@ -5484,6 +5497,7 @@ let preflightSafetyEnabled=true;
 
 
 function clearPreviewArea(){
+ if(window.ldmSvgObjects?.some(o=>o.locked)){ldmLayerLockNotice();return;}
  kSvgEdit.mode=null;kSvgEdit.pointerId=null;
  rawSvgPaths=[];placedSvgPaths=[];
  document.querySelectorAll('#kSvgEditor,.kSvgEditor').forEach(n=>n.remove());
@@ -5561,22 +5575,15 @@ async function ldmBuild3mfCanvasThumbnail(packageFilename){
   const im=new Image(), u=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
   await new Promise((ok,bad)=>{im.onload=ok;im.onerror=bad;im.src=u});
   const c=document.createElement('canvas'); c.width=512;c.height=512; const x=c.getContext('2d');
-  // Clean Canvas artwork snapshot: deliberately excludes editor UI/handles/grid/cursor.
-  x.fillStyle='#f6b900';x.fillRect(0,0,512,512);
-  const artX=18,artY=18,artW=476,artH=278;
-  x.fillStyle='#f6b900';x.fillRect(artX,artY,artW,artH);
-  const sc=Math.min((artW-20)/im.width,(artH-20)/im.height),dw=im.width*sc,dh=im.height*sc;
+  // White artwork area and prominent red repeat instruction, independent of UI theme.
+  x.fillStyle='#ffffff';x.fillRect(0,0,512,512);
+  const artX=16,artY=16,artW=480,artH=288;
+  const sc=Math.min(artW/im.width,artH/im.height),dw=im.width*sc,dh=im.height*sc;
   x.drawImage(im,artX+(artW-dw)/2,artY+(artH-dh)/2,dw,dh);URL.revokeObjectURL(u);
-  const clean=String(packageFilename||'LDM PLOT').replace(/\.gcode(?:\.3mf)?$/i,'').replace(/^LDM-\d+-PLOT-/i,'LDM-');
-  const val=id=>String(document.getElementById(id)?.value??'').trim();
-  const sz=val('v3QuickSurfaceValue')||'—',zl=val('v3QuickToolLift')||val('toolLiftMm')||'—',sp=val('v3QuickMachineSpeed')||val('plotSpeed')||'—';
-  // Large legacy-style information region for the real A1 LCD.
-  x.fillStyle='#e8380d';x.fillRect(14,302,484,76);x.strokeStyle='#111';x.lineWidth=4;x.strokeRect(14,302,484,76);
-  x.textAlign='center';x.fillStyle='#fff';x.font='900 40px Arial';x.fillText('REPEAT PLOT',256,340);x.font='900 21px Arial';x.fillText('ONLY IN LDM APP',256,368);
-  x.fillStyle='#111';x.fillRect(14,382,484,52);x.strokeStyle='#f6b900';x.lineWidth=3;x.strokeRect(14,382,484,52);
-  x.textAlign='left';x.fillStyle='#f6b900';x.font='900 23px Arial';x.fillText('JOB:',26,416);x.fillStyle='#fff';x.font='900 22px Arial';x.fillText(clean.slice(0,28),92,416);
-  const cols=[['SZ:',sz],['ZL:',zl],['SPD:',sp]];
-  cols.forEach((q,i)=>{const bx=14+i*(484/3),bw=484/3;x.fillStyle='#111';x.fillRect(bx,438,bw,60);x.strokeStyle='#f6b900';x.lineWidth=3;x.strokeRect(bx,438,bw,60);x.fillStyle='#f6b900';x.font='900 20px Arial';x.textAlign='left';x.fillText(q[0],bx+10,461);x.fillStyle='#fff';x.font='900 27px Arial';x.fillText(String(q[1]).slice(0,10),bx+10,490)});
+  x.fillStyle='#d71920';x.fillRect(0,320,512,192);
+  x.textAlign='center';x.textBaseline='middle';x.fillStyle='#ffffff';
+  x.font='900 62px Arial';x.fillText('REPEAT JOB',256,371,480);
+  x.font='900 60px Arial';x.fillText('IN LDM APP',256,455,480);
   const full=c.toDataURL('image/png');const sm=document.createElement('canvas');sm.width=128;sm.height=128;sm.getContext('2d').drawImage(c,0,0,128,128);
   return {thumbnail_512:full,thumbnail_128:sm.toDataURL('image/png')};
  }catch(e){console.warn('LDM thumbnail capture fallback:',e);return null}
@@ -6000,6 +6007,7 @@ async function startDirectDrawSequence(){
 }
 
 async function startJob(mode='mqtt'){
+ window.ldmRequireEndLift?.(true);
  if(window.ldmVectorColourEnabled){try{window.ldmVectorColourHoldSeconds();}catch(e){await ldmAlert(e.message);return;}}
  if(window.ldmVectorColourEnabled && ((mode!=='sd'&&mode!=='download')||($('toolMode')?.value||'pen')!=='pen'||($('penLiftDuringPlot')?.value||'on')!=='on'||(typeof textObjects!=='undefined'&&textObjects.length))){await ldmAlert('MULTICOLOUR VECTOR requires an SD job, PEN mode, pen lift ON, and VECTOR files only. Send TEXT to CANVAS first.');return;}
 
@@ -6080,17 +6088,7 @@ async function startJob(mode='mqtt'){
  // Remove ultra-dense consecutive SVG points. Keep a point when it is at least
  // 0.12 mm from the last transmitted point; always preserve the path endpoint.
  const rawpp=ftePaperCoords ? paths.map(path=>path.map(q=>[q[0],q[1]])) : paths.map(path=>path.map(T));
- const pp=rawpp.map(path=>{
-   if(path.length<=2)return path;
-   const out=[path[0]];
-   for(let i=1;i<path.length-1;i++){
-     const a=out[out.length-1],b=path[i];
-     if(Math.hypot(b[0]-a[0],b[1]-a[1])>=0.12)out.push(b);
-   }
-   const last=path[path.length-1],prev=out[out.length-1];
-   if(last[0]!==prev[0]||last[1]!==prev[1])out.push(last);
-   return out;
- });
+ const pp=window.ldmThinPlotPaths(rawpp);
  const preparedBounds=ldmBounds(pp);
  const bx0=preparedBounds.minx,bx1=preparedBounds.maxx,by0=preparedBounds.miny,by1=preparedBounds.maxy;
  const boundaryEps=0.02, boundsSafe=bx0>=-boundaryEps&&by0>=-boundaryEps&&bx1<=pw+boundaryEps&&by1<=ph+boundaryEps;
@@ -6128,83 +6126,8 @@ async function startJob(mode='mqtt'){
    $('job').textContent='DRAW BLOCKED — unknown End Position.';
    return;
  }
- let g=['G91'];
- let cur=[0,0], penIsUp=false;
- let meshDelta=0; // START is the taught BED/PLATE CENTER contact plane.
- const meshOn=LDM_ZMESH.mode!=='off';
- const drawable=pp.filter(path=>path && path.length>=2);
- for(let pi=0;pi<drawable.length;pi++){
-   const path=drawable[pi];
-   if(colourPlan?.starts.has(pi)){
-     const name=colourPlan.starts.get(pi);
-     if(pi>0){window.ldmVectorColourPause(g,name,lift,zf,penIsUp);penIsUp=true;}
-     else g.push('; LDM FIRST PEN - '+name);
-   }
-   // Lift is always relative to the LOCAL compensated surface.
-   if(liftDuring && !penIsUp){
-     const upAmount=(isVinyl && pi>0)?(lift+cutDepth):lift;
-     g.push('G91');g.push(`G1 Z${upAmount.toFixed(3)} F${zf}`);g.push('M400');penIsUp=true;
-   }
-   const first=[path[0][0]-pw/2,-(path[0][1]-ph/2)];
-   const firstDelta=meshOn?zMeshDeltaAt(first[0],first[1],pw,ph):0;
-   const travelDz=firstDelta-meshDelta;
-   if(meshOn && Math.abs(travelDz)>0.0005)
-     g.push(`G1 X${(first[0]-cur[0]).toFixed(3)} Y${(first[1]-cur[1]).toFixed(3)} Z${travelDz.toFixed(3)} F${tf}`);
-   else
-     g.push(`G1 X${(first[0]-cur[0]).toFixed(3)} Y${(first[1]-cur[1]).toFixed(3)} F${tf}`);
-   cur=first;meshDelta=firstDelta;g.push('M400');
-   if(liftDuring){
-     const downAmount=isVinyl?(lift+cutDepth):lift;
-     g.push('G91');g.push(`G1 Z${(-downAmount).toFixed(3)} F${zf}`);g.push('M400');penIsUp=false;
-   }
-   for(let i=1;i<path.length;i++){
-     const q=[path[i][0]-pw/2,-(path[i][1]-ph/2)];
-     const qDelta=meshOn?zMeshDeltaAt(q[0],q[1],pw,ph):0;
-     const dz=qDelta-meshDelta;
-     if(meshOn && Math.abs(dz)>0.0005)
-       g.push(`G1 X${(q[0]-cur[0]).toFixed(3)} Y${(q[1]-cur[1]).toFixed(3)} Z${dz.toFixed(3)} F${df}`);
-     else
-       g.push(`G1 X${(q[0]-cur[0]).toFixed(3)} Y${(q[1]-cur[1]).toFixed(3)} F${df}`);
-     cur=q;meshDelta=qDelta;
-   }
-   g.push('M400');
- }
-
- // End-of-plot behavior is explicit and independent of inter-path pen lift.
- // Top Left means preview/paper top-left relative to taught BED/PLATE CENTER:
- // X=-paperW/2, Y=+paperH/2 in the established preview-corrected machine mapping.
- if(endLift && !penIsUp){
-   const upAmount=isVinyl?(lift+cutDepth):lift;
-   g.push('G91');g.push(`G1 Z${upAmount.toFixed(3)} F${zf}`);g.push('M400');penIsUp=true;
- }
- if(endPos==='topLeft'){
-   const target=[-pw/2,ph/2];
-   const targetDelta=meshOn?zMeshDeltaAt(target[0],target[1],pw,ph):0;
-   const dz=targetDelta-meshDelta;
-   g.push('G91');
-   g.push(`G1 X${(target[0]-cur[0]).toFixed(3)} Y${(target[1]-cur[1]).toFixed(3)}${meshOn&&Math.abs(dz)>0.0005?' Z'+dz.toFixed(3):''} F${tf}`);
-   g.push('M400');cur=target;meshDelta=targetDelta;
- }
- if(endPos==='center'){
-   const target=[0,0];
-   const targetDelta=meshOn?zMeshDeltaAt(0,0,pw,ph):0;
-   const dz=targetDelta-meshDelta;
-   g.push('G91');
-   g.push(`G1 X${(target[0]-cur[0]).toFixed(3)} Y${(target[1]-cur[1]).toFixed(3)}${meshOn&&Math.abs(dz)>0.0005?' Z'+dz.toFixed(3):''} F${tf}`);
-   g.push('M400');cur=target;meshDelta=targetDelta;
- }
- // Save the generated physical endpoint relative to BED/PLATE CENTER.
- FTE.expectedEndRelativeXY={x:cur[0],y:cur[1],endPos:endPos};
- // PEN UP deliberately remains lifted; STAY AS IS adds no final Z move.
-
- if(g.length<=3){
-   log.textContent+='\nDRAW BLOCKED — trajectory generated no motion.';
-   return;
- }
- // Plotter safety: force both heaters OFF at the start of every generated job.
-     if(!g.some(x=>String(x).trim().toUpperCase()==='M140 S0')) g.unshift('M140 S0');
-     if(!g.some(x=>String(x).trim().toUpperCase()==='M104 S0')) g.unshift('M104 S0');
-     const code=g.join('\n');
+ const built=window.ldmBuildPlotMotion({paths:pp,pw,ph,isVinyl,lift,cutDepth,zf,df,tf,liftDuring,endPos,endClearance:window.ldmRequireEndLift(true),meshOn:LDM_ZMESH.mode!=='off',meshAt:(x,y)=>zMeshDeltaAt(x,y,pw,ph),meshCeiling:window.ldmPlotMeshCeiling(pw,ph),colourPlan});
+ const code=built.gcode,g=built.lines;FTE.expectedEndRelativeXY=built.end;
 
  // DOWNLOAD uses the exact same freshly-built FTE, preflight, Surface-Z compensation
  // and final G-code as SD SAVE; only the destination differs. It never uses FTPS.
@@ -7325,7 +7248,10 @@ window.ldmSvgObjects=[];window.ldmSelectedSvg=-1;window.ldmPendingSvgName='SVG';
 
 const ldmVectorBoundsCache=new WeakMap();
 function ldmBounds(paths){const stored=Array.isArray(paths)&&ldmSvgObjects.some(o=>o.raw===paths);if(stored&&ldmVectorBoundsCache.has(paths))return ldmVectorBoundsCache.get(paths);let minx=Infinity,miny=Infinity,maxx=-Infinity,maxy=-Infinity,count=0;for(const st of paths||[])for(const p of st||[]){const x=p[0],y=p[1];if(!Number.isFinite(x)||!Number.isFinite(y))continue;minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);count++;}const bounds=count?{minx,maxx,miny,maxy}:null;if(stored)ldmVectorBoundsCache.set(paths,bounds);return bounds;}
-function ldmSnapshot(){const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return;o.x=+$('svgX').value||0;o.y=+$('svgY').value||0;o.scale=+$('scale').value||100;o.rot=+$('rotate').value||0;o.mx=!!$('mirrorX').checked;o.my=!!$('mirrorY').checked}
+// Layer locks protect edits only; visibility and output geometry are independent.
+function ldmVectorLayerLocked(){return !!window.ldmSvgObjects?.[window.ldmSelectedSvg]?.locked}
+function ldmLayerLockNotice(){const node=$('job');if(node)node.textContent='LAYER LOCKED — unlock this layer to edit.';}
+function ldmSnapshot(){const o=ldmSvgObjects[ldmSelectedSvg];if(!o||o.locked)return;o.x=+$('svgX').value||0;o.y=+$('svgY').value||0;o.scale=+$('scale').value||100;o.rot=+$('rotate').value||0;o.mx=!!$('mirrorX').checked;o.my=!!$('mirrorY').checked}
 function ldmLoadControls(){const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return;svgText=o.text;rawSvgPaths=o.raw; /* Stored geometry is read-only; imports replace arrays and transforms create new points. */$('svgX').value=o.x.toFixed(2);$('svgY').value=o.y.toFixed(2);$('scale').value=o.scale.toFixed(2);$('rotate').value=o.rot.toFixed(1);$('mirrorX').checked=o.mx;$('mirrorY').checked=o.my;syncMirrorButtons()}
 function ldmRefreshSvgList(){
  ldmSyncSparsePreview();
@@ -7338,7 +7264,7 @@ function ldmRefreshSvgList(){
    const pick=document.createElement('button');pick.type='button';pick.className='textObjectPick';
    pick.textContent=`${i+1}. ${o.name||'Vector file'}`;pick.title='Select this file on Preview';pick.onclick=()=>ldmSelectSvgObject(i);
    const del=document.createElement('button');del.type='button';del.className='stop textObjectDelete';del.textContent='DELETE';
-   del.onclick=()=>{if(i!==ldmSelectedSvg)ldmSelectSvgObject(i);ldmDeleteSvg();};
+   del.disabled=!!o.locked;del.onclick=()=>{if(i!==ldmSelectedSvg)ldmSelectSvgObject(i);ldmDeleteSvg();};
    row.append(pick,del);box.appendChild(row);
  });
 }
@@ -7352,11 +7278,11 @@ function ldmAttachObjectInteraction(g,o,i){
  hit.setAttribute('x',b.minx);hit.setAttribute('y',b.miny);
  hit.setAttribute('width',Math.max(.01,b.maxx-b.minx));hit.setAttribute('height',Math.max(.01,b.maxy-b.miny));
  hit.setAttribute('fill','transparent');hit.setAttribute('stroke','none');
- hit.style.pointerEvents='all';hit.style.cursor='move';
+ hit.style.pointerEvents=o.locked?'none':'all';hit.style.cursor=o.locked?'default':'move';
  hit.dataset.ldmSvgHit=String(i);hit.dataset.role='move';
  g.insertBefore(hit,g.firstChild);
 
- if(i!==ldmSelectedSvg || selectedPreviewObject?.kind==='text')return;
+ if(o.locked || i!==ldmSelectedSvg || selectedPreviewObject?.kind==='text')return;
  const ed=document.createElementNS(NS,'g');ed.classList.add('ldmObjectEditorLocal');
  const box=document.createElementNS(NS,'rect');
  box.setAttribute('x',b.minx);box.setAttribute('y',b.miny);
@@ -7445,10 +7371,11 @@ function ldmSelectSvgObject(i){
  selectedPreviewObject={kind:'vector',idx:i};
  clearObjectEditOverlay?.();
  ldmLoadControls();ldmRefreshSvgList();if(!ldmRefreshVectorSelection())ldmRenderComposition();FTE.built=false;
- if($('job'))$('job').textContent='VECTOR SELECTED — drag inside its orange box, or use the handles.';
+ if($('job'))$('job').textContent=(ldmVectorLayerLocked()?'LAYER LOCKED — unlock this layer to edit.':'VECTOR SELECTED — drag inside its orange box, or use the handles.');
 }
-function ldmDuplicateSvg(){ldmSnapshot();const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return;const {raw,text,...settings}=o;const n={...JSON.parse(JSON.stringify(settings)),raw,text};n.name=o.name+' copy';n.x+=5;n.y-=5;ldmSvgObjects.splice(ldmSelectedSvg+1,0,n);ldmSelectedSvg++;ldmLoadControls();ldmRefreshSvgList();ldmRenderComposition();FTE.built=false}
+function ldmDuplicateSvg(){if(ldmVectorLayerLocked()){ldmLayerLockNotice();return;}ldmSnapshot();const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return;const {raw,text,...settings}=o;const n={...JSON.parse(JSON.stringify(settings)),raw,text};n.name=o.name+' copy';n.x+=5;n.y-=5;ldmSvgObjects.splice(ldmSelectedSvg+1,0,n);ldmSelectedSvg++;ldmLoadControls();ldmRefreshSvgList();ldmRenderComposition();FTE.built=false}
 function ldmDeleteSvg(){
+ if(ldmVectorLayerLocked()){ldmLayerLockNotice();return;}
  if(ldmSelectedSvg<0)return;const i=ldmSelectedSvg,art=$('art'),groups=[...art.querySelectorAll('.ldmMultiSvg[data-svg-index]')];
  const mounted=ldmProductionPointerAllowed()&&groups.length===ldmSvgObjects.length;
  ldmSvgObjects.splice(i,1);
@@ -7464,7 +7391,7 @@ function ldmDeleteSvg(){
  FTE.built=false;
 }
 
-function ldmMoveSvg(d){ldmSnapshot();let i=ldmSelectedSvg,j=i+d;if(i<0||j<0||j>=ldmSvgObjects.length)return;[ldmSvgObjects[i],ldmSvgObjects[j]]=[ldmSvgObjects[j],ldmSvgObjects[i]];ldmSelectedSvg=j;ldmRefreshSvgList();ldmRenderComposition();FTE.built=false}
+function ldmMoveSvg(d){ldmSnapshot();let i=ldmSelectedSvg,j=i+d;if(i<0||j<0||j>=ldmSvgObjects.length)return;if(ldmSvgObjects[i].locked||ldmSvgObjects[j].locked){ldmLayerLockNotice();return;}[ldmSvgObjects[i],ldmSvgObjects[j]]=[ldmSvgObjects[j],ldmSvgObjects[i]];ldmSelectedSvg=j;ldmRefreshSvgList();ldmRenderComposition();FTE.built=false}
 
 const bc9gSendSvgToPreview=sendSvgToPreview;
 async function ldmPrepareVectorGeometry(raw){
@@ -7481,6 +7408,7 @@ async function ldmPrepareVectorGeometry(raw){
  return {group:g,bounds:minx===Infinity?null:{minx,maxx,miny,maxy}};
 }
 sendSvgToPreview=async function(asyncImport=true){
+ if(window.ldmCanvasDraftImportBlocked?.()){if($('job'))$('job').textContent='CANVAS IMPORT WAITING — current artwork capture / import must finish.';return false;}
  if(window.ldmCanvasImportBusy)return;
  const importedText=svgText,importedName=window.ldmPendingSvgName;
  if(!importedText){$('job').textContent='Choose an SVG file first.';return false}
@@ -7497,12 +7425,13 @@ sendSvgToPreview=async function(asyncImport=true){
   $('job').textContent='BUILDING CANVAS — assembling preview…';
   await new Promise(resolve=>setTimeout(resolve,0));
   const prepared=await ldmPrepareVectorGeometry(paths);
+  if(window.ldmCanvasDraftImportBlocked?.(true))throw Error('Artwork capture began. Draft was not imported.');
   ldmSnapshot();const o={name:importedName||`SVG ${ldmSvgObjects.length+1}`,text:importedText,raw:paths,x:0,y:0,scale:100,rot:0,mx:false,my:false};
   ldmVectorNodeCache.set(o,{raw:paths,group:prepared.group});ldmVectorBoundsCache.set(paths,prepared.bounds);
   ldmSvgObjects.push(o);ldmSelectedSvg=ldmSvgObjects.length-1;svgText=importedText;rawSvgPaths=paths;
   selectedPreviewObject={kind:'vector',idx:ldmSelectedSvg};clearObjectEditOverlay?.();
   ldmLoadControls();ldmRefreshSvgList();ldmRenderComposition();FTE.built=false;if($('file'))$('file').value='';
-  $('job').textContent=`SVG ADDED — ${o.name} — ${ldmSvgObjects.length} SVG object(s).`;return true;
+  window.ldmCanvasDraftAdded?.();$('job').textContent=`SVG ADDED — ${o.name} — ${ldmSvgObjects.length} SVG object(s).`;return true;
  }catch(error){$('job').textContent='CANVAS IMPORT FAILED — '+error.message;return false}
  finally{window.ldmCanvasImportBusy=false}
 };
@@ -7510,7 +7439,7 @@ sendSvgToPreview=async function(asyncImport=true){
 const bc9gSourcePaths=sourcePaths;
 sourcePaths=function(){if(ldmSvgObjects.length){ldmSnapshot();return ldmSvgObjects.flatMap(ldmTransformPaths)}return bc9gSourcePaths()};
 const bc9gUpdateSvgPlacement=updateSvgPlacement;
-updateSvgPlacement=function(){if(ldmSvgObjects.length){
+updateSvgPlacement=function(){if(ldmVectorLayerLocked()){ldmLoadControls();ldmLayerLockNotice();return;}if(ldmSvgObjects.length){
  const art=$('art'),box=art?.viewBox?.baseVal,group=art?.querySelector(`.ldmMultiSvg[data-svg-index="${ldmSelectedSvg}"]`);
  if(group&&ldmProductionPointerAllowed()&&box?.width===(+$('paperW').value||256)&&box?.height===(+$('paperH').value||256)){
   ldmBeginVectorGesture();ldmFinishVectorGesture();FTE.built=false;return;
@@ -7532,7 +7461,7 @@ function ldmRefreshVectorSelection(){
 const bc9gArtworkBounds=artworkBounds;
 artworkBounds=function(){const o=ldmSvgObjects[ldmSelectedSvg];return o?ldmBounds(o.raw):bc9gArtworkBounds()};
 const bc9gResetSvgToImportState=resetSvgToImportState;
-resetSvgToImportState=function(){const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return bc9gResetSvgToImportState();o.x=0;o.y=0;o.scale=100;o.rot=0;o.mx=false;o.my=false;ldmLoadControls();ldmRenderComposition();FTE.built=false};
+resetSvgToImportState=function(){const o=ldmSvgObjects[ldmSelectedSvg];if(!o)return bc9gResetSvgToImportState();if(o.locked){ldmLayerLockNotice();return;}o.x=0;o.y=0;o.scale=100;o.rot=0;o.mx=false;o.my=false;ldmLoadControls();ldmRenderComposition();FTE.built=false};
 
 
 // BC9I: point the proven BC9G orange editor at the selected multiple-SVG object.
@@ -7556,6 +7485,7 @@ document.addEventListener('pointerdown',function(e){
  if(!ldmProductionPointerAllowed())return;
  const t=e.target?.closest?.('[data-ldm-svg-hit]');
  if(!t)return;
+ if((window.ldmArtworkEditBlocked?window.ldmArtworkEditBlocked():(window.ldmCanvasImportBusy||document.body.classList.contains('v3PreviewEditLocked')||(typeof V3_PREVIEW_EDIT_LOCK!=='undefined'&&V3_PREVIEW_EDIT_LOCK)||(typeof V3_JOB_MOTION_LOCK!=='undefined'&&V3_JOB_MOTION_LOCK)))){e.preventDefault();e.stopImmediatePropagation();return;}
  const i=Number(t.dataset.ldmSvgHit);
  if(!Number.isInteger(i)||i<0||i>=ldmSvgObjects.length)return;
  e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
@@ -7572,6 +7502,7 @@ document.addEventListener('pointerdown',function(e){
      renderTextObjects();
    }
  }
+ if(ldmSvgObjects[i]?.locked){ldmLayerLockNotice();return;}
  // Start move/scale/rotate from the actual clicked object/handle.
  svgArtDrag=null;ldmBeginVectorGesture();const role=t.dataset.role||'move',p=kSvgPointerPoint(e),b=kSvgBounds();if(!b)return;
  kSvgEdit.mode=role;kSvgEdit.pointerId=e.pointerId;kSvgEdit.start=p;
@@ -7963,7 +7894,7 @@ function v3ToolSignature(){
  const lift=Number(document.getElementById(isVinyl?'bladeLift':'penLift')?.value||document.getElementById('v3JobLift')?.value||0);
  const end=document.getElementById(isVinyl?'cutEndPosition':'plotEndPosition')?.value||document.getElementById('v3JobEnd')?.value||'topLeft';
  const depth=isVinyl?Math.max(0,Math.min(.30,Number(document.getElementById('cutDepth')?.value||document.getElementById('v3JobCutDepth')?.value||0))):0;
- return `${mode}|${lift.toFixed(3)}|${end}|${depth.toFixed(3)}`;
+ return `${mode}|${lift.toFixed(3)}|${end}|${depth.toFixed(3)}|${document.getElementById('ldmEndZLift')?.value||'UNSET'}`;
 }
 function v3MeshSignature(){
  try{const q=(typeof zMeshActiveSnapshot==='function')?zMeshActiveSnapshot():null;return JSON.stringify(q||{mode:window.LDM_ZMESH?.mode||'off'});}catch(_){return ''}
@@ -8325,7 +8256,7 @@ async function v4ConfirmMeshMaterialSetupDone(){
  });
 }
 zMeshFinishSave=async function(...a){/* V4.GUI.4GH: Step 3 confirmation is authoritative; no duplicate material popup. */const step3=document.getElementById('v3QuickMaterialCheck');if(step3&&!step3.checked){ldmAlert('STEP 3 — MATERIAL SETUP must be DONE before saving Z Mesh.');return;}if(step3?.checked)V3_MESH_MATERIAL_READY_SESSION=true;v3RepeatUi(false);V3_QS_REPEAT_MODE=false;v3QsCurrent(6,'Saving Z Mesh…');try{const r=await _v3MeshSave.apply(this,a);const q=LDM_ZMESH.saved;if(q){v3QsSet(6,'done',`${q.mode}-point mesh saved`);if(V3_REUSE.mesh){V3_REUSE.meshSig=v3MeshSignature();v3ReuseSave();}if(V3_QS.states[4].state==='done')V3_QS_Z_DEP_DIRTY=false;v3QsCurrent(7,'Load and prepare artwork');}return r;}catch(e){v3QsError(6,e.message);throw e;}};
-const _v3SendSvg=sendSvgToPreview;sendSvgToPreview=async function(...a){v3RepeatUi(false);V3_QS_REPEAT_MODE=false;try{const r=await _v3SendSvg.apply(this,a);v3QsCurrent(7,'Artwork placed in Preview');return r;}catch(e){v3QsError(7,e.message);throw e;}};
+const _v3SendSvg=sendSvgToPreview;sendSvgToPreview=async function(...a){if(window.ldmCanvasDraftImportBlocked?.()){const j=document.getElementById('job');if(j)j.textContent='CANVAS IMPORT WAITING — current artwork capture / import must finish.';return false;}const draftOnly=!!(V3_JOB_MOTION_LOCK||V3_SVG_SAVE_START_MOVING_LOCK||V3_SD_TRANSFER_ACTIVE||V3_AUTO_START_IN_FLIGHT||V3_AUTO_START_NEW_SD||ldmPlotStartBusy||window.ldmConfirmSendArtworkBusy?.());if(!draftOnly){v3RepeatUi(false);V3_QS_REPEAT_MODE=false;}try{const r=await _v3SendSvg.apply(this,a);if(!draftOnly)v3QsCurrent(7,'Artwork placed in Preview');return r;}catch(e){if(!draftOnly)v3QsError(7,e.message);throw e;}};
 const _v3FteBuild=fteBuild;fteBuild=function(...a){try{const r=_v3FteBuild.apply(this,a);if(FTE?.paths?.length){v3QsSet(7,'done',`${FTE.paths.length} FTE path(s) · ${FTE.pts||0} points`);v3QsCurrent(8,'Ready to save to A1 SD');}return r;}catch(e){v3QsError(7,e.message);throw e;}};
 const _v3StartJob=startJob;startJob=async function(mode,...a){if(mode==='sd'&&!v3QsCanUseJob())return;if(mode==='sd')v3QsCurrent(8,'Building and transferring project…');try{const r=await _v3StartJob.call(this,mode,...a);if(mode==='sd'){const t=window.ldmUiSourceText(document.getElementById('job'))||'';if(/^READY ON A1/i.test(t)){v3QsSet(8,'done',t.replace(/^READY ON A1\s*[—-]\s*/i,''));v3QsCurrent(9,'Choose PROJECT READY package');}else if(/ERROR|BLOCKED/i.test(t))v3QsError(8,t);}return r;}catch(e){if(mode==='sd')v3QsError(8,e.message);throw e;}};
 const _v3Verify=verifySelectedProject;verifySelectedProject=async function(...a){const ok=await _v3Verify.apply(this,a);const name=document.getElementById('sdPlotFiles')?.value||'';if(ok){v3QsSet(9,'done',name+' · PROJECT READY');v3QsCurrent(10,'Ready to start selected project');}else if(name)v3QsError(9,'Package not verified: '+name);return ok;};
@@ -8672,7 +8603,7 @@ body.ldm-dark .ldmDarkModeToggle[aria-pressed="true"]{background:#343b40!importa
 })();
 </script>
 <!-- V3.GUI.2DM: SURFACE Z COMPENSATION moved from TOOL MODE into its own ADVANCED tab; underlying mesh logic unchanged. -->
-<!-- V3.GUI.2DN — VECTOR naming + FILES ON PREVIEW unified object list; engine unchanged. -->
+<!-- V3.GUI.2DN — VECTOR naming + FILES ON CANVAS unified object list; engine unchanged. -->
 <!-- V3.GUI.2DY — preview controls relocated below preview; dark preview override fixed; resize pseudo-handle fill removed. -->
 
 <style id="ldmV3Gui2DZButtonStandard">
@@ -9006,10 +8937,11 @@ v3SvgSaveStartJob=function(){
      if(f)f.textContent='A1 connected — checking SD / FTPS…';
      const el=document.getElementById('sdConnectionTest');if(el)el.textContent='SD / FTPS DIAGNOSTIC\nTesting TCP 990 → TLS → login → read-only directory LIST…';v3GoldenSyncConsole();
      let pass=false;
-     try{const rr=await fetch('/bridge/sd/test-connection',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});const d=await rr.json();const lines=['SD / FTPS DIAGNOSTIC',`HOST ............ ${d.host||'—'}:990`];(d.stages||[]).forEach(q=>lines.push(`${String(q.stage).padEnd(16,'.')} ${q.status}${q.detail?' — '+q.detail:''}`));lines.push(`RESULT .......... ${d.success?'PASS':'FAIL'}`);if(d.error)lines.push('DETAIL .......... '+d.error);if(el)el.textContent=lines.join('\n');pass=!!d.success;}catch(e){if(el)el.textContent='SD / FTPS DIAGNOSTIC\nTEST ERROR — '+e.message;}
+     try{const rr=await fetch('/bridge/sd/test-connection',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'});const d=await rr.json();const lines=['SD / FTPS DIAGNOSTIC',`HOST ............ ${d.host||'—'}:990`];(d.stages||[]).forEach(q=>lines.push(`${String(q.stage).padEnd(16,'.')} ${q.status}${q.detail?' — '+q.detail:''}`));lines.push(`RESULT .......... ${d.success?'PASS':'FAIL'}`);if(d.error)lines.push('DETAIL .......... '+d.error);if(el)el.textContent=lines.join('\n');pass=rr.ok&&!!d.success;}catch(e){if(el)el.textContent='SD / FTPS DIAGNOSTIC\nTEST ERROR — '+e.message;}
      v3GoldenSyncConsole();
      if(f)f.textContent=pass?'CONNECTED + SD / FTPS PASS — check Experienced User, then press OK.':'A1 connected, but SD / FTPS check failed — retry when ready.';
      syncOk();
+     if(pass)document.dispatchEvent(new Event('ldm-entry-connection-pass26'));
    }catch(e){if(f)f.textContent='Connection failed — '+e.message;v3GoldenSyncConsole();}
  };
  async function openBrowserNow(){
@@ -9209,13 +9141,13 @@ body.ldm-dark #v3StepShow{background:#171b1e;color:#eef2ef}body.ldm-dark .v3Show
       <div class="v3QuickStepSurface v3-qs-locked v4MenuCard v4InfoGateCard" id="v3QuickSurfaceTile" aria-disabled="true">
         <div class="v4InfoArea"><b>4</b><div class="v4CardBody"><strong>SURFACE Z</strong>
         <small class="v4SetupHelp v4FirstTimeZJogHelp"><b>FIRST TIME SETUP</b> — Use MANUAL Z JOG to carefully lower the tool until it just touches the material surface. Use that physical touch point to establish Surface Z.</small>
-        <details id="v4Step4ZJog" class="v4Step4ZJog"><summary>Z JOG <span>⌄</span></summary><div class="v4Step4ZJogBody"><div id="v4Step4ZJogLive" class="ldmZJogLiveMove" aria-live="polite"><span>CURRENT Z MOVE FROM HOME</span><strong>—</strong></div><div class="v4Step4ZJogGrid"><div><b>↑ UP COARSE</b><button type="button" onclick="v4Step4Jog(5)">+5</button><button type="button" onclick="v4Step4Jog(4)">+4</button><button type="button" onclick="v4Step4Jog(3)">+3</button><button type="button" onclick="v4Step4Jog(2)">+2</button><button type="button" onclick="v4Step4Jog(1)">+1</button></div><div><b>↑ UP FINE</b><button type="button" onclick="v4Step4Jog(.5)">+0.5</button><button type="button" onclick="v4Step4Jog(.4)">+0.4</button><button type="button" onclick="v4Step4Jog(.3)">+0.3</button><button type="button" onclick="v4Step4Jog(.2)">+0.2</button><button type="button" onclick="v4Step4Jog(.1)">+0.1</button></div><div><b>↓ DOWN FINE</b><button type="button" onclick="v4Step4Jog(-.1)">−0.1</button><button type="button" onclick="v4Step4Jog(-.2)">−0.2</button><button type="button" onclick="v4Step4Jog(-.3)">−0.3</button><button type="button" onclick="v4Step4Jog(-.4)">−0.4</button><button type="button" onclick="v4Step4Jog(-.5)">−0.5</button></div><div><b>↓ DOWN COARSE</b><button type="button" onclick="v4Step4Jog(-1)">−1</button><button type="button" onclick="v4Step4Jog(-2)">−2</button><button type="button" onclick="v4Step4Jog(-3)">−3</button><button type="button" onclick="v4Step4Jog(-4)">−4</button><button type="button" onclick="v4Step4Jog(-5)">−5</button></div></div></div></details><div class="v4ExperiencedSurfaceBox"><span class="v4ExperiencedSurfaceTag">EXPERIENCED USER</span><label class="v4SurfaceSimpleLabel" for="v3QuickSurfaceValue">SURFACE Z (mm)</label><div class="v4SurfaceEntry"><input type="number" id="v3QuickSurfaceValue" disabled value="-0.000" step="0.001" inputmode="decimal" aria-label="Surface Z mm"><span>mm</span></div></div><button type="button" id="v4OpenZMesh">Z MESH</button><small class="v4ZMeshOptionalNote">Z MESH is optional when fixed Surface Z is sufficient. Use Z Mesh to compensate for an uneven surface.</small></div></div>
+        <details id="v4Step4ZJog" class="v4Step4ZJog"><summary>Z JOG <span>⌄</span></summary><div class="v4Step4ZJogBody"><div id="v4Step4ZJogLive" class="ldmZJogLiveMove" aria-live="polite"><span>CURRENT Z MOVE FROM HOME</span><strong>—</strong></div><div class="v4Step4ZJogGrid"><div><b>↑ UP COARSE</b><button type="button" onclick="v4Step4Jog(5)">+5</button><button type="button" onclick="v4Step4Jog(4)">+4</button><button type="button" onclick="v4Step4Jog(3)">+3</button><button type="button" onclick="v4Step4Jog(2)">+2</button><button type="button" onclick="v4Step4Jog(1)">+1</button></div><div><b>↑ UP FINE</b><button type="button" onclick="v4Step4Jog(.5)">+0.5</button><button type="button" onclick="v4Step4Jog(.4)">+0.4</button><button type="button" onclick="v4Step4Jog(.3)">+0.3</button><button type="button" onclick="v4Step4Jog(.2)">+0.2</button><button type="button" onclick="v4Step4Jog(.1)">+0.1</button></div><div><b>↓ DOWN FINE</b><button type="button" onclick="v4Step4Jog(-.1)">−0.1</button><button type="button" onclick="v4Step4Jog(-.2)">−0.2</button><button type="button" onclick="v4Step4Jog(-.3)">−0.3</button><button type="button" onclick="v4Step4Jog(-.4)">−0.4</button><button type="button" onclick="v4Step4Jog(-.5)">−0.5</button></div><div><b>↓ DOWN COARSE</b><button type="button" onclick="v4Step4Jog(-1)">−1</button><button type="button" onclick="v4Step4Jog(-2)">−2</button><button type="button" onclick="v4Step4Jog(-3)">−3</button><button type="button" onclick="v4Step4Jog(-4)">−4</button><button type="button" onclick="v4Step4Jog(-5)">−5</button></div></div></div></details><div class="v4ExperiencedSurfaceBox"><span class="v4ExperiencedSurfaceTag">EXPERIENCED USER</span><label class="v4SurfaceSimpleLabel" for="v3QuickSurfaceValue">SURFACE Z (mm)</label><div class="v4SurfaceEntry"><input type="number" id="v3QuickSurfaceValue" disabled value="-5.000" step="0.001" inputmode="decimal" aria-label="Surface Z mm"><span>mm</span></div></div><button type="button" id="v4OpenZMesh">Z MESH</button><small class="v4ZMeshOptionalNote">Z MESH is optional when fixed Surface Z is sufficient. Use Z Mesh to compensate for an uneven surface.</small></div></div>
         <label class="v3QuickSurfaceCheckWrap v4BottomGate v4CheckGate"><input type="checkbox" id="v3QuickSurfaceCheck" disabled><span>SURFACE Z CONFIRMED</span></label>
       </div>
       <div class="v4MenuCard v4InfoGateCard" id="v4CenterCard">
         <div class="v4InfoArea"><b>5</b><span><strong>FINAL STEP</strong><small>PLOT ORIGIN · SAVED XYZ</small><small id="v3QuickCenterResult">NOT SET</small><label class="v4FinalSpeedField">TRAVEL SPEED (mm/min)<input id="v4FinalMachineSpeed" type="number" min="100" max="20000" step="100" value="3000" inputmode="numeric"></label><div id="v4FinalSetupInfo" class="v4FinalSetupInfo"><span>FINAL XYZ · NOT READY</span><span>SET PLOT ORIGIN TO COMPLETE</span></div><em>Final machine setup · verify XYZ and speed before sending</em></span></div>
         <div id="v4ExpertModeZone" class="v4ExpertModeZone">
-          <label id="v4ExpertSurfaceWrap" class="v4ExpertSurfaceWrap" hidden>SURFACE Z (mm)<input id="v4ExpertSurfaceZ" type="number" step="0.001" inputmode="decimal" placeholder="Enter Surface Z before Expert Mode"><small>REQUIRED · enter Surface Z first, then check EXPERT MODE.</small></label>
+          <label id="v4ExpertSurfaceWrap" class="v4ExpertSurfaceWrap" hidden>SURFACE Z (mm)<input id="v4ExpertSurfaceZ" value="-5.000" type="number" step="0.001" inputmode="decimal" placeholder="Enter Surface Z before Expert Mode"><small>REQUIRED · enter Surface Z first, then check EXPERT MODE.</small></label>
           <label class="v4ExpertModeCheck"><input id="v4ExpertModeCheck" type="checkbox"><span>EXPERT MODE — AUTO STEP 2–5</span></label>
         </div>
         <button type="button" data-qs="center" id="v3QuickCenterBtn" class="v4BottomGate" disabled aria-disabled="true">SET PLOT ORIGIN</button>
@@ -9378,7 +9310,7 @@ body.ldm-dark #v3StepShow{background:#171b1e;color:#eef2ef}body.ldm-dark .v3Show
    },false);
  }
 
- document.addEventListener('keydown',e=>{if(!active)return;if(e.key==='Escape'){if(!document.fullscreenElement)v3PresentationExit();return;}if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();v3PresentationNext();}if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();v3PresentationPrev();}});document.addEventListener('fullscreenchange',()=>{if(active&&!document.fullscreenElement)fsStarted=false;});
+ document.addEventListener('keydown',e=>{if(!active||e.defaultPrevented||e.isComposing||e.target.closest?.('input,textarea,select,[contenteditable="true"]'))return;if(e.key==='Escape'&&!document.fullscreenElement)v3PresentationExit();});document.addEventListener('fullscreenchange',()=>{if(active&&!document.fullscreenElement)fsStarted=false;});
  document.addEventListener('click',e=>{if(!active)return;const b=e.target.closest('#v3QuickCard7 > button');if(b){const resume=idx;setTimeout(()=>{v3PresentationExit();sessionStorage.setItem('ldmGuideResume',String(resume));},0);}},true);
 
  /* V3.GUI.2FUJ — DIRECT TAB SLIDES: reuse the proven Guided/Z-Mesh presentation engine. */
@@ -9392,7 +9324,7 @@ body.ldm-dark #v3StepShow{background:#171b1e;color:#eef2ef}body.ldm-dark .v3Show
    fsStarted=false;
    restoreCurrent();restoreSpecial();stage.replaceChildren();
    const shell=document.createElement('div');shell.className='v3OnboardCard v3DirectTabScene v3Direct-'+kind;
-   const titles={machine:['MACHINE','MAIN STEPS','HOME · CALIBRATE · PREPARE'],artwork:['ART WORKSPACE','ART WORKSPACE','PREVIEW · VECTOR · TEXT'],slicedfiles:['BAMBU OFFLINE PRINT JOB','BAMBU OFFLINE PRINT JOB','SLICED FILES · PLATES · PRINT'],files:['LDM OPEN FILES','LDM SD JOBS','PROJECTS · START · REPEAT'],setup:['MACHINE SETUP','MACHINE SETUP','CONNECTION · MACHINE · SOUND · HOME SETTINGS'],advanced:['SETTING','SETTING','ADMINISTRATOR'],diagnostic:['DIAGNOSTIC','DIAGNOSTIC','MOTION · CONNECTION · SD / FTPS']};
+   const titles={machine:['MACHINE','MAIN STEPS','HOME · CALIBRATE · PREPARE'],artwork:['WORKSPACE','WORKSPACE',''],slicedfiles:['BAMBU OFFLINE PRINT JOB','BAMBU OFFLINE PRINT JOB','SLICED FILES · PLATES · PRINT'],files:['LDM OPEN FILES','LDM SD JOBS','PROJECTS · START · REPEAT'],setup:['MACHINE SETUP','MACHINE SETUP','CONNECTION · MACHINE · SOUND · HOME SETTINGS'],advanced:['SETTING','SETTING','ADMINISTRATOR'],diagnostic:['DIAGNOSTIC','DIAGNOSTIC','MOTION · CONNECTION · SD / FTPS']};
    const t=titles[kind];shell.innerHTML='<div class="v3SceneEyebrow">'+t[1]+'</div><h2>'+t[0]+'</h2><p class="lead">'+t[2]+'</p><div class="v3DirectTabHost" id="v3DirectTabHost"></div>';
    stage.appendChild(shell);const host=shell.querySelector('#v3DirectTabHost');
    if(kind==='machine'){
@@ -10035,6 +9967,14 @@ setTimeout(installGlyphSplit,0);
    im.setAttribute('href',imgSrc);im.setAttribute('preserveAspectRatio','xMidYMid meet');im.style.pointerEvents='all';
    art().insertBefore(im,art().firstChild);im.style.display=imageVisible?'':'none';applyImg();
  }
+ window.ldmReferencePreviewEditor={
+  capture(){return imgSrc?{records:[{key:'image',data:{src:imgSrc,state:{...imgState},natural:{...imgNatural},visible:imageVisible}}],selected:['image'],active:'image'}:{records:[],selected:[],active:null};},
+  restore(value){const d=value.records[0]?.data;imgDrag=null;handleDrag=null;pinch=null;pointers.clear();ref()?.remove();imageEditor()?.remove();imgSrc=d?.src||null;
+   if(!d){if($p('previewImageTools'))$p('previewImageTools').hidden=true;return;}
+   imgState={...d.state};imgNatural={...d.natural};imageVisible=d.visible!==false;restoreReferenceIfNeeded();ensureImageEditor();applyImg();if($p('previewImageTools'))$p('previewImageTools').hidden=false;const view=$p('previewImageViewBtn');if(view){view.classList.toggle('active',imageVisible);view.textContent=imageVisible?'IMAGE VIEW ON':'IMAGE VIEW OFF';}
+  }
+ };
+
  function resetImg(){let im=ref();if(!im)return;let ps=paper(),base=Math.min(ps.w/imgNatural.w,ps.h/imgNatural.h),w=imgNatural.w*base,h=imgNatural.h*base;imgState={x:(ps.w-w)/2,y:(ps.h-h)/2,scale:100,rot:0,opacity:40,mirrorX:false,mirrorY:false};applyImg()}
  function loadImg(file){
    let r=new FileReader();r.onload=()=>{imgSrc=r.result;let probe=new Image();probe.onload=()=>{imgNatural={w:probe.naturalWidth||100,h:probe.naturalHeight||100};let old=ref();if(old)old.remove();let im=document.createElementNS(NS,'image');im.id='ldmPreviewReferenceImage';im.classList.add('ldmReferenceOnly');im.setAttribute('href',r.result);im.setAttribute('preserveAspectRatio','xMidYMid meet');im.style.pointerEvents='all';art().insertBefore(im,art().firstChild);im.style.display=imageVisible?'':'none';$p('previewImageTools').hidden=false;ensureImageEditor();resetImg();art().classList.add('ldmImageMoveOn')};probe.src=r.result};r.readAsDataURL(file)
@@ -10103,7 +10043,7 @@ setTimeout(installGlyphSplit,0);
  function svgExportString(){
    /* GUI.3L PATCH25 — export a CLEAN CLONE only.  MultiSVG/Text/Image/LIVE DRAW
       editor chrome lives inside #art, so hiding DOM around the preview is not enough. */
-   window.ldmRestoreVectorDragPreview?.();let clone=art().cloneNode(true);clone.removeAttribute('id');
+   window.ldmRestoreVectorDragPreview?.();let clone=art().cloneNode(true);clone.removeAttribute('id');window.ldmCanonicalPreviewClone?.(clone);
    const editorChrome=[
      '#toolPositionOverlay','#previewGridOverlay','#paperCenterOverlay','#a4PaperBoundaryOverlay','#a5PaperBoundaryOverlay',
      '#bedPlateCenterOverlay','#paperCenterCross','#bedCenterCross','#ldmPreviewImageEditor','#ldmLiveDrawMoveBox',
@@ -10187,6 +10127,7 @@ setTimeout(installGlyphSplit,0);
      liveDrawStore=[...(art()?.querySelectorAll('#ldmLiveDrawLayer .livePreviewDraw')||[])].map(p=>({points:p.getAttribute('points'),stroke:p.getAttribute('stroke')||'#176b45',width:p.getAttribute('stroke-width')||'1.15'}));
    };
    $p('previewClearDrawBtn').onclick=function(){
+      if(window.ldmSvgObjects?.some(o=>o.locked)){ldmLayerLockNotice();return;}
       // 1. LIVE DRAW — use its existing authoritative clear.
       try{clearLiveDrawOnly()}catch(_){}
 
@@ -10888,7 +10829,7 @@ function boot(){init('linedraw');init('mosaic')}document.readyState==='loading'?
    if(sv && sv.disabled!==surfaceDisabled)sv.disabled=surfaceDisabled;
 
    // STEP 5: unlocked only after QUICK STEP 4 is green.
-   setLocked(el('v3QuickCenterBtn'),!surfaceOK);
+   setLocked(el('v3QuickCenterBtn'),!surfaceOK||(!window.ldmFoamMaterialActive?.()&&window.ldmEndLiftValid?.()===false));
 
    if(homeOK){
      const qhb=el('v3QuickHomeBtn'),qht=el('v3QuickHomeText'),qhcd=el('v3QuickHomeCountdown');
@@ -13109,7 +13050,7 @@ body.ldm-dark #v3GoldenConnectModal .gc-credentials{background:#202529!important
  const NS='http://www.w3.org/2000/svg';
  function cleanSvg(){
    const art=document.getElementById('art'); if(!art)return null;
-   window.ldmRestoreVectorDragPreview?.();const clone=art.cloneNode(true); clone.removeAttribute('id');
+   window.ldmRestoreVectorDragPreview?.();const clone=art.cloneNode(true); clone.removeAttribute('id');window.ldmCanonicalPreviewClone?.(clone);
    const chrome=['#toolPositionOverlay','#previewGridOverlay','#paperCenterOverlay','#a4PaperBoundaryOverlay','#a5PaperBoundaryOverlay','#bedPlateCenterOverlay','#paperCenterCross','#bedCenterCross','#ldmPreviewImageEditor','#ldmLiveDrawMoveBox','#ldmLiveDrawWarZone','#kSvgEditOverlay','#objectEditOverlay','.ldmObjectEditorLocal','.ldmTextEditorLocal','.ldmLiveDrawEditorUI','[data-ldm-live-draw-editor]','[data-paper-center]','[data-bed-center]','.paperCenterOverlay','.bedPlateCenterOverlay','.paper-center-overlay','.bed-center-cross','.preview-helper-overlay','[data-ldm-svg-hit]'].join(',');
    clone.querySelectorAll(chrome).forEach(n=>n.remove());
    /* Reference images and staging-only geometry are never production Canvas export content. */
@@ -15346,7 +15287,7 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 #art.ldmWorkspaceDraw.ldmMoveImageMode #ldmPreviewReferenceImage{pointer-events:all!important;cursor:move!important}
 #art.ldmWorkspaceDraw.ldmMoveImageMode{cursor:move!important}
 </style>
-<style>.ldmVectorPenColour{grid-column:1/-1;justify-self:start;width:48px;height:32px;padding:2px;box-sizing:border-box;cursor:pointer}.ldmVectorColourOption,.ldmVectorColourHint{display:block;text-align:left;font:inherit;margin:6px 0}.ldmVectorColourHint{opacity:.75}</style><script src="static/ldm-vector-colour.js?v7gui86"></script><script id="ldmGUI103ControlTrace">
+<style>.ldmVectorPenColour{grid-column:1/-1;justify-self:start;width:48px;height:32px;padding:2px;box-sizing:border-box;cursor:pointer}.ldmVectorColourOption,.ldmVectorColourHint{display:block;text-align:left;font:inherit;margin:6px 0}.ldmVectorColourHint{opacity:.75}</style><script src="static/ldm-vector-colour.js?v8gui47"></script><script id="ldmGUI103ControlTrace">
 (()=>{
  const wrapped=new WeakMap();
  // Wrap only the control receiving a click/change; no document-wide scans or value logging.
@@ -15364,10 +15305,22 @@ body.ldm-v5-ipad-touch9 #sdPlotFiles{touch-action:manipulation!important}
 </script>
 
 <link rel="stylesheet" href="static/ldm-foam-cut.css?v7gui7"><script src="static/ldm-foam-diagram.js?v=128"></script><script src="static/ldm-foam-expert.js?v7gui127"></script><script src="static/ldm-foam-cut.js?v7gui127"></script>
-<link rel="stylesheet" href="static/ldm-writing-guides.css?v8gui2"><script src="static/ldm-writing-guide-layer.js?v7gui80"></script><script src="static/ldm-writing-guides.js?v153"></script>
-<link rel="stylesheet" href="static/ldm-draw-layers.css?v151"><script src="static/ldm-draw-layer-import.js?v7gui84"></script><script src="static/ldm-draw-layers.js?v8gui19"></script>
-<link rel="stylesheet" href="static/ldm-vector-selection.css?v7gui130"><script src="static/ldm-vector-selection.js?v7gui130"></script>
-<script src="static/ldm-explode-paths.js?v163"></script><script src="static/ldm-split-paths.js?v164"></script><link rel="stylesheet" href="static/ldm-sketch.css?v165"><script src="static/ldm-sketch.js?v165"></script><script src="static/ldm-draw-helper-access.js?v8gui2"></script></body></html>
+<link rel="stylesheet" href="static/ldm-writing-guides.css?v8gui54"><script src="static/ldm-writing-guide-layer.js?v8gui70"></script><script src="static/ldm-writing-guides.js?v9experiment1"></script>
+<link rel="stylesheet" href="static/ldm-artwork-job-editing.css?v8gui70"><script src="static/ldm-artwork-job-editing.js?v8gui70"></script>
+<link rel="stylesheet" href="static/ldm-draw-layers.css?v8gui47"><script src="static/ldm-draw-layer-import.js?v8gui70"></script><script src="static/ldm-draw-layers.js?v9experiment8"></script>
+<link rel="stylesheet" href="static/ldm-vector-selection.css?v8gui47"><script src="static/ldm-vector-selection.js?v8gui63"></script>
+<script src="static/ldm-explode-paths.js?v8gui62"></script><script src="static/ldm-split-paths.js?v8gui62"></script><link rel="stylesheet" href="static/ldm-sketch.css?v165"><script src="static/ldm-sketch.js?v8gui62"></script><script src="static/ldm-draw-helper-access.js?v8gui2"></script><link rel="stylesheet" href="static/ldm-preview-commands.css?v8gui63"><script src="static/ldm-preview-commands.js?v9experiment1"></script>
+<link rel="stylesheet" href="static/ldm-artwork-compact.css?v8gui87"><script src="static/ldm-artwork-compact.js?v9experiment9"></script>
+<link rel="stylesheet" href="static/ldm-section-layout.css?v8gui83"><script src="static/ldm-section-layout.js?v9experiment22"></script>
+<link rel="stylesheet" href="static/ldm-floating-tools.css?v9experiment7"><script src="static/ldm-floating-tools.js?v9experiment30"></script>
+<link rel="stylesheet" href="static/ldm-theme-corners.css?v9experiment33">
+<link rel="stylesheet" href="static/ldm-preview-navigation.css?v9experiment42">
+<script src="static/ldm-preview-navigation.js?v9experiment42"></script>
+<style>html body #ldmVectorCleanPanel[hidden]{display:none!important} .ldmPathOperation38{box-sizing:border-box;min-width:0} .ldmPathOperation38 .ldmPathActions38{margin-top:8px}</style>
+<script src="static/ldm-path-sections.js?v9experiment38"></script>
+<style>html body #ldm3DPreviewActions39{display:grid!important;grid-template-columns:1fr 1fr;gap:8px} html body #ldm3DPreviewActions39>button{width:100%!important;min-width:0!important;margin:0!important;font:inherit;color:var(--bp-text,inherit);background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)} html body #ldm3DPreviewActions39>button[hidden]{display:none!important}</style>
+<script src="static/ldm-3d-preview-actions.js?v9experiment39"></script>
+</body></html>
 <style>
 /* V18.85AM: preview is fixed; editing is object-click only. */
 .previewResizeHint,.resizeHint,#previewResizeHint,[data-preview-resize-hint]{display:none!important}
@@ -15549,6 +15502,7 @@ function ldmSyncBoundaryStartLock(){
    SAVE/START after the preview has zero SVG objects. */
 const _ldm2daClearPreviewArea=clearPreviewArea;
 clearPreviewArea=function(){
+ if(window.ldmSvgObjects?.some(o=>o.locked)){ldmLayerLockNotice();return;}
   const r=_ldm2daClearPreviewArea.apply(this,arguments);
   ldmArtworkBoundaryCheck({popup:false});
   return r;
@@ -15592,6 +15546,7 @@ v3SvgSaveStartJob=function(){
    (with a 1% safety margin), recenter, render, and clear the lock synchronously. */
 const _ldm2czFitArt=fitArt;
 fitArt=function(){
+ if(ldmVectorLayerLocked()){ldmLoadControls();ldmLayerLockNotice();return;}
   _ldm2czFitArt.apply(this,arguments);
   const o=window.ldmSvgObjects?.[window.ldmSelectedSvg];
   if(o){
@@ -15714,8 +15669,7 @@ setTimeout(()=>ldmArtworkBoundaryCheck({popup:false}),0);
  const fteBuildBefore2DD=fteBuild;
  fteBuild=function(){
    const r=fteBuildBefore2DD.apply(this,arguments);
-   if($('fteLog'))$('fteLog').textContent+='
-Paper clip ..... NON-DESTRUCTIVE SVG + TEXT + GLYPH';
+   if($('fteLog'))$('fteLog').textContent+='\nPaper clip ..... NON-DESTRUCTIVE SVG + TEXT + GLYPH';
    return r;
  };
 
@@ -15771,7 +15725,7 @@ Paper clip ..... NON-DESTRUCTIVE SVG + TEXT + GLYPH';
    const out=[],pw=Number($('paperW')?.value)||256,ph=Number($('paperH')?.value)||256;
    (window.textObjects||textObjects||[]).forEach(o=>{
      const raw=ldmTextLocalRawPaths(o);if(!raw.length)return;
-     const all=raw.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;
+     const all=raw.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]),cx=window.ldmParagraphGuideArea?.()?0:(Math.min(...xs)+Math.max(...xs))/2,cy=window.ldmParagraphGuideArea?.()?0:(Math.min(...ys)+Math.max(...ys))/2;
      const sc=Number(o.scale)||1,a=(Number(o.rot)||0)*Math.PI/180,c=Math.cos(a),sn=Math.sin(a),ox=pw/2+(Number(o.x)||0),oy=ph/2+(Number(o.y)||0),mx=o.mx?-1:1,my=o.my?-1:1;
      raw.forEach(st=>{const pts=st.map(([x,y])=>{const lx=(x-cx)*sc*mx,ly=(y-cy)*sc*my;return[ox+lx*c-ly*sn,oy+lx*sn+ly*c]});if(pts.length>1)out.push(pts)});
    });
@@ -16036,9 +15990,11 @@ v3SvgSaveStartJob=function(){
     }
   }
   document.addEventListener('keydown',function(ev){
-    if(V3_PREVIEW_EDIT_LOCK || v3KeyboardTargetIsEditor(ev.target))return;
+    if(window.ldmPreviewKeyboardSkipLegacy?.(ev))return;
+    if((window.ldmArtworkEditBlocked?window.ldmArtworkEditBlocked():V3_PREVIEW_EDIT_LOCK) || v3KeyboardTargetIsEditor(ev.target))return;
     const sel=v3SelectedPreviewObject();
     if(!sel)return;
+    if(sel.kind==='vector'&&sel.obj.locked){if(['Delete','Backspace','ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(ev.key)){ev.preventDefault();ldmLayerLockNotice();}return;}
     const key=ev.key;
     if(key==='Delete'||key==='Backspace'){
       ev.preventDefault();ev.stopPropagation();
@@ -16226,7 +16182,7 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
  const NS='http://www.w3.org/2000/svg',id=x=>document.getElementById(x),q=s=>document.querySelector(s);let active=null,frame=0;
  const mode=()=>q('.v3ArtworkModeTabs [data-artmode].active')?.dataset.artmode||'vector';
  function inDraw(){return !['move','layerMove','erase'].includes(window.ldmDrawInteractionMode)&&mode()==='draw'&&id('art')?.classList.contains('ldmWorkspaceDraw')}
- function locked(){return window.ldmCanvasImportBusy||document.body.classList.contains('v3PreviewEditLocked')||(typeof V3_PREVIEW_EDIT_LOCK!=='undefined'&&V3_PREVIEW_EDIT_LOCK)}
+ function locked(){return window.ldmArtworkEditBlocked?window.ldmArtworkEditBlocked():(window.ldmCanvasImportBusy||document.body.classList.contains('v3PreviewEditLocked')||(typeof V3_PREVIEW_EDIT_LOCK!=='undefined'&&V3_PREVIEW_EDIT_LOCK))}
  function inside(t){const a=id('art');return a&&(a===t||a.contains(t))}
  function point(e){const a=id('art');try{const p=a.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(active?.inverse||a.getScreenCTM().inverse())}catch(_){return null}}
  function within(p){const v=id('art')?.viewBox?.baseVal;return p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&(!v||p.x>=v.x&&p.y>=v.y&&p.x<=v.x+v.width&&p.y<=v.y+v.height)}
@@ -16279,7 +16235,7 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
    const cb=$('v3GoldenExperiencedCheck'),ok=$('v3GoldenOkBtn'),foot=$('v3GoldenConnectFoot');
    if(cb){if(!cb.checked)cb.checked=true;if(!cb.disabled)cb.disabled=true;}
    if(ok&&ok.disabled!==!isConnected())ok.disabled=!isConnected();
-   if(foot&&isConnected()&&/Experienced User/i.test(foot.textContent||''))foot.textContent='CONNECTED + SD / FTPS PASS — press OK to continue.';
+   if(foot&&isConnected()&&/Experienced User/i.test(foot.textContent||''))foot.textContent=document.getElementById('v3GoldenConnectModal')?.classList.contains('ldm-fresh-entry')?'CONNECTED + SD / FTPS PASS — opening WORKSPACE…':'CONNECTED + SD / FTPS PASS — press OK to continue.';
  }
  /* The older popup code runs a 200 ms syncOk interval. Keep its hidden checkbox
     logically satisfied so it cannot disable OK, while removing the UI entirely. */
@@ -16324,8 +16280,10 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
 <script id="ldmPatch89TextWorkspaceJS">
 (function(){'use strict';
  const id=x=>document.getElementById(x), q=s=>document.querySelector(s);
- const active=()=>q('.v3ArtworkModeTabs button.active')?.dataset.artmode||'vector';
+ const active=()=>q('.v3ArtworkModeTabs [data-artmode].active')?.dataset.artmode||'vector';
+ function sendStatus(msg){let n=id('ldmTextSendStatus');if(!n){n=document.createElement('p');n.id='ldmTextSendStatus';n.className='tiny';n.setAttribute('role','status');n.setAttribute('aria-live','polite');(id('ldmLabCanvasAction')||id('textMainSection'))?.append(n);}n.textContent=msg;}
  function notice(msg){
+   sendStatus(msg);
    if(typeof window.ldmDrawNotice==='function') return window.ldmDrawNotice('TEXT PREVIEW',msg);
    const p=id('ldmTextStageNoticePanel')||(()=>{const n=document.createElement('section');n.id='ldmTextStageNoticePanel';n.style.display='none';n.innerHTML='<div id="ldmTextStageNoticeText" style="font-size:13px;line-height:1.5;font-weight:750;padding:4px 2px 14px"></div><button type="button" class="primary" id="ldmTextStageNoticeOK" style="width:100%;min-height:42px;font-weight:900">OK</button>';document.body.appendChild(n);n.querySelector('button').onclick=()=>window.v3CloseModal?.();return n})();
    id('ldmTextStageNoticeText').textContent=msg;if(typeof window.v3OpenModalFor==='function')window.v3OpenModalFor(p.id,'TEXT PREVIEW');
@@ -16359,19 +16317,41 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}mm" height="${h}mm">${body}</svg>`;
  }
  function nextName(){let n=1;(window.ldmSvgObjects||[]).forEach(o=>{const m=String(o?.name||o?.filename||'').match(/^TEXT\s+(\d+)/i);if(m)n=Math.max(n,(+m[1]||0)+1)});return 'TEXT '+String(n).padStart(3,'0')}
- function apply(){
-   if(active()!=='text')return;
-   window.renderTextObjects?.();
-   const svg=buildSvg();
-   if(!svg||!(window.textObjects||textObjects||[]).length){notice('Create TEXT in TEXT PREVIEW first, then press SEND TO CANVAS.');return}
-   /* Remove staging TEXT before importing, otherwise it would exist twice in production. */
-   try{textObjects.length=0;selectedText=-1;selectedPreviewObject=null}catch(_){ }
-   id('art')?.querySelectorAll('.a1text,.ldmTextEditorLocal').forEach(n=>n.remove());
-   window.ldmSandboxPreviewMode?.('vector');window.svgText=svg;try{svgText=svg}catch(_){ }
-   window.ldmPendingSvgName=nextName();
-   if(typeof window.sendSvgToPreview==='function')window.sendSvgToPreview();else if(typeof sendSvgToPreview==='function')sendSvgToPreview();
-   q('.v3ArtworkModeTabs [data-artmode="inbox"], .v3ArtworkModeTabs [data-artmode="vector"]')?.click();
-   requestAnimationFrame(()=>{setMode('vector');window.ldmRenderComposition?.();window.ldmRefreshSvgList?.()});
+ let sending=false;
+ async function apply(){
+   if(active()!=='text')return false;
+   if(window.ldmCanvasDraftImportBlocked?.()){sendStatus('Wait until the current artwork capture or import finishes. Your TEXT is unchanged.');return false;}
+   if(sending||window.ldmCanvasImportBusy){sendStatus('An artwork import is still in progress. Wait, then retry. Your TEXT is unchanged.');return false;}
+   sending=true;
+   try{
+     sendStatus('Preparing TEXT for CANVAS…');
+     window.renderTextObjects?.();
+     const svg=buildSvg();
+     if(!svg||!(window.textObjects||textObjects||[]).length){notice('Create TEXT in TEXT PREVIEW first, then press SEND TO CANVAS.');return false;}
+     window.ldmValidateParagraphGuides?.();
+     const guideWarning=window.ldmParagraphGuideWarnings?.()||'';
+     const art=id('art'),vb=art?.viewBox?.baseVal,canvas={width:vb?.width||Number(id('paperW')?.value)||210,height:vb?.height||Number(id('paperH')?.value)||297},guides=window.ldmWritingGuidesForCanvas?.(),name=nextName();
+     // Prepare both layers before clearing staging TEXT. Failure keeps the homework editable.
+     let added;
+     if(guides){
+       if(typeof window.ldmCommitWritingWithGuides!=='function')throw Error('Writing guide import unavailable. Refresh LDM and retry.');
+       added=await window.ldmCommitWritingWithGuides(svg,canvas,guides,name);
+     }else{
+       window.svgText=svg;try{svgText=svg}catch(_){}
+       window.ldmPendingSvgName=name;
+       added=typeof window.sendSvgToPreview==='function'?await window.sendSvgToPreview():typeof sendSvgToPreview==='function'?await sendSvgToPreview():false;
+     }
+     if(!added){const reason=id('job')?.textContent||'';throw Error(/FAILED|ERROR|BLOCKED|No drawable/i.test(reason)?reason:'TEXT import did not complete. Your TEXT is unchanged; retry SEND TO CANVAS.');}
+     try{textObjects.length=0;selectedText=-1;selectedPreviewObject=null}catch(_){}
+     art?.querySelectorAll('.a1text,.ldmTextEditorLocal').forEach(n=>n.remove());
+     const transferMessage='TEXT added to CANVAS. '+(guideWarning||'Complete the machine setup before CONFIRM & SEND.');
+     sendStatus(transferMessage);window.ldmShowWritingTransferStatus?.(transferMessage);
+     window.ldmSandboxPreviewMode?.('vector');
+     q('.v3ArtworkModeTabs [data-artmode="vector"]')?.click();
+     requestAnimationFrame(()=>{setMode('vector');window.ldmRenderComposition?.();window.ldmRefreshSvgList?.()});
+     return true;
+   }catch(error){notice(error.message||'TEXT could not be sent. Your text is unchanged.');return false;}
+   finally{sending=false;}
  }
  document.addEventListener('click',e=>{const b=e.target.closest?.('.v3ArtworkModeTabs [data-artmode]');if(!b)return;setTimeout(()=>{ensureButton();setMode(b.dataset.artmode)},0)},true);
  new MutationObserver(()=>ensureButton()).observe(document.documentElement,{childList:true,subtree:true});
@@ -16412,7 +16392,7 @@ body.ldm-dark .v3MaterialSetupConfirm{background:#26342e!important;color:#e1f1e8
 <script id="ldmPatch90UnifiedPreviewJS">
 (function(){'use strict';
  const id=x=>document.getElementById(x), q=s=>document.querySelector(s);
- function mode(){return q('.v3ArtworkModeTabs button.active')?.dataset.artmode||'vector'}
+ function mode(){return q('.v3ArtworkModeTabs [data-artmode].active')?.dataset.artmode||'vector'}
  function sync(){
    const m=mode(), title=q('.ldmPreviewBoundaryTitle'), rule=q('.ldmPreviewBoundaryRule'), btn=id('ldmLabSendCanvasBtn');
    /* V4.GUI.4DH: staging SEND TO CANVAS belongs only to TEXT/DRAW/ART/3D.
@@ -18664,7 +18644,7 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
    if(localToken)opts.headers.set('X-LDM-Job-Token',localToken);
    if(path==='/bridge/sd/start-project'){const foamToken=window.ldmFoamStartToken?.();if(foamToken)opts.headers.set('X-LDM-Foam-Token',foamToken);}
    if(path==='/bridge/sd/save-plot'&&typeof opts.body==='string'){
-     try{const d=JSON.parse(opts.body);if(!d.foam_token)d.job_snapshot=snapshot();opts.body=JSON.stringify(d)}catch(_){}
+     try{const d=JSON.parse(opts.body);if(!d.foam_token)d.job_snapshot=snapshot();opts.body=JSON.stringify(d);window.ldmArtworkPayloadCaptured?.()}catch(_){}
    }
    const response=await originalFetch(input,opts);
    try{const d=await response.clone().json();if(path==='/bridge/sd/start-project'&&response.ok&&d.success)window.ldmRepeatFilesSubmitted?.();if(d.job_token){localToken=d.job_token;try{sessionStorage.setItem('ldmSharedJobToken',localToken)}catch(_){}}}catch(_){}
@@ -18760,7 +18740,7 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 </script>
 
 <!-- V6.GUI.6 — Desktop administrator / remote canvas buffer -->
-<script src="static/ldm-canvas.js?v8gui6"></script>
+<script src="static/ldm-canvas.js?v8gui70"></script>
 
 <!-- V6.GUI.7 — HOME mini canvas inbox -->
 <link rel="stylesheet" href="static/ldm-home-inbox.css">
@@ -18794,8 +18774,8 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 <script src="static/ldm-sd-queue-drawer.js?v=40"></script>
 
 <!-- V6.GUI.41 — per-file ON/OFF eye toggle -->
-<link rel="stylesheet" href="static/ldm-file-visibility.css?v=41">
-<script src="static/ldm-file-visibility.js?v=41"></script>
+<link rel="stylesheet" href="static/ldm-file-visibility.css?v8gui47">
+<script src="static/ldm-file-visibility.js?v8gui62"></script>
 
 <!-- V6.GUI.42 — optional selected-slice X/Y measurement guides -->
 <link rel="stylesheet" href="static/ldm-slice-dimensions.css?v=42">
@@ -18817,7 +18797,7 @@ body.ldm-glyph-text-mode #ldmGlyphTextControls #strokeFontCreator{grid-template-
 <link rel="stylesheet" href="static/ldm-slice-sides.css?v=46">
 <script src="static/ldm-slice-sides.js?v=112"></script>
 
-<script src="static/ldm-ngc-import.js?v=74"></script>
+<script src="static/ldm-ngc-import.js?v8gui70"></script>
 
 <script src="static/ldm-preparing-time.js?v7gui7"></script>
 
@@ -18858,7 +18838,7 @@ body.ldm-foam-material #v3QuickSurfaceValue{cursor:default!important;pointer-eve
 </style>
 <script src="static/ldm-artwork-width.js?v7gui7"></script>
 
-<script src="static/ldm-typewriter.js?v7gui7"></script><script>
+<script src="static/ldm-typewriter.js?v8gui49"></script><script>
 for(const id of ['align','fontSource'])document.getElementById(id)?.addEventListener('change',function(){if(selectedText<0||!textObjects[selectedText])return;textObjects[selectedText][id==='align'?'align':'fontSource']=this.value;textCommitUi()});
 </script>
 
@@ -18907,7 +18887,7 @@ body.ldm-foam-material #v3QuickStepsDrawer.v4cpExpertCompact #v4Step5CompactMach
 #v3StepShow #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer:not([data-guide-step]) .v3QuickStepsPanel::after{border-left-width:0!important;border-right-width:0!important;border-radius:0!important}
 </style>
 
-<script src="static/ldm-confirm-send.js?v7gui44"></script>
+<script src="static/ldm-confirm-send.js?v8gui67"></script>
 
 <style id="ldmCompactFoamCutSpeedOnly191">
 /* The compact layout's display:grid rule must not reveal a FOAM-only field
@@ -18953,9 +18933,9 @@ body #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3Qui
 </style>
 
 <link rel="stylesheet" href="static/ldm-vector-offset.css?v7gui7">
-<script src="static/ldm-vector-offset.js?v7gui143"></script>
+<script src="static/ldm-vector-offset.js?v8gui66"></script>
 
-<script src="static/ldm-print-connection.js?v7gui52"></script>
+<script src="static/ldm-print-connection.js?v9experiment26"></script>
 
 <style>
 #ldmPrintConnectionModel{border:1px solid var(--bp-line,currentColor);padding:10px;margin:10px 0;color:inherit;background:var(--bp-panel,transparent);font:inherit}
@@ -18989,7 +18969,7 @@ body #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3Qui
 </style>
 
 <link rel="stylesheet" href="static/ldm-fresh-entry.css?v7gui30">
-<script src="static/ldm-fresh-entry.js?v7gui52"></script>
+<script src="static/ldm-fresh-entry.js?v9experiment26"></script>
 
 <style>
 html body #v3StepShow.open:has(.v3Direct-advanced) #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer{display:none!important}
@@ -19004,7 +18984,7 @@ html body #v3StepShow#v3StepShow#v3StepShow#v3StepShow#v3StepShow.open:has(.v3Di
 
 
 
-<script src="static/ldm-v7-workflow-navigation.js?v7gui38"></script>
+<script src="static/ldm-v7-workflow-navigation.js?v9experiment28"></script>
 
 <style id="ldmGui38SharedExit">
 html body #v3StepShow.open > #ldmV7Exit.ldmStandaloneExit{position:fixed!important;left:6px!important;bottom:6px!important;top:auto!important;right:auto!important;width:60px!important;min-width:0!important;height:66px!important;min-height:66px!important;margin:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;padding:5px!important;font:inherit!important;color:var(--bp-text,var(--ldm-text))!important;background:var(--bp-panel,var(--ldm-panel))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;z-index:2147000001!important}
@@ -19018,7 +18998,7 @@ html body #v3StepShow.open > #ldmV7Exit.ldmStandaloneExit small{font-size:9px!im
 html.ldm-language-ar :is(label,p,h1,h2,h3,summary,.gc-title){direction:rtl}
 html.ldm-language-ar :is(input,textarea,pre,code,svg,canvas){direction:ltr}
 </style>
-<script src="static/ldm-language.js?v7gui145"></script>
+<script src="static/ldm-language.js?v9experiment45"></script>
 
 <style>
 #ldmLanguageControls{display:flex!important;flex-wrap:wrap!important;gap:6px!important;align-items:center!important;max-width:100%!important}
@@ -19063,8 +19043,8 @@ html body #v3StepShow #v3QuickStepsDrawer #v4CenterCard > #v4ExpertModeZone{
 }
 </style>
 
-<link rel="stylesheet" href="static/ldm-v7-appearance-rail.css?v7gui56">
-<script src="static/ldm-v7-appearance-rail.js?v7gui58"></script>
+<link rel="stylesheet" href="static/ldm-v7-appearance-rail.css?v9experiment34">
+<script src="static/ldm-v7-appearance-rail.js?v9experiment22"></script>
 
 <style id="ldmGui59RailConsistency">
 html body #v3StepShow.open #v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer#v3QuickStepsDrawer,
@@ -19203,3 +19183,137 @@ html body:not(.ldm-v6) #v3QuickActiveJobStatus#v3QuickActiveJobStatus#v3QuickAct
 </style>
 
 <link rel="stylesheet" href="static/ldm-dark-icon-border.css?v7gui141">
+
+<!-- GUI.49: loaded after the Unicode GLYPH overrides. -->
+<link rel="stylesheet" href="static/ldm-font-metrics.css?v8gui55">
+<script src="static/ldm-font-metrics.js?v8gui74"></script>
+
+<link rel="stylesheet" href="static/ldm-text-presets.css?v8gui50">
+<script src="static/ldm-text-presets.js?v8gui62"></script>
+
+<!-- GUI.51: show lowercase glyphs as lowercase under every theme. -->
+<link rel="stylesheet" href="static/ldm-glyph-case.css?v8gui51">
+
+<link rel="stylesheet" href="static/ldm-handwriting.css?v8gui56">
+<script src="static/ldm-handwriting.js?v8gui64"></script>
+
+<script src="static/ldm-paragraph-guides.js?v8gui64"></script>
+
+<script src="static/ldm-connected-handwriting.js?v8gui64"></script>
+
+<link rel="stylesheet" href="static/ldm-plot-simulation.css?v8gui58">
+<script src="static/ldm-plot-motion.js?v8gui58"></script>
+<script src="static/ldm-end-lift.js?v9experiment36"></script>
+<script src="static/ldm-plot-simulation.js?v8gui62"></script>
+
+<!-- GUI.68: local grouped-colour image tracing in ART LAB -->
+<link rel="stylesheet" href="static/ldm-vector-tcl.css?v8gui69">
+<script src="static/ldm-vector-tcl.js?v9experiment39"></script>
+
+<!-- GUI.71: selected VECTOR alignment uses existing theme and draft locks. -->
+<script src="static/ldm-vector-align.js?v9experiment10"></script>
+
+<script src="static/ldm-art-image-frame.js?v8gui76"></script>
+
+<script src="static/ldm-vector-cleanup.js?v9experiment10"></script>
+
+<!-- V9.EXPERIMENT.11: separate branch from protected V8.GUI.87. -->
+<link rel="stylesheet" href="static/ldm-v9-vector-draw.css?v9experiment7"><script src="static/ldm-v9-vector-draw.js?v9experiment19"></script>
+<script src="static/ldm-vector-image-layers.js?v9experiment11"></script>
+<link rel="stylesheet" href="static/ldm-vector-image.css?v9experiment9"><script src="static/ldm-vector-image.js?v9experiment10"></script>
+
+<script src="static/ldm-vector-transform-selection.js?v9experiment17"></script>
+
+<style id="ldmEntryLanguageIcon23CSS">
+html body #v3GoldenConnectModal .gc-head{flex-wrap:nowrap!important}
+html body #v3GoldenConnectModal #ldmLanguageControls{position:relative!important;display:block!important;flex:0 0 28px!important;width:28px!important;max-width:28px!important;margin:0 0 0 auto!important;padding:0!important;border:0!important;background:transparent!important}
+html body #v3GoldenConnectModal #ldmLanguageControls #ldmEntryLanguageIcon23{display:flex!important;align-items:center!important;justify-content:center!important;width:28px!important;height:28px!important;min-height:28px!important;min-width:28px!important;margin:0!important;padding:0!important;color:var(--bp-text,inherit)!important;background:var(--bp-panel,transparent)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;cursor:pointer}
+html body #v3GoldenConnectModal #ldmEntryLanguageIcon23 svg{width:16px!important;height:16px!important;pointer-events:none}
+html body #v3GoldenConnectModal #ldmEntryLanguagePopup23{position:absolute!important;right:0!important;top:calc(100% + 6px)!important;width:min(280px,calc(100vw - 90px))!important;box-sizing:border-box!important;padding:10px!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;background:var(--bp-panel,var(--ldm-panel,#fff))!important;color:var(--bp-text,inherit)!important;z-index:200!important}
+html body #v3GoldenConnectModal #ldmEntryLanguagePopup23[hidden]{display:none!important}
+html body #v3GoldenConnectModal #ldmEntryLanguagePopup23 .ldmLanguageRow{display:grid!important;grid-template-columns:minmax(0,1fr)!important}
+html body #v3GoldenConnectModal #ldmEntryLanguagePopup23 select{width:100%!important;min-width:0!important}
+html body #v3GoldenConnectModal #ldmEntryLanguageIcon23:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:1px}
+</style>
+
+<style id="ldmEntryStages24CSS">
+/* Hide presentation sections without changing their hidden property or validation guards. */
+html body #v3GoldenConnectModal.ldm-fresh-entry:not([data-entry-stage24="setup"]) :is(#ldmPrintConnectionModel,#ldmEntryConnectionGuide,#v3GoldenCredentials,#ldmMachineProfiles){display:none!important}
+html body #v3GoldenConnectModal.ldm-fresh-entry:not([data-entry-stage24="ready"]) :is(.gc-grid,.gc-actions,.gc-foot,#v3GoldenOkBtn,#ldmEntryEditPrinter24){display:none!important}
+html body #v3GoldenConnectModal.ldm-fresh-entry[data-entry-stage24="admin"] #ldmEntryStageStatus24{display:none!important}
+html body #v3GoldenConnectModal:not(.ldm-fresh-entry) :is(#ldmEntryStageStatus24,#ldmEntryEditPrinter24){display:none!important}
+</style>
+<script src="static/ldm-entry-stages.js?v9experiment26"></script>
+
+<style id="ldmEntryQuickIP25CSS">
+html body #v3GoldenConnectModal #ldmEntryQuickIP25{display:flex!important;align-items:center!important;gap:8px!important;flex:1 1 250px!important;min-width:0!important;margin-right:auto!important}
+html body #v3GoldenConnectModal #ldmEntryQuickIP25[hidden]{display:none!important}
+html body #v3GoldenConnectModal #ldmEntryQuickIP25 #v3GoldenAutoFindCompact{flex:0 0 auto!important;width:auto!important;min-width:0!important;height:34px!important;min-height:34px!important;padding:6px 10px!important;margin:0!important;font:inherit!important;font-size:11px!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;color:var(--bp-text,inherit)!important;background:var(--bp-panel,transparent)!important}
+html body #v3GoldenConnectModal #ldmEntryQuickIP25 #v3GoldenIP{flex:1 1 130px!important;min-width:80px!important;width:130px!important;max-width:200px!important;height:34px!important;min-height:34px!important;box-sizing:border-box!important;margin:0!important;padding:6px 8px!important;font:inherit!important;font-size:12px!important;color:var(--bp-text,inherit)!important;background:var(--bp-panel,transparent)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important}
+html body #v3GoldenConnectModal.ldm-fresh-entry .gc-actions{flex-wrap:wrap!important;gap:8px!important}
+</style>
+
+<style id="ldmAutoEntry26CSS">
+html body #v3GoldenConnectModal.ldm-fresh-entry[data-entry-stage24="ready"] :is(#v3GoldenCancelBtn,#v3GoldenOkBtn){display:none!important}
+.v3Direct-artwork .lead:empty{display:none!important}
+</style>
+<script src="static/ldm-auto-workspace-entry.js?v9experiment26"></script>
+
+
+<style id="ldmCanvasTheme27CSS">
+html body #bed[data-canvas-dark27="true"]{--ldm-canvas-bg27:#171b1e;--ldm-canvas-fg27:#e8ece9;--ldm-canvas-minor27:#8b98a1;--ldm-canvas-major27:#a4b2bb}
+html body #bed[data-canvas-dark27="false"]{--ldm-canvas-bg27:#ffffff;--ldm-canvas-fg27:#25343e;--ldm-canvas-minor27:#8b98a1;--ldm-canvas-major27:#65747e}
+html body #bed[data-canvas-dark27],html body #bed[data-canvas-dark27] #art{background:var(--ldm-canvas-bg27)!important;color:var(--ldm-canvas-fg27)!important}
+html body #bed[data-canvas-dark27] .previewRulerText{fill:var(--ldm-canvas-fg27)!important;stroke:none!important;stroke-width:0!important;filter:none!important;text-shadow:none!important;paint-order:normal!important}
+html body #bed[data-canvas-dark27] :is(.previewRulerTick,.previewAxis){stroke:var(--ldm-canvas-fg27)!important}
+html body #bed[data-canvas-dark27] .previewGridMinor{stroke:var(--ldm-canvas-minor27)!important}
+html body #bed[data-canvas-dark27] .previewGridMajor{stroke:var(--ldm-canvas-major27)!important}
+html body #bed[data-canvas-dark27] .previewRulerBg{fill:var(--ldm-canvas-bg27)!important}
+html body #bed[data-canvas-dark27] #art .a1text polyline{stroke:var(--ldm-canvas-fg27)!important}
+html body #bed[data-canvas-dark27] #ldmCanvasTheme27{position:absolute!important;top:8px!important;right:8px!important;z-index:10000!important;display:flex!important;align-items:center!important;justify-content:center!important;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;padding:0!important;margin:0!important;background:var(--ldm-canvas-bg27)!important;color:var(--ldm-canvas-fg27)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;cursor:pointer}
+html body #bed #ldmCanvasTheme27 svg{width:16px!important;height:16px!important;pointer-events:none!important}
+html body #bed #ldmCanvasTheme27:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:2px}
+</style>
+<script src="static/ldm-canvas-theme.js?v9experiment29"></script>
+
+<style id="ldmDrawerClose28CSS">
+html body #ldmDrawerClose28{position:fixed!important;z-index:2147483646!important;width:28px!important;min-width:28px!important;height:28px!important;min-height:28px!important;padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:var(--bp-panel,var(--ldm-panel,#fff))!important;color:var(--bp-text,var(--ldm-text,#222))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;pointer-events:auto!important;cursor:pointer!important;opacity:1!important;filter:none!important}
+html body #ldmDrawerClose28[hidden]{display:none!important}
+html body #ldmDrawerClose28 svg{width:16px!important;height:16px!important;pointer-events:none!important}
+html body #ldmDrawerClose28:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:2px}
+html body:has(#ldmDrawerClose28:not([hidden])) #v3QuickStepsDrawer .v4MachineSetupClose{display:none!important}
+</style>
+<script src="static/ldm-drawer-close.js?v9experiment28"></script>
+
+
+<style id="ldmPreviewButtons29CSS">
+html body #ldmArtworkBrowserWidth#ldmArtworkBrowserWidth#ldmArtworkBrowserWidth,html body #bed[data-canvas-dark27] #ldmCanvasTheme27,html body #ldmCanvasTheme27,html body #bed #ldmCanvasTheme27,html body #v3StepShow#v3StepShow.open .ldmPreviewBoundaryInfo #ldmCanvasTheme27,html body #bed #ldmDrawFocusButton,html body #v3StepShow#v3StepShow.open .ldmPreviewBoundaryInfo #ldmArtworkBrowserWidth{box-sizing:border-box!important;width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;max-height:32px!important;padding:0!important;margin:0!important;display:flex!important;align-items:center!important;justify-content:center!important;background:var(--bp-panel,var(--ldm-panel,#fff))!important;color:var(--bp-text,var(--ldm-text,#222))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;box-shadow:none!important}
+html body #ldmCanvasTheme27 svg,html body #ldmDrawFocusButton svg,html body #ldmArtworkBrowserWidth svg{width:16px!important;height:16px!important;pointer-events:none!important}
+html body #ldmCanvasTheme27.ldmMoonHeader29{position:absolute!important;right:44px!important;top:6px!important;left:auto!important;z-index:60!important}
+html body #bed #ldmCanvasTheme27.ldmMoonDraw29{position:absolute!important;right:46px!important;top:8px!important;left:auto!important;z-index:10000!important}
+html body #ldmFloatToolsBar84 #ldmCanvasTheme27{position:static!important;inset:auto!important;flex:none!important}
+html body #ldmDrawFocusButton[hidden],html body #ldmCanvasTheme27[hidden]{display:none!important}
+</style>
+<script src="static/ldm-preview-buttons.js?v9experiment30"></script>
+
+<style id="ldmInsidePreview30CSS">
+html body #bed[data-canvas-dark27] #ldmCanvasTheme27{position:absolute!important;right:46px!important;top:8px!important;left:auto!important;z-index:10000!important}
+html body #bed #ldmArtworkBrowserWidth#ldmArtworkBrowserWidth#ldmArtworkBrowserWidth{position:absolute!important;right:8px!important;top:8px!important;left:auto!important;z-index:10000!important}
+html body #bed.ldmPreviewDraw30 #ldmArtworkBrowserWidth#ldmArtworkBrowserWidth#ldmArtworkBrowserWidth{display:none!important}
+html body #bed:not(.ldmPreviewDraw30) #ldmDrawFocusButton{display:none!important}
+</style>
+
+
+<style id="ldmConnectionPhotos31CSS">
+#ldmEntryConnectionGuide.ldmPhotoGuide31{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+#ldmEntryConnectionGuide.ldmPhotoGuide31>b{grid-column:1/-1}
+#ldmConnectionPhotos31{min-width:0;border:1px solid var(--bp-line,currentColor);padding:8px;box-sizing:border-box;background:var(--bp-panel,transparent);color:var(--bp-text,inherit)}
+#ldmConnectionPhotos31 [data-photo-next-image]{display:block;width:100%;padding:0;margin:6px 0;border:0;background:transparent;cursor:pointer}
+#ldmConnectionPhotos31 img{display:block;width:100%;height:300px;object-fit:contain;background:var(--bp-panel,transparent)}
+#ldmConnectionPhotos31 .ldmPhotoNavigation31{display:flex;gap:6px;align-items:center;justify-content:space-between}
+#ldmConnectionPhotos31 .ldmPhotoNavigation31 button{padding:5px 9px;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;font-size:11px;cursor:pointer}
+#ldmConnectionPhotos31 .ldmPhotoCaption31{font-size:12px;line-height:1.4;min-height:5.6em;margin:8px 0}
+#ldmConnectionPhotos31 button:focus-visible{outline:2px solid var(--bp-accent,currentColor);outline-offset:2px}
+@media(max-width:600px){#ldmEntryConnectionGuide.ldmPhotoGuide31{grid-template-columns:minmax(0,1fr)}#ldmConnectionPhotos31 img{height:280px}}
+</style>
+<script src="static/ldm-connection-photos.js?v9experiment31"></script>

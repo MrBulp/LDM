@@ -1,0 +1,21 @@
+/* GUI.58: standard selected LDM theme for required clearance and full-view simulator. */
+.ldmEndLiftField[hidden]{display:none!important}
+html body #v3QuickStepsDrawer .ldmEndLiftField{display:grid!important;grid-template-columns:1fr!important;gap:4px!important;font:inherit!important;margin:6px 0!important;color:var(--bp-text,inherit)!important}
+html body #v3QuickStepsDrawer .ldmEndLiftField input{box-sizing:border-box!important;width:100%!important;min-width:0!important;min-height:var(--ldm-art-control-height,36px)!important;padding:6px 8px!important;font:inherit!important;background:var(--bp-panel,transparent)!important;color:var(--bp-text,inherit)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important}
+html body #v3QuickStepsDrawer .ldmEndLiftField[hidden]{display:none!important}
+#ldmPlotSimOpen{display:block;box-sizing:border-box;width:100%;min-height:var(--ldm-art-control-height,36px);margin:10px 0;padding:6px 10px;font:inherit;background:var(--bp-panel,transparent);color:var(--bp-text,inherit);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
+#ldmPlotSimPopup{position:fixed;inset:0;z-index:2147483600;background:var(--bp-bg,var(--bp-panel));color:var(--bp-text);font:inherit;padding:12px;box-sizing:border-box;overflow:auto}
+#ldmPlotSimPopup>header{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--bp-line);padding-bottom:10px}
+.ldmPlotSimControls{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:10px 0}
+#ldmPlotSimPopup :is(button,select){min-height:36px;font:inherit;padding:6px 10px;color:inherit;background:var(--bp-panel);border:1px solid var(--bp-line);border-radius:var(--bp-radius,0)}
+.ldmPlotSimControls label{display:flex;align-items:center;gap:6px}
+#ldmPlotSimCanvas{display:block;width:100%;height:auto;max-height:none;background:var(--bp-bg);color:var(--bp-text);border:1px solid var(--bp-line);box-sizing:border-box;touch-action:none}
+#ldmPlotSimProgress{width:100%;box-sizing:border-box;margin:10px 0}
+#ldmPlotSimInfo{white-space:pre-line;line-height:1.45;border:1px solid var(--bp-line);padding:8px}
+#ldmPlotSimError{white-space:pre-wrap;border:1px solid var(--bp-line);padding:10px}
+#ldmPlotSimError[hidden]{display:none}
+@media(max-width:600px){#ldmPlotSimPopup{padding:6px}#ldmPlotSimPopup>header{flex-wrap:wrap}}
+
+#penLiftEndPlot,#bladeLiftEndCut{display:none!important}
+
+#ldmPlotSimOpen[hidden]{display:none!important}

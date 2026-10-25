@@ -1,4 +1,4 @@
-#svgObjectList .textObjectRow{grid-template-columns:24px minmax(0,1fr) auto auto!important}
+#svgObjectList .textObjectRow{grid-template-columns:24px minmax(0,1fr) auto auto auto!important}
 #svgObjectList input.ldmVectorSelect{width:18px;height:18px;min-height:0!important;min-width:0!important;margin:0;justify-self:center;accent-color:var(--bp-accent,#16a66a)}
 #svgObjectList .ldmVectorMultiSelected{box-shadow:inset 3px 0 var(--bp-accent,#16a66a)}
 /* Keep selection and existing layer actions on the same two-column rhythm. */

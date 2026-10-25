@@ -7,3 +7,57 @@ html body #ldmV7ThemePopup select{display:block!important;width:100%!important;m
 html body #ldmV7StepRail #ldmV7Theme{margin-top:auto!important;flex-shrink:0!important}
 html body #ldmV7StepRail #ldmV7Language{margin-top:0!important}
 html body #ldmV7StepRail #ldmDarkModeToggle{width:100%!important;min-width:0!important;flex-shrink:0!important;margin:0!important;font-size:24px!important}
+
+/* V9.EXPERIMENT.12: compact selected-theme quick actions. */
+#ldmV7QuickIcons{display:grid!important;grid-template-columns:repeat(2,28px)!important;gap:4px!important;width:60px!important;max-width:100%!important;flex-shrink:0!important;margin-top:auto!important;align-self:center!important}
+#ldmV7QuickIcons button:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:1px}
+html body #ldmDetachedNavigation87 button{font-size:10px!important;line-height:1.2!important;letter-spacing:0!important;word-break:normal!important;overflow-wrap:normal!important}
+
+/* V9.EXPERIMENT.13: hide only the marked HOME header STATUS, retaining live state. */
+html body #v3TopMachineStatus{display:none!important}
+
+/* V9.EXPERIMENT.14: user-supplied theme icon, tinted by the selected theme. */
+
+/* V9.EXPERIMENT.15: place all four shortcuts above both navigation buttons.
+   EXIT: bottom 6 + height 66; nav: bottom 80 + two 66px buttons + 8px gap.
+   The shortcut block starts a further 8px above that stack. */
+html body #v3StepShow.open:has(.v3Direct-artwork) #ldmV7QuickIcons{position:fixed!important;left:6px!important;right:auto!important;top:auto!important;bottom:228px!important;margin:0!important;z-index:2147000002!important}
+
+/* V9.EXPERIMENT.16: one natural stack prevents independent-control overlap. */
+html body #v3StepShow.open #ldmWorkspaceBottomDock16{position:fixed!important;left:6px!important;bottom:6px!important;top:auto!important;right:auto!important;display:flex!important;flex-direction:column!important;gap:8px!important;width:60px!important;margin:0!important;padding:0!important;z-index:2147000002!important;background:var(--bp-panel,var(--ldm-panel,transparent));color:var(--bp-text,var(--ldm-text,inherit))}
+html body #ldmWorkspaceBottomDock16[hidden],html:is(.ldm-artwork-guest,.ldm-online-workspace) body #ldmWorkspaceBottomDock16{display:none!important}
+html body #v3StepShow.open #ldmWorkspaceBottomDock16 #ldmV7QuickIcons{position:static!important;inset:auto!important;bottom:auto!important;left:auto!important;margin:0!important;z-index:auto!important}
+html body #ldmWorkspaceBottomDock16 > button{box-sizing:border-box!important;width:60px!important;min-width:60px!important;max-width:60px!important;height:66px!important;min-height:66px!important;max-height:66px!important;flex-shrink:0!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;margin:0!important;padding:5px!important;font-family:var(--ldm-font-ui,inherit)!important;font-size:10px!important;line-height:1.2!important;letter-spacing:0!important;word-break:normal!important;overflow-wrap:normal!important}
+html body #ldmWorkspaceBottomDock16 button{color:var(--bp-text,var(--ldm-text,inherit))!important;background:var(--bp-panel,var(--ldm-panel,transparent))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;cursor:pointer}
+html body #ldmWorkspaceBottomDock16 button:hover{background:var(--bp-panel2,var(--bp-panel,transparent))!important}
+html body #ldmWorkspaceBottomDock16 button:focus-visible{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:1px}
+html body #ldmWorkspaceBottomDock16 #ldmV7Exit .ldmV7RailIcon{font-size:22px!important;line-height:1!important}
+html body #ldmWorkspaceBottomDock16 #ldmV7Exit small{font-size:10px!important;line-height:1.2!important}
+html body #v3StepShow.open:has(#v3ShowStage > .v3Direct-artwork) #ldmDetachedNavigation87{display:none!important}
+
+/* V9.EXPERIMENT.18: local vector icons inherit the selected control colour. */
+#ldmV7QuickIcons button > svg{width:16px!important;height:16px!important;flex:none!important;color:inherit!important;pointer-events:none!important}
+
+/* V9.EXPERIMENT.21: layout shortcut opens the original live layout controls. */
+#ldmLayoutPopup21{position:fixed;inset:auto;margin:0;box-sizing:border-box;padding:8px;background:var(--bp-panel,var(--ldm-panel,#fff));color:var(--bp-text,var(--ldm-text,#222));border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);z-index:2147483646;max-height:calc(100dvh - 16px);overflow:auto}
+#ldmLayoutPopup21[hidden]{display:none!important}
+#ldmLayoutPopup21 #ldmLayoutToolbar83{padding:0;margin:0;border:0;border-radius:0}
+#ldmLayoutPopup21 .row{display:flex;flex-direction:column;gap:6px}
+#ldmLayoutPopup21 button{width:100%;margin:0;box-sizing:border-box;color:inherit;background:var(--bp-panel,var(--ldm-panel,#fff));border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);font:inherit;font-size:11px;padding:8px}
+#ldmLayoutPopup21 button:hover{background:var(--bp-panel2,var(--bp-panel,#eee))}
+#ldmLayoutPopup21 button:focus-visible{outline:2px solid var(--bp-accent,currentColor);outline-offset:1px}
+
+html body #ldmDetachedNavigation87 #ldmV7QuickIcons{position:static!important;inset:auto!important;margin:0!important;align-self:start!important}
+html body #ldmDetachedNavigation87 #ldmV7QuickIcons button{color:var(--bp-text,var(--ldm-text,inherit))!important;background:var(--bp-panel,var(--ldm-panel,transparent))!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important}
+html body #ldmDetachedNavigation87 #ldmV7QuickIcons button:hover{background:var(--bp-panel2,var(--bp-panel,transparent))!important}
+
+/* Revision 34: all compact rail navigation labels match Step 1–5. */
+html body #ldmDetachedNavigation87 button,
+html body #ldmWorkspaceBottomDock16 > button,
+html body #ldmWorkspaceBottomDock16 #ldmV7Exit small,
+html body #ldmV7StepRail :is(#ldmV7Inbox,#ldmV7SdFiles){
+ font-family:var(--ldm-font-ui,inherit)!important;
+ font-size:10px!important;line-height:1.2!important;
+ font-weight:var(--ldm-font-weight-medium,500)!important;
+ letter-spacing:0!important;
+}

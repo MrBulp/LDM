@@ -1,4 +1,4 @@
-.ldmSketchPanel { margin: .6em 0; padding: .7em; border: 1px solid currentColor; border-radius: var(--ldm-radius,4px); font: inherit; color: inherit; background: inherit; }
+.ldmSketchPanel { margin: .6em 0; padding: .7em; border: 1px solid currentColor; border-radius: var(--bp-radius,10px); font: inherit; color: inherit; background: inherit; }
 .ldmSketchPanel summary { cursor: pointer; font-weight: 700; }
 .ldmSketchFields { display:grid; grid-template-columns:repeat(auto-fit,minmax(145px,1fr)); gap:.65em; }
 .ldmSketchFields label { display:flex; flex-direction:column; gap:.25em; font:inherit; }

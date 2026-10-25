@@ -1,0 +1,6 @@
+/* GUI.51: character identity must never be changed by a theme's uppercase labels. */
+html body .v3Direct-artwork.v3Direct-artwork :is(#glyphPalette,#glyphList) button,
+html body :is(#glyphPalette,#glyphList) button,
+html body #glyphChar,
+html body [data-glyphset="lower"],
+html body [data-glyphset="caps"]{text-transform:none!important}

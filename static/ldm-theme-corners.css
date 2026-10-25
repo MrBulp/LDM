@@ -1,0 +1,22 @@
+/* Final shared theme geometry. Square PLAIN supplies --bp-radius:0px.
+   Keep artwork, round radio controls, resize handles and edge-to-edge drawers intact. */
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) :is(details,fieldset,.card,.toolbox,.dashBox,.v3OnboardCard,.v3modalCard,.ldmUnifiedPopupCard,.ldm-modal-card,.v4InfoGateCard,.v4InfoArea,.v3RemoteCard,.v3RemoteSecurity,.ldmArtworkFold,.ldmAlgPanel,.ldmSTLPanel,.ldmSketchPanel,.ldmFoamPanel,.ldmFoamSequence,.ldmProfileFields,#ldmLayoutToolbar83,.ldmLayoutGhost,#ldmConnectionPhotos31){
+ border-radius:var(--bp-radius,10px)!important;background-clip:padding-box;
+}
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) details>summary{
+ border-radius:var(--bp-radius,10px)!important;background-clip:padding-box;
+}
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) details[open]>summary{
+ border-bottom-left-radius:0!important;border-bottom-right-radius:0!important;
+}
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) :is(button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=color])){
+ border-radius:var(--bp-radius,10px)!important;
+}
+/* Generated sections need one continuous border, independent of legacy toolbox rules. */
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) :is(.ldmArtworkFold,details.autoSection){
+ border:1px solid var(--bp-line,currentColor)!important;
+}
+/* A padded header must not obscure the parent's rounded border. */
+html body:not(#ldmUnusedCornerSpecificity33):not(#ldmUnusedCornerSpecificity34) .ldmArtworkFold>summary{
+ margin:0!important;border:0!important;
+}

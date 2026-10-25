@@ -1,0 +1,12 @@
+/* Transparent strip; only its controls receive pointer input. */
+html body #v3StepShow .ldmFloatToolsShell #ldmFloatToolsBar84:not([hidden]){background:transparent!important;pointer-events:none!important}
+html body #ldmFloatToolsBar84>button{pointer-events:auto!important}
+html body :is(#ldmWidthShortcut37,#ldmPreviewPan37){box-sizing:border-box!important;width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;background:var(--bp-panel,transparent)!important;color:var(--bp-text,inherit)!important;border:1px solid var(--bp-line,currentColor)!important;border-radius:var(--bp-radius,0)!important;cursor:pointer}
+html body :is(#ldmWidthShortcut37,#ldmPreviewPan37) svg{width:16px!important;height:16px!important;pointer-events:none}
+html body #bed #ldmPreviewPan37{position:absolute!important;right:88px!important;top:8px!important;z-index:10001!important}
+html body #ldmPreviewPan37[hidden]{display:none!important}
+html body #ldmPreviewPan37[aria-pressed=true]{outline:2px solid var(--bp-accent,currentColor)!important;outline-offset:-2px}
+html body #bed.ldmPanActive37 #art{cursor:ns-resize!important;touch-action:none!important}
+
+html body #bed.ldmPanActive37{touch-action:none!important;user-select:none!important;-webkit-user-select:none!important;-webkit-touch-callout:none!important;cursor:ns-resize!important}
+html body #bed.ldmPanActive37 :is(#art,#ldmV9DrawSurface,canvas){touch-action:none!important;cursor:ns-resize!important}

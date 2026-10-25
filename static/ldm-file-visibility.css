@@ -3,3 +3,10 @@ body #svgObjectList button.ldmFileVisibility{display:flex;align-items:center;jus
 body #svgObjectList button.ldmFileVisibility:hover{background:var(--ldm-panel-soft,var(--bp-panel2))!important}
 #svgObjectList button.ldmFileVisibility[aria-pressed="false"] svg{opacity:.55}
 #svgObjectList button.ldmFileVisibility svg{flex:none;pointer-events:none}
+
+/* GUI.47: same theme and dimensions for LOCK and EYE in both layer panels. */
+body #svgObjectList button.ldmLayerLock,body #ldmDrawLayerList button.ldmLayerLock{display:flex;align-items:center;justify-content:center;min-width:36px!important;min-height:34px!important;padding:6px!important;background:var(--ldm-panel,var(--bp-panel))!important;color:var(--ldm-text,var(--bp-text))!important;border:1px solid var(--ldm-border,var(--bp-line))!important;border-radius:var(--bp-radius,0);box-sizing:border-box}
+body #svgObjectList button.ldmLayerLock:hover,body #ldmDrawLayerList button.ldmLayerLock:hover,body #ldmDrawLayerList button.ldmFileVisibility:hover{background:var(--ldm-panel-soft,var(--bp-panel2))!important}
+.ldmLayerLock svg{flex:none;pointer-events:none}
+body #svgObjectList button.ldmLayerLock[aria-pressed=true],body #ldmDrawLayerList button.ldmLayerLock[aria-pressed=true]{color:var(--bp-accent,var(--ldm-primary))!important;border-color:var(--bp-accent,var(--ldm-primary))!important}
+.ldmLayerLock:focus-visible{outline:2px solid var(--bp-accent,var(--ldm-primary));outline-offset:2px}

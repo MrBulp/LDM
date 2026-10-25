@@ -1,0 +1,23 @@
+/* GUI.53: handwriting controls follow the selected LDM theme. */
+#ldmHandwriting,#ldmGlyphVariants{box-sizing:border-box;min-width:0;width:100%;margin:10px 0;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;text-align:left}
+#ldmHandwriting>summary{padding:10px 12px;font:inherit;font-weight:700;cursor:pointer}
+.ldmHandwritingBody,#ldmGlyphVariants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px}
+#ldmHandwriting label,#ldmGlyphVariants label{display:flex;flex-direction:column;gap:6px;min-width:0;margin:0;font:inherit;text-align:left}
+#ldmHandwriting :is(select,button),#ldmGlyphVariants :is(select,button){box-sizing:border-box;width:100%;min-width:0;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;font:inherit;background:var(--bp-panel,transparent);color:var(--bp-text,inherit);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);white-space:normal}
+#ldmHandwriting input[type=range]{box-sizing:border-box;max-width:100%;width:100%;accent-color:var(--bp-accent,var(--ldm-primary))}
+#ldmHandwriting p,#ldmGlyphVariants p,#ldmHandwritingShuffle,#ldmGlyphVariantNext{grid-column:1/-1;margin:0;line-height:1.4}
+#ldmGlyphVariants legend{font:inherit;font-weight:700}
+@media(pointer:coarse){#ldmHandwriting :is(select,button),#ldmGlyphVariants :is(select,button){min-height:44px}}
+@media(max-width:420px){.ldmHandwritingBody,#ldmGlyphVariants{grid-template-columns:minmax(0,1fr)}}
+
+/* GUI.56: standard theme / compact connected handwriting controls. */
+#ldmGlyphConnection{box-sizing:border-box;min-width:0;width:100%;margin:10px 0;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;text-align:left}
+#ldmGlyphConnection>summary{padding:8px 10px;min-height:var(--ldm-art-control-height,36px);box-sizing:border-box;font:inherit;font-weight:700;cursor:pointer}
+.ldmConnectionBody{padding:10px;display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
+#ldmGlyphConnection label{display:flex;flex-direction:column;gap:6px;min-width:0;font:inherit}
+#ldmGlyphConnection input[type=number]{box-sizing:border-box;width:100%;min-width:0;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;font:inherit;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
+#ldmGlyphConnection p{grid-column:1/-1;margin:0;line-height:1.4}
+#ldmGlyphConnection .ldmConnectionCheck,#ldmHandwriting .ldmConnectionCheck{grid-column:1/-1;display:flex;flex-direction:row;align-items:center;gap:8px}
+#ldmGlyphConnection input[type=checkbox],#ldmHandwriting .ldmConnectionCheck input{flex:none;width:16px;height:16px;min-height:0!important;min-width:0!important;margin:0;accent-color:var(--bp-accent,var(--ldm-primary))}
+@media(pointer:coarse){#ldmGlyphConnection>summary,#ldmGlyphConnection input[type=number]{min-height:44px}}
+@media(max-width:420px){.ldmConnectionBody{grid-template-columns:minmax(0,1fr)}}

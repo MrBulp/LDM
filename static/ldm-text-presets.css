@@ -1,0 +1,14 @@
+/* GUI.50: TEXT presets use existing LDM theme and control dimensions. */
+#ldmTextPresets{box-sizing:border-box;width:100%;min-width:0;margin:10px 0;border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font:inherit;text-align:left}
+#ldmTextPresets>summary{padding:10px 12px;cursor:pointer;font:inherit;font-weight:700}
+#ldmTextPresets .ldmTextPresetBody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:10px;min-width:0}
+#ldmTextPresets label{display:flex;flex-direction:column;gap:6px;min-width:0;margin:0;font:inherit;text-align:left}
+#ldmTextPresets :is(button,select,input:not([type=checkbox])){box-sizing:border-box;width:100%;min-width:0;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;margin:0;font:inherit;background:var(--bp-panel,transparent);color:var(--bp-text,inherit);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
+#ldmTextPresets button{white-space:normal;overflow-wrap:anywhere}
+#ldmTextPresets button:hover{background:var(--bp-panel2,var(--bp-panel))}
+#ldmTextPresets .ldmTextPresetWide,#ldmTextPresets .ldmTextPresetCheck{grid-column:1/-1}
+#ldmTextPresets .ldmTextPresetCheck{flex-direction:row;align-items:center;gap:8px}
+#ldmTextPresets input[type=checkbox]{width:16px!important;height:16px!important;min-width:0!important;min-height:0!important;margin:0;flex:none;accent-color:var(--bp-accent,var(--ldm-primary))}
+#ldmTextPresets p{margin:0;line-height:1.4;overflow-wrap:anywhere}
+@media(pointer:coarse){#ldmTextPresets :is(button,select,input:not([type=checkbox])){min-height:44px}}
+@media(max-width:420px){#ldmTextPresets .ldmTextPresetBody{grid-template-columns:minmax(0,1fr)}}

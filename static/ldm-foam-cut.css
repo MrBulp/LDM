@@ -1,5 +1,5 @@
 .ldmFoamPanel{border:1px solid currentColor;padding:12px;font:inherit;color:inherit;background:transparent;text-align:left}
-.ldmFoamPanel>label{display:flex;flex-direction:column;gap:6px;margin:12px 0}.ldmFoamPanel input,.ldmFoamPanel select,.ldmFoamPanel button{font:inherit;color:inherit;box-sizing:border-box;border:1px solid currentColor;border-radius:0}
+.ldmFoamPanel>label{display:flex;flex-direction:column;gap:6px;margin:12px 0}.ldmFoamPanel input,.ldmFoamPanel select,.ldmFoamPanel button{font:inherit;color:inherit;box-sizing:border-box;border:1px solid currentColor;border-radius:var(--bp-radius,10px)}
 .ldmFoamPanel .ldmFoamCheck{flex-direction:row;align-items:center}.ldmFoamCheck input{width:auto!important;flex:none}.ldmFoamButtons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ldmFoamPanel p{font:inherit;line-height:1.4}.ldmFoamPanel [role=status]{margin:10px 0;overflow-wrap:anywhere}.ldmFoamPanel details{border-top:1px solid currentColor;padding-top:10px}.ldmFoamPanel button{background:var(--panel-bg,#f4f4f2)}body.ldm-dark .ldmFoamPanel button,body.ldm-dark .ldmFoamPanel input,body.ldm-dark .ldmFoamPanel select{background:#171b1e;color:#edf2ef}
 .ldmFoamGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ldmFoamGrid label{display:flex;flex-direction:column;gap:5px;min-width:0}.ldmFoamGrid input,.ldmFoamGrid select{width:100%;min-height:38px}.ldmFoamPanel details{margin:12px 0}.ldmFoamPanel>button{margin:8px 0;width:100%}.ldmFoamPanel summary{cursor:pointer;font-weight:bold}.ldmFoamPanel button:disabled{opacity:.45;cursor:default}
 @media(max-width:600px){.ldmFoamGrid{grid-template-columns:1fr}}
@@ -16,7 +16,7 @@
 .ldmFoamPanel .ldmFoamButtons{display:none!important}
 
 /* Selected-theme route entry control. */
-#ldmFoamRouteSection>label{display:flex;flex-direction:column;gap:6px;margin:10px 0;font:inherit}#ldmFoamRouteSection select{font:inherit;color:var(--bp-text);background:var(--bp-bg);border:1px solid currentColor;border-radius:0;padding:6px;min-height:38px;box-sizing:border-box}
+#ldmFoamRouteSection>label{display:flex;flex-direction:column;gap:6px;margin:10px 0;font:inherit}#ldmFoamRouteSection select{font:inherit;color:var(--bp-text);background:var(--bp-bg);border:1px solid currentColor;border-radius:var(--bp-radius,10px);padding:6px;min-height:38px;box-sizing:border-box}
 
 #ldmFoamHeatSettings label[hidden]{display:none!important}
 

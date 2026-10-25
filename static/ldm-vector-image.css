@@ -1,0 +1,7 @@
+/* Use inherited LDM controls and theme colours. */
+#ldmVectorImageEditor[hidden]{display:none!important}
+#ldmVectorImageEditor{margin:8px 0}
+#ldmVectorImageEditor .ldmVectorImageThumb{display:flex;align-items:center;justify-content:center;min-height:80px;max-height:240px;overflow:hidden;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent)}
+#ldmVectorImagePreview{display:block;max-width:100%;max-height:238px;object-fit:contain}
+#ldmVectorImageEditor .row{flex-wrap:wrap}
+#ldmVectorImageOpacity{width:100%;box-sizing:border-box}

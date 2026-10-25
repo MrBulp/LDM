@@ -19,6 +19,7 @@
  },true);
  const original=sendSvgToPreview;
  sendSvgToPreview=function(){
+  if(window.ldmCanvasDraftImportBlocked?.()){status('Wait until the current artwork capture or import finishes.');return false;}
   if(worker){status('NGC is still parsing. Wait for READY.');return;}
   if(!pending)return original.apply(this,arguments);
   const data=pending;pending=null;ldmSnapshot();
@@ -27,6 +28,6 @@
   o.text=data.text;
   ldmSvgObjects.push(o);ldmSelectedSvg=ldmSvgObjects.length-1;selectedPreviewObject={kind:'vector',idx:ldmSelectedSvg};clearObjectEditOverlay?.();
   ldmLoadControls();ldmRefreshSvgList();ldmRenderComposition();FTE.built=false;input.value='';
-  status('NGC ADDED — '+data.name+' — '+data.raw.length+' strokes, '+data.segments+' segments');
+  window.ldmCanvasDraftAdded?.();status('NGC ADDED — '+data.name+' — '+data.raw.length+' strokes, '+data.segments+' segments');
  };
 })();

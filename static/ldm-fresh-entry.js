@@ -2,7 +2,7 @@
 (()=>{'use strict';const access=window.LDM_ACCESS;if(!access?.local)return;let started=false,complete=false;
 window.ldmStartEntry=()=>{
  if(started)return;started=true;window.ldmOpenBambuPrintConnection?.();const modal=document.getElementById('v3GoldenConnectModal');if(!modal)return;if(modal.parentNode!==document.body)document.body.appendChild(modal);modal.classList.add('ldm-fresh-entry');
- const guide=document.createElement('section');guide.className='ldmEntrySection';guide.id='ldmEntryConnectionGuide';guide.innerHTML='<b>PRINTER LCD · CONNECTION GUIDE</b><ol><li>Open <b>SETTINGS → DEVICE</b> and copy <b>PRINTER SERIAL NUMBER</b>.</li><li>Open <b>LAN ONLY MODE</b>. Turn ON <b>LAN ONLY MODE</b> and <b>DEVELOPER MODE</b> where available. Menu locations depend on model and firmware.</li><li>Enter the printer IP, serial number and <b>LAN ACCESS CODE</b> below, then click <b>SAVE</b>.</li><li>Press CONNECT below the diagnostic logs. After connection succeeds, press the bottom <b>OK</b> to enter LDM.</li></ol>';
+ const guide=document.createElement('section');guide.className='ldmEntrySection';guide.id='ldmEntryConnectionGuide';guide.innerHTML='<b>PRINTER LCD · CONNECTION GUIDE</b><ol><li>Open <b>SETTINGS → DEVICE</b> and copy <b>PRINTER SERIAL NUMBER</b>.</li><li>Open <b>LAN ONLY MODE</b>. Turn ON <b>LAN ONLY MODE</b> and <b>DEVELOPER MODE</b> where available. Menu locations depend on model and firmware.</li><li>Enter the printer IP, serial number and <b>LAN ACCESS CODE</b> below, then click <b>SAVE</b>.</li><li>Press CONNECT below the diagnostic logs. After connection and SD / FTPS checks pass, WORKSPACE opens automatically.</li></ol>';
  const box=document.getElementById('ldmPrintConnectionModel');box.after(guide);
  const admin=document.createElement('section');admin.className='ldmEntrySection';admin.id='ldmEntryAdmin';box.before(admin);let mode=access.setup_required?'setup':access.admin?'signed':'login';
  function render(){admin.replaceChildren();const heading=document.createElement('b');heading.textContent='ADMINISTRATOR';if(mode==='signed'){const unlocked=document.createElement('span');unlocked.id='ldmEntryAdminUnlocked';unlocked.textContent=' (UNLOCKED)';heading.appendChild(unlocked);}admin.appendChild(heading);const form=document.createElement('form');admin.appendChild(form);
@@ -17,7 +17,7 @@ window.ldmStartEntry=()=>{
  Object.assign(access,next);window.LDM_GUEST_EXPLORING=false;mode='signed';render();modal.classList.remove('ldm-entry-locked');
  for(const control of modal.querySelectorAll('#v3GoldenCredentials input,#v3GoldenCredentials button,.gc-actions button,#v3GoldenOkBtn,#ldmPrintConnectModel'))control.disabled=false;
  document.dispatchEvent(new Event('ldm-administrator-unlocked'));window.v3GoldenSyncConsole?.();
- document.getElementById('ldmPrintConnectionMessage').textContent='Connect the printer, then press OK.';
+ document.getElementById('ldmPrintConnectionMessage').textContent='Press CONNECT to verify and open WORKSPACE.';
  document.querySelector('#v3GoldenCredentials input')?.focus();}catch(error){message.textContent=error.message;submit.disabled=false;}};
  }
  render();for(const control of admin.querySelectorAll('input,button')){control.disabled=false;if('readOnly' in control)control.readOnly=false;}if(!access.admin){modal.classList.add('ldm-entry-locked');for(const control of modal.querySelectorAll('#v3GoldenCredentials input,#v3GoldenCredentials button,.gc-actions button,#v3GoldenOkBtn,#ldmPrintConnectModel'))control.disabled=true;}
