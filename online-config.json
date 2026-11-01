@@ -4,18 +4,17 @@
     "schema": 1,
     "enabled": true,
     "inbox_enabled": true,
-    "online_inbox_visible": true,
+    "online_inbox_visible": false,
     "draw_svg_upload": true,
     "sections": [
       "vector",
       "text",
-      "draw",
-      "inbox"
+      "draw"
     ],
     "draw_helpers": {
       "a4": true,
       "writing": true
     },
-    "revision": "f16d440bb1d8dee3"
+    "revision": "8c139b46aa536179"
   }
 }
