@@ -1,0 +1,35 @@
+/* Match selected theme colours, radius and existing compact layout icon size. */
+.ldmSectionFloatControls61{display:none!important;float:right;align-items:center;gap:3px;margin-left:6px}
+body.ldmFloatingSectionsEnabled61 .ldmSectionFloatControls61{display:inline-flex!important}
+.ldmSectionFloatControls61 button{display:inline-flex!important;align-items:center;justify-content:center;width:27px!important;min-width:27px!important;max-width:27px!important;height:27px!important;min-height:27px!important;margin:0!important;padding:2px!important;flex:none;line-height:1!important;border-radius:var(--bp-radius,10px)!important}
+.ldmSectionFloatControls61 button[hidden]{display:none!important}
+.ldmSectionFloatControls61 svg{width:16px!important;height:16px!important;pointer-events:none}
+.ldmSectionFloatGrip61{cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.ldmSectionFloatGrip61:active{cursor:grabbing}
+/* Fixed positioning needs a viewport containing block while retaining ancestors. */
+[data-ldm-floating-ancestor61]{transform:none!important;filter:none!important;backdrop-filter:none!important;perspective:none!important;contain:none!important;will-change:auto!important;clip-path:none!important;animation:none!important}
+body .ldmSectionFloatPanel61{position:fixed!important;inset:auto!important;left:var(--ldm-section-left,24px)!important;top:var(--ldm-section-top,80px)!important;width:var(--ldm-section-width,420px)!important;min-width:0!important;max-width:calc(100vw - 16px)!important;max-height:var(--ldm-section-height,calc(100dvh - 16px))!important;height:auto!important;margin:0!important;box-sizing:border-box!important;overflow:auto!important;overscroll-behavior:contain;z-index:var(--ldm-section-z,200100)!important;background:var(--bp-panel,#fff)!important;color:var(--bp-text,#222)!important;border:1px solid var(--v3-line,var(--bp-line,#aaa))!important;border-radius:var(--bp-radius,10px)!important;box-shadow:0 8px 28px #0004;isolation:isolate}
+body .ldmSectionFloatPanel61>summary{position:sticky!important;top:0!important;z-index:2;background:var(--bp-panel,#fff)!important;color:var(--bp-text,#222)!important;padding:8px!important;min-height:36px;box-sizing:border-box;border-bottom:1px solid var(--v3-line,var(--bp-line,#aaa))}
+body .ldmSectionFloatPanel61>summary .ldmLayoutTools{display:none!important}
+.ldmSectionFloatPlaceholder61{display:flex;align-items:center;gap:6px;padding:4px 0}
+.ldmSectionFloatPlaceholder61 button:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+#ldmFloatingSectionsToggle61{white-space:normal}
+
+/* V66: same panel and header treatment as Live Typewriter. */
+body .ldmSectionFloatPanel61{padding:8px!important;border:1px solid var(--ldm-border,var(--bp-border,#acb5ac))!important;border-radius:var(--ldm-radius,8px)!important;background:var(--ldm-panel,var(--bp-panel,#f7f8f5))!important;color:var(--ldm-text,var(--bp-text,#202620))!important;box-shadow:0 6px 24px #0002!important}
+body.ldm-dark .ldmSectionFloatPanel61{background:var(--ldm-panel,#1d2421)!important;color:var(--ldm-text,#eef3ed)!important}
+body .ldmSectionFloatPanel61>summary{font-size:11px!important;font-weight:700!important;min-height:32px!important;margin-bottom:6px!important;border:1px solid var(--ldm-border,var(--bp-border,#acb5ac))!important;border-radius:var(--ldm-radius,8px)!important;background:var(--ldm-primary-soft,var(--bp-primary-soft,#ffd89d))!important;color:inherit!important}
+body .ldmSectionFloatPanel61[hidden]{display:none!important}
+
+/* V67: real Live Typewriter header layout, using the theme's native buttons. */
+body .ldmSectionFloatPanel61>summary{display:flex!important;align-items:center;gap:5px;padding:0!important;min-height:32px!important;list-style:none!important;border:0!important;background:transparent!important;box-shadow:none!important;cursor:default!important}
+body .ldmSectionFloatPanel61>summary::-webkit-details-marker{display:none!important}
+body .ldmSectionFloatPanel61>summary::marker{content:''}
+body .ldmSectionFloatPanel61>summary::before,body .ldmSectionFloatPanel61>summary::after{display:none!important}
+body .ldmSectionFloatPanel61>summary>.ldmSectionFloatLabel67{display:none!important}
+body .ldmSectionFloatPanel61>summary>.ldmSectionFloatControls61{display:flex!important;float:none!important;width:100%;gap:5px;margin:0!important;align-items:center}
+body .ldmSectionFloatPanel61>summary .ldmSectionFloatGrip61{flex:1 1 0!important;width:auto!important;max-width:none!important;min-width:0!important;min-height:32px!important;height:auto!important;font:inherit!important;font-size:11px!important;font-weight:700!important;letter-spacing:inherit!important;text-align:left!important;justify-content:flex-start!important;white-space:normal!important;padding:4px 7px!important;line-height:1.4!important;border-radius:var(--ldm-radius,8px)!important}
+body .ldmSectionFloatPanel61>summary .ldmSectionFloatMin67,body .ldmSectionFloatPanel61>summary .ldmSectionFloatButton61{width:32px!important;min-width:32px!important;max-width:32px!important;height:32px!important;min-height:32px!important;padding:4px 6px!important;font:inherit!important;font-weight:400!important;border-radius:var(--ldm-radius,8px)!important}
+
+/* V94: translate the cached panel box once per frame while dragging. */
+body .ldmSectionFloatPanel61.ldmSectionDragging94{transform:translate3d(var(--ldm-section-drag-x,0px),var(--ldm-section-drag-y,0px),0)!important;will-change:transform}

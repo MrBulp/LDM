@@ -68,10 +68,10 @@
    const points={...saved.points},raw=simulationMeshRaw(mode,points,pw,ph),zero=raw(0,0);meshAt=(x,y)=>raw(x,y)-zero;meshCeiling=Math.max(0,...Object.values(points).map(Number).map(v=>v-zero));
   }
   const files=vectorSnapshot(pw,ph),tol=Math.max(0,number('fteTol',0));let paths=[],colourPlan=null;
-  if(window.ldmVectorColourEnabled){
+  if(window.ldmVectorColourEnabled||files.some(o=>o.ldmPenChange===true)){
    if(isVinyl||!liftDuring)throw Error('Multicolour simulation requires PEN and lift ON.');
-   window.ldmVectorColourHoldSeconds();const starts=new Map(),palette=['#e53935','#1976d2','#43a047','#8e24aa','#fb8c00','#00838f','#c2185b','#795548'];
-   files.forEach((o,i)=>{const pp=o.paths.filter(p=>p.length>1).map(p=>fteS(p,tol));if(!pp.length)return;const colour=/^#[0-9a-f]{6}$/i.test(o.lineColour||'')?o.lineColour:palette[i%palette.length];starts.set(paths.length,String((o.name||'VECTOR')+' '+colour).replace(/[^a-zA-Z0-9 ._-]/g,' ').slice(0,70));paths.push(...pp);});colourPlan={paths,starts};
+   window.ldmVectorColourHoldSeconds();const starts=new Map(),penPauses=new Map(),palette=['#e53935','#1976d2','#43a047','#8e24aa','#fb8c00','#00838f','#c2185b','#795548'];
+   files.forEach((o,i)=>{const pp=o.paths.filter(p=>p.length>1).map(p=>fteS(p,tol));if(!pp.length)return;const colour=/^#[0-9a-f]{6}$/i.test(o.lineColour||'')?o.lineColour:palette[i%palette.length];if(o.ldmPenChange===true)penPauses.set(paths.length,"CHANGE PEN BEFORE "+o.name);starts.set(paths.length,String((o.name||'VECTOR')+' '+colour).replace(/[^a-zA-Z0-9 ._-]/g,' ').slice(0,70));paths.push(...pp);if(o.ldmPenChange===true)penPauses.set(paths.length,"RESTORE ORIGINAL PEN AFTER "+o.name);});colourPlan={paths,starts,penPauses,suppressTimed:!window.ldmVectorColourEnabled};
   }else paths=files.flatMap(o=>o.paths).filter(p=>p.length>1).map(p=>fteS(p,tol));
   paths=window.ldmThinPlotPaths(paths);
   const built=window.ldmBuildPlotMotion({paths,pw,ph,isVinyl,lift,cutDepth,zf,df,tf,liftDuring,endPos,endClearance,meshOn,meshAt,meshCeiling,colourPlan});

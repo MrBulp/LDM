@@ -4,7 +4,7 @@ const KEY='ldmSectionOrder83',id=n=>document.getElementById(n);let orders={};try
 const defaults=new Map(),groups=new Map(),resetPending=new Set();let editing=false,queued=false,drag=null,toolbar=null;
 const area=()=>document.querySelector('#v3StepShow.open .v3DirectTabScene');
 function title(d){const s=d.querySelector(':scope > summary');if(!s)return '';const copy=s.cloneNode(true);copy.querySelectorAll('button,input,select,.ldmLayoutTools').forEach(n=>n.remove());return copy.textContent.trim();}
-function allowed(d){return !!d.querySelector(':scope > summary')&&!d.matches('#svgMainSection,#textMainSection,#v3MainMachine')&&!d.closest('#v3QuickStepsDrawer,dialog')&&getComputedStyle(d.querySelector(':scope > summary')).display!=='none';}
+function allowed(d){return !d.classList.contains('ldmSectionFloatPanel61')&&!!d.querySelector(':scope > summary')&&!d.matches('#svgMainSection,#textMainSection,#v3MainMachine')&&!d.closest('#v3QuickStepsDrawer,dialog')&&getComputedStyle(d.querySelector(':scope > summary')).display!=='none';}
 function siblings(parent){return [...parent.children].filter(n=>n.tagName==='DETAILS'&&allowed(n));}
 function groupKey(parent){const scope=parent.closest('.v3ArtworkModeBody')?.id||parent.closest('.v3DirectTabScene')?.className||'settings';let target=parent.id;
  if(!target){const bits=[];for(let n=parent;n&&n!==document.body;n=n.parentElement){if(n.id){bits.unshift('#'+n.id);break;}const cls=[...n.classList].filter(x=>!x.startsWith('ldmLayout')).join('.');const kind=n.tagName+'.'+cls+(n.dataset.artpane?'['+n.dataset.artpane+']':'');const peers=n.parentElement?[...n.parentElement.children].filter(p=>p.tagName===n.tagName&&p.className===n.className):[n];bits.unshift(kind+':'+peers.indexOf(n));}target=bits.join('/');}

@@ -14,7 +14,7 @@
  const loadControls=window.ldmLoadControls;
  if(typeof loadControls==='function')window.ldmLoadControls=function(){
    const result=loadControls.apply(this,arguments),o=window.ldmSvgObjects?.[window.ldmSelectedSvg];
-   if(o?.ldmCanvasSnapshotId){el('svgX').value=o.x;el('svgY').value=o.y;}
+   if(o?.ldmCanvasSnapshotId||o?.ldmTextPenSection){el('svgX').value=o.x;el('svgY').value=o.y;}
    return result;
  };
  async function call(path,body){
@@ -30,7 +30,7 @@
    if(!paths.length)throw new Error('CANVAS is empty. Place artwork onto CANVAS first.');
    const canvas={width:Number(el('paperW').value),height:Number(el('paperH').value),paths};
    if(window.ldmSvgObjects?.length){
-     window.ldmSnapshot?.();canvas.layers=window.ldmSvgObjects.map((o,i)=>({name:String(o.name||'VECTOR '+(i+1)).slice(0,120),colour:window.ldmVectorLayerColour?.(o,i)||o.lineColour||'#df625c',visible:o.visible!==false,paths:window.ldmTransformPaths({...o,visible:true}).map(st=>st.map(p=>[Number(p[0]),Number(p[1])])).filter(st=>st.length>1)})).filter(o=>o.paths.length);
+     window.ldmSnapshot?.();canvas.layers=window.ldmSvgObjects.map((o,i)=>({name:String(o.name||'VECTOR '+(i+1)).slice(0,120),colour:window.ldmVectorLayerColour?.(o,i)||o.lineColour||'#df625c',visible:o.visible!==false,...(o.ldmPenChange===true?{pen_change:true}:{}),paths:window.ldmTransformPaths({...o,visible:true}).map(st=>st.map(p=>[Number(p[0]),Number(p[1])])).filter(st=>st.length>1)})).filter(o=>o.paths.length);
      canvas.paths=canvas.layers.filter(o=>o.visible).flatMap(o=>o.paths);
      canvas.vector_options={multicolour:!!window.ldmVectorColourEnabled,hold_seconds:Number(el('ldmVectorHoldSeconds')?.value||60)};
    }
@@ -115,7 +115,7 @@
      else if(!draftOnly){el('paperW').value=c.width;el('paperH').value=c.height;el('paperW').dispatchEvent(new Event('input',{bubbles:true}));el('paperH').dispatchEvent(new Event('input',{bubbles:true}));}
      const paperWidth=Number(el('paperW').value),paperHeight=Number(el('paperH').value);
      const layers=c.layers?.length?c.layers:[{name:`APPROVED · ${item.title}`,paths:c.paths,visible:true}];
-     const objects=layers.map(layer=>{const paths=JSON.parse(JSON.stringify(layer.paths));let minx=Infinity,miny=Infinity,maxx=-Infinity,maxy=-Infinity;for(const st of paths)for(const [x,y]of st){minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);}return {name:layer.name,text:svgString({...c,paths}),raw:paths,x:(minx+maxx)/2-paperWidth/2,y:(miny+maxy)/2-paperHeight/2,scale:100,rot:0,mx:false,my:false,visible:layer.visible!==false,...(layer.colour?{lineColour:layer.colour}:{}),ldmCanvasSnapshotId:item.id,ldmCanvasSnapshotSha256:item.sha256,ldmCanvasSourceWidth:c.width,ldmCanvasSourceHeight:c.height};});
+     const objects=layers.map(layer=>{const paths=JSON.parse(JSON.stringify(layer.paths));let minx=Infinity,miny=Infinity,maxx=-Infinity,maxy=-Infinity;for(const st of paths)for(const [x,y]of st){minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);}return {name:layer.name,text:svgString({...c,paths}),raw:paths,x:(minx+maxx)/2-paperWidth/2,y:(miny+maxy)/2-paperHeight/2,scale:100,rot:0,mx:false,my:false,visible:layer.visible!==false,...(layer.pen_change===true?{ldmPenChange:true}:{}),...(layer.colour?{lineColour:layer.colour}:{}),ldmCanvasSnapshotId:item.id,ldmCanvasSnapshotSha256:item.sha256,ldmCanvasSourceWidth:c.width,ldmCanvasSourceHeight:c.height};});
      window.ldmSvgObjects.push(...objects);svgText=objects.at(-1).text;rawSvgPaths=objects.at(-1).raw;placedSvgPaths=[];
      if(c.vector_options&&!draftOnly){window.ldmSetVectorColour?.(c.vector_options.multicolour);window.ldmVectorColourEnabled=c.vector_options.multicolour;const check=document.querySelector('.ldmVectorColourOption input[type="checkbox"]');if(check)check.checked=c.vector_options.multicolour;if(el('ldmVectorHoldSeconds'))el('ldmVectorHoldSeconds').value=c.vector_options.hold_seconds;}
      window.ldmSelectedSvg=window.ldmSvgObjects.length-1;selectedPreviewObject={kind:'vector',idx:window.ldmSelectedSvg};

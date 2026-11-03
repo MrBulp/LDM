@@ -1,0 +1,16 @@
+{
+  "schema": "ldm-online-visibility-v26",
+  "version": 1,
+  "features": {
+    "text_preview": true,
+    "text_presets": true,
+    "handwriting_variation": true,
+    "send_to_canvas": true,
+    "jawi_authoring": false,
+    "vector_tab": true,
+    "text_tab": true,
+    "draw_write_tab": true,
+    "gallery_tab": true
+  },
+  "note": "Presentation-only switches. Pi API authorization remains authoritative."
+}

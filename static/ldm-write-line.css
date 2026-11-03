@@ -1,0 +1,7 @@
+#ldmWriteLineControls{margin-top:6px;border-top:1px solid var(--ldm-border,#aeb8af);padding-top:5px}
+#ldmWriteLineControls[hidden],#ldmWriteLineControls button[hidden]{display:none!important}
+#ldmWriteLineReview{width:min(560px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:auto;border:1px solid var(--ldm-border,#aeb8af);border-radius:var(--ldm-radius,8px);background:var(--ldm-panel,#f5f7f2);color:var(--ldm-text,#202820);padding:18px}
+body.ldm-dark #ldmWriteLineReview{background:var(--ldm-panel,#1d2421);color:var(--ldm-text,#eef3ed)}
+#ldmWriteLineReview::backdrop{background:#0007}
+#ldmWriteLineReview pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;max-height:160px;overflow:auto;padding:10px;border:1px solid var(--ldm-border,#aeb8af)}
+#ldmWriteLineReview p{font-size:13px;line-height:1.5}

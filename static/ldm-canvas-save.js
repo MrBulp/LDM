@@ -39,16 +39,17 @@
      }
    });
  }
- function open(){
+ function open(provided){
    makeDialog();previousFocus=document.activeElement;save.hidden=false;cancel.textContent='CANCEL';status.textContent='';snapshot=null;
    title.value=id('ldmCanvasTitle')?.value||'Canvas '+new Date().toLocaleString();
-   try{snapshot=window.ldmCaptureSubmissionCanvas();}catch(error){status.textContent=error.message;}
+   try{snapshot=provided?.layers?provided:window.ldmCaptureSubmissionCanvas();}catch(error){status.textContent=error.message;}
    save.disabled=!snapshot;dialog.hidden=false;title.focus();
  }
  function mount(){
    const bar=id('ldmCanvasExportBar');if(!bar||id('ldmCanvasSaveInbox')||(!access.admin&&access.local))return;
    const button=document.createElement('button');button.type='button';button.id='ldmCanvasSaveInbox';button.textContent='SAVE TO CANVAS INBOX';button.onclick=open;bar.appendChild(button);
  }
+ window.ldmOpenArtworkInboxSave=open;
  new MutationObserver(mount).observe(document.body,{childList:true,subtree:true});
  mount();
 })();

@@ -27,7 +27,7 @@ window.ldmCommitWritingWithGuides=async(svg,canvas,guides,name)=>{
   const blue=['#2471a3','#b03a2e','#148f77','#7d3c98'].find(c=>!existing.some(o=>o.lineColour?.toLowerCase()===c))||'#2471a3';
   const black=blue==='#b03a2e'?'#17202a':'#b03a2e';
   const prepared=[];
-  for(const [raw,label,colour]of [[writing,name,black],[guides.paths,'WRITING GUIDES '+String(existing.filter(o=>/^WRITING GUIDES/.test(o.name||'')).length+1).padStart(3,'0'),blue]]){
+  for(const [raw,label,colour]of [[writing,name,black],...(guides.layers||[{name:'WRITING GUIDES '+String(existing.filter(o=>/^WRITING GUIDES/.test(o.name||'')).length+1).padStart(3,'0'),paths:guides.paths}]).map(g=>[g.paths,g.name,blue])]){
    const geometry=await ldmPrepareVectorGeometry(raw),b=geometry.bounds;if(!b)throw Error('No drawable '+label+' geometry.');
    const text='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+canvas.width+' '+canvas.height+'">'+raw.map(p=>'<polyline fill="none" stroke="'+colour+'" points="'+p.map(q=>q.join(',')).join(' ')+'"/>').join('')+'</svg>';
    const object={name:label,text,raw,x:(b.minx+b.maxx-canvas.width)/2,y:(b.miny+b.maxy-canvas.height)/2,scale:100,rot:0,mx:false,my:false,visible:true,lineColour:colour};prepared.push({object,geometry});

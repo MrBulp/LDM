@@ -7,6 +7,7 @@
   if(![lift,cutDepth,zf,df,tf,endClearance,meshCeiling].every(Number.isFinite)||lift<0||cutDepth<0||Math.min(zf,df,tf)<=0||endClearance<.001||endClearance>256||endClearance<meshCeiling+.001)throw Error('END Z LIFT must be positive, at most 256 mm, and above the highest saved mesh surface. Check lift and speed values.');
   if(!['topLeft','center'].includes(endPos))throw Error('Choose a valid plot end position.');
   const zMeshDeltaAt=(x,y)=>{const n=meshOn?meshAt(x,y):0;if(!Number.isFinite(n))throw Error('Invalid mesh height.');return n;};
+ if(colourPlan?.penPauses?.size&&(isVinyl||!liftDuring||!(lift>0)))throw Error('TEXT pen changes require PEN / PLOT, positive pen lift and pen lift during plotting ON.');
  let g=['G91'];
  let cur=[0,0], penIsUp=false;
  let meshDelta=0; // START is the taught BED/PLATE CENTER contact plane.
@@ -14,7 +15,9 @@
  const drawable=pp.filter(path=>path && path.length>=2);
  for(let pi=0;pi<drawable.length;pi++){
    const path=drawable[pi];
-   if(colourPlan?.starts.has(pi)){
+   const manualPause=colourPlan?.penPauses?.get(pi);
+   if(manualPause){window.ldmTextPenPause(g,manualPause,lift,zf,penIsUp);penIsUp=true;}
+   if(!manualPause&&!colourPlan?.suppressTimed&&colourPlan?.starts.has(pi)){
      const name=colourPlan.starts.get(pi);
      if(pi>0){window.ldmVectorColourPause(g,name,lift,zf,penIsUp);penIsUp=true;}
      else g.push('; LDM FIRST PEN - '+name);
@@ -48,6 +51,8 @@
    }
    g.push('M400');
  }
+
+ if(colourPlan?.penPauses?.has(drawable.length)){window.ldmTextPenPause(g,colourPlan.penPauses.get(drawable.length),lift,zf,penIsUp);penIsUp=true;}
 
  // End-of-plot behavior is explicit and independent of inter-path pen lift.
  // Top Left means preview/paper top-left relative to taught BED/PLATE CENTER:

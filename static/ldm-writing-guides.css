@@ -67,3 +67,27 @@ html body .v3Direct-artwork #ldmWritingGuideControls #ldmWritingReset{grid-colum
 #ldmWritingGuideControls select{box-sizing:border-box;width:100%;min-width:0;min-height:var(--ldm-art-control-height,36px);padding:6px 8px;font:inherit;color:inherit;background:var(--bp-panel,transparent);border:1px solid var(--bp-line,currentColor);border-radius:var(--bp-radius,0)}
 #ldmWritingGuideControls label:has([data-writing=a5]),#ldmWritingGuideControls label:has([data-writing=wrap]){order:1}
 @media(pointer:coarse){#ldmWritingGuideControls select{min-height:44px}}
+
+/* V98: guide sections use the Writing Guides layout, including hidden-state precedence. */
+html body #ldmTablePreviewTools97[hidden],html body #ldmCustomBoxes96[hidden],html body #ldmTableGuides93[hidden]{display:none!important}
+#ldmTableGuides93,#ldmCustomBoxes96{box-sizing:border-box;min-width:0;border:1px solid var(--bp-line,currentColor);background:var(--bp-panel,transparent);color:var(--bp-text,inherit);font-size:13px;text-align:left;border-radius:var(--bp-radius,var(--v3-radius,11px));padding:0}
+#ldmTableGuides93:not(.ldmSectionFloatPanel61),#ldmCustomBoxes96:not(.ldmSectionFloatPanel61){display:block;width:100%!important;max-width:none!important;grid-column:1 / -1;flex:1 0 100%;align-self:stretch;justify-self:stretch;margin:12px 0!important}
+#ldmTableGuides93>summary,#ldmCustomBoxes96>summary{padding:10px 12px;font:inherit;font-weight:700;cursor:pointer;text-align:left;letter-spacing:normal}
+#ldmTableGuides93 .ldmTableBody93,#ldmCustomBoxes96 .ldmTableBody93{padding:12px}
+#ldmTableGuides93 .row,#ldmCustomBoxes96 .row{display:flex;gap:6px;flex-wrap:wrap}
+#ldmTableGuides93 .ldmWritingField,#ldmCustomBoxes96 .ldmWritingField{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:6px 0}
+#ldmTableGuides93 input[type=number],#ldmCustomBoxes96 input[type=number],#ldmCustomBoxes96 select{width:100px;max-width:45%;font:inherit}
+#ldmTableGuides93 input[type=checkbox],#ldmCustomBoxes96 input[type=checkbox]{width:14px;height:14px;min-width:14px}
+#ldmTablePreviewTools97{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;box-sizing:border-box;width:100%;min-width:0;margin:12px 0;font-size:13px}
+#ldmTablePreviewTools97 button{width:100%;min-width:0;margin:0;white-space:normal}
+#ldmTableSelected97{grid-column:1 / -1;min-width:0;margin:0;font-size:12px;text-align:left;line-height:1.4}
+@media(max-width:420px){#ldmTablePreviewTools97{grid-template-columns:minmax(0,1fr)}}
+
+/* V99: cell picking belongs beside WRITE CELL / WRITE BOX. */
+html body #ldmTableChoose97[hidden],html body #ldmTableSelected97[hidden],html body #ldmTableOpen97[hidden]{display:none!important}
+#ldmTableChoose97{font:inherit}
+#ldmWriteLineControls>#ldmTableSelected97{display:block;width:100%;margin:8px 0;font-size:12px;line-height:1.4}
+#ldmTablePreviewTools97{grid-template-columns:minmax(0,1fr)}
+
+#ldmCustomBoxes96 .ldmWritingOption{display:flex;align-items:center;gap:8px;margin:8px 0;font:inherit}
+#ldmCustomShapesInclude102{flex:none}

@@ -1,0 +1,7 @@
+#ldmCreativeGuideOverlay62{position:absolute;z-index:35;overflow:hidden;touch-action:none;pointer-events:none;background:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important}
+.ldmCreativeLayer62{display:flex!important;align-items:center;gap:4px;margin:5px 0;flex-wrap:nowrap!important}
+.ldmCreativeLayer62 button:first-child{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.ldmCreativeLayer62 button:not(:first-child){width:27px!important;min-width:27px!important;max-width:27px!important;min-height:27px!important;padding:2px!important;flex:none;border-radius:var(--bp-radius,10px)!important}
+[id^=ldmCreativeSection62_] select{max-width:100%;width:100%;margin:6px 0}
+
+#ldmCreativeGuideOverlay62>polyline{pointer-events:none!important}

@@ -6,10 +6,10 @@
  window.ldmVectorColourEnabled=false;
  window.ldmSetVectorColour=function(on){window.ldmVectorColourEnabled=!!on;if(typeof FTE!=='undefined')FTE.built=false};
  window.ldmBuildVectorColourPlan=function(){
-  window.ldmSnapshot?.();const files=(window.ldmSvgObjects||[]).filter(o=>o.visible!==false),paths=[],starts=new Map();
+  window.ldmSnapshot?.();const files=(window.ldmSvgObjects||[]).filter(o=>o.visible!==false),paths=[],starts=new Map(),penPauses=new Map();
   for(const o of files){let pp=window.ldmTransformPaths(o);if(window.ldmClipPathsToPaper)pp=window.ldmClipPathsToPaper(pp);pp=pp.filter(p=>p.length>1);if(typeof fteS==='function'){const tol=Math.max(0,Number(document.getElementById('fteTol')?.value||0));pp=pp.map(p=>fteS(p,tol)).filter(p=>p.length>1)}if(!pp.length)continue;
-   const name=String((o.name||'VECTOR')+' '+colour(o,(window.ldmSvgObjects||[]).indexOf(o))).replace(/[^a-zA-Z0-9 ._-]/g,' ').slice(0,70);starts.set(paths.length,name);for(const p of pp)paths.push(p);
-  }return {paths,starts};
+   const name=String((o.name||'VECTOR')+' '+colour(o,(window.ldmSvgObjects||[]).indexOf(o))).replace(/[^a-zA-Z0-9 ._-]/g,' ').slice(0,70);if(o.ldmPenChange===true)penPauses.set(paths.length,"CHANGE PEN BEFORE "+name);starts.set(paths.length,name);for(const p of pp)paths.push(p);if(o.ldmPenChange===true)penPauses.set(paths.length,"RESTORE ORIGINAL PEN AFTER "+name);
+  }return {paths,starts,penPauses,suppressTimed:!window.ldmVectorColourEnabled};
  };
  window.ldmVectorColourHoldSeconds=function(){const input=document.getElementById('ldmVectorHoldSeconds'),n=Number(input?input.value:60);if(!Number.isInteger(n)||n<1||n>600)throw Error('VECTOR timed hold must be whole seconds from 1 to 600.');return n;};
  window.ldmVectorColourPause=function(lines,name,lift,zf,alreadyUp){if(!alreadyUp)lines.push('G91',`G1 Z${lift.toFixed(3)} F${zf}`,'M400');lines.push('; LDM COLOUR CHANGE - NEXT '+name,'M400','M17','M1006 S1','M1006 A0 B0 L45 C72 D8 M100 E72 F8 N100','M1006 W','M400','G4 P'+(window.ldmVectorColourHoldSeconds()*1000),'G91');};
